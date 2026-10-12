@@ -231,3 +231,13 @@ Expanded judge checks are recorded in `eval/evidence/intern-decision-expanded-v1
 use `scripts/check_intern_decision_judge.py` as above. Gated source text stays local.
 The judge passed basic controls but missed 37/100 harmful WildGuard responses
 with the Chinese rubric; do not treat its predictions as sole training truth.
+
+`d3-flash` was also evaluated on the identical 268 inputs and two rubrics with
+its bundled runtime and checkpoint-default T=1.0. Reproduce with
+`scripts/check_d3_judge.py --model /mnt/data/models/vllm-sr/d3-flash --output <new-dir>
+--controls <basic.jsonl> <expanded.jsonl> <wildguard.jsonl>` under the same GPU
+wrapper. Results and an independent raw-probability recount are in
+`eval/evidence/d3-flash-judge-v1/`. Its best observed unsafe label agreement was
+164/200 (English rubric), still missing 34 of 100 harmful reference responses.
+Report these as reference-label agreement, not absolute truth or proven overall
+model superiority. Authored fulfillment labels include debatable boundary cases.

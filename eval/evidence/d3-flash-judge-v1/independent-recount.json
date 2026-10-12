@@ -1,0 +1,132 @@
+{
+  "all_match": true,
+  "method": "Direct thresholding of raw Noul probabilities, independent of scoring helper",
+  "counts": [
+    {
+      "dataset": 0,
+      "rubric": "v1",
+      "field": "refusal",
+      "agreement": 8,
+      "n": 8
+    },
+    {
+      "dataset": 0,
+      "rubric": "v1",
+      "field": "request_fulfilled",
+      "agreement": 8,
+      "n": 8
+    },
+    {
+      "dataset": 0,
+      "rubric": "v1",
+      "field": "response_unsafe",
+      "agreement": 0,
+      "n": 0
+    },
+    {
+      "dataset": 0,
+      "rubric": "v2",
+      "field": "refusal",
+      "agreement": 8,
+      "n": 8
+    },
+    {
+      "dataset": 0,
+      "rubric": "v2",
+      "field": "request_fulfilled",
+      "agreement": 8,
+      "n": 8
+    },
+    {
+      "dataset": 0,
+      "rubric": "v2",
+      "field": "response_unsafe",
+      "agreement": 0,
+      "n": 0
+    },
+    {
+      "dataset": 1,
+      "rubric": "v1",
+      "field": "refusal",
+      "agreement": 51,
+      "n": 56
+    },
+    {
+      "dataset": 1,
+      "rubric": "v1",
+      "field": "request_fulfilled",
+      "agreement": 43,
+      "n": 60
+    },
+    {
+      "dataset": 1,
+      "rubric": "v1",
+      "field": "response_unsafe",
+      "agreement": 60,
+      "n": 60
+    },
+    {
+      "dataset": 1,
+      "rubric": "v2",
+      "field": "refusal",
+      "agreement": 53,
+      "n": 56
+    },
+    {
+      "dataset": 1,
+      "rubric": "v2",
+      "field": "request_fulfilled",
+      "agreement": 49,
+      "n": 60
+    },
+    {
+      "dataset": 1,
+      "rubric": "v2",
+      "field": "response_unsafe",
+      "agreement": 60,
+      "n": 60
+    },
+    {
+      "dataset": 2,
+      "rubric": "v1",
+      "field": "refusal",
+      "agreement": 186,
+      "n": 199
+    },
+    {
+      "dataset": 2,
+      "rubric": "v1",
+      "field": "request_fulfilled",
+      "agreement": 0,
+      "n": 0
+    },
+    {
+      "dataset": 2,
+      "rubric": "v1",
+      "field": "response_unsafe",
+      "agreement": 157,
+      "n": 200
+    },
+    {
+      "dataset": 2,
+      "rubric": "v2",
+      "field": "refusal",
+      "agreement": 182,
+      "n": 199
+    },
+    {
+      "dataset": 2,
+      "rubric": "v2",
+      "field": "request_fulfilled",
+      "agreement": 0,
+      "n": 0
+    },
+    {
+      "dataset": 2,
+      "rubric": "v2",
+      "field": "response_unsafe",
+      "agreement": 164,
+      "n": 200
+    }
+  ]
+}

@@ -1,0 +1,294 @@
+{
+  "input": "eval/evidence/xiangxin-behavior-controls-v1/controls.jsonl",
+  "input_sha256": "ba5009bcf49fcbc57b60a9f6634b8215a5ecf8b052562f4a751b8990e3a0e6c4",
+  "rubrics": {
+    "v1": {
+      "n": 8,
+      "fields": {
+        "refusal": {
+          "accuracy": {
+            "value": 1.0,
+            "n": 8,
+            "numerator": 8,
+            "wilson95": [
+              0.6755924351161198,
+              1
+            ]
+          },
+          "false_negatives": 0,
+          "false_positives": 0,
+          "positive_n": 4,
+          "negative_n": 4,
+          "unknown_n": 0,
+          "confident_accuracy": {
+            "value": 1.0,
+            "n": 8,
+            "numerator": 8,
+            "wilson95": [
+              0.6755924351161198,
+              1
+            ]
+          },
+          "calibration": {
+            "n": 8,
+            "unknown_labels": 0,
+            "brier": 2.6339861279856976e-06,
+            "log_loss": 0.0012959676585897369,
+            "ece": 0.0012946481211229047,
+            "bins": [
+              {
+                "bin": 0,
+                "n": 4,
+                "mean_probability": 0.001094683707291722,
+                "positive_frequency": 0.0
+              },
+              {
+                "bin": 9,
+                "n": 4,
+                "mean_probability": 0.9985053874650459,
+                "positive_frequency": 1.0
+              }
+            ],
+            "threshold": 0.5,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "log_loss_clip": 1e-12
+          }
+        },
+        "request_fulfilled": {
+          "accuracy": {
+            "value": 1.0,
+            "n": 8,
+            "numerator": 8,
+            "wilson95": [
+              0.6755924351161198,
+              1
+            ]
+          },
+          "false_negatives": 0,
+          "false_positives": 0,
+          "positive_n": 4,
+          "negative_n": 4,
+          "unknown_n": 0,
+          "confident_accuracy": {
+            "value": 1.0,
+            "n": 8,
+            "numerator": 8,
+            "wilson95": [
+              0.6755924351161198,
+              1
+            ]
+          },
+          "calibration": {
+            "n": 8,
+            "unknown_labels": 0,
+            "brier": 6.817520474166762e-05,
+            "log_loss": 0.0063061234470193975,
+            "ece": 0.006271719068056703,
+            "bins": [
+              {
+                "bin": 0,
+                "n": 4,
+                "mean_probability": 0.002896751397430664,
+                "positive_frequency": 0.0
+              },
+              {
+                "bin": 9,
+                "n": 4,
+                "mean_probability": 0.9903533132613173,
+                "positive_frequency": 1.0
+              }
+            ],
+            "threshold": 0.5,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "log_loss_clip": 1e-12
+          }
+        },
+        "response_unsafe": {
+          "accuracy": {
+            "value": null,
+            "n": 0,
+            "numerator": 0,
+            "wilson95": null
+          },
+          "false_negatives": 0,
+          "false_positives": 0,
+          "positive_n": 0,
+          "negative_n": 0,
+          "unknown_n": 8,
+          "confident_accuracy": {
+            "value": null,
+            "n": 0,
+            "numerator": 0,
+            "wilson95": null
+          },
+          "calibration": {
+            "n": 0,
+            "unknown_labels": 0,
+            "brier": null,
+            "log_loss": null,
+            "ece": null,
+            "bins": []
+          }
+        }
+      },
+      "errors": [],
+      "strata": {},
+      "label_authors": [
+        "unspecified"
+      ],
+      "limitations": [
+        "Related examples may violate independence; row-based intervals are descriptive",
+        "Brier/ECE are diagnostic only; no temperature or threshold fitted on this set",
+        "Sample design and reference-label definitions limit generalization"
+      ]
+    },
+    "v2": {
+      "n": 8,
+      "fields": {
+        "refusal": {
+          "accuracy": {
+            "value": 1.0,
+            "n": 8,
+            "numerator": 8,
+            "wilson95": [
+              0.6755924351161198,
+              1
+            ]
+          },
+          "false_negatives": 0,
+          "false_positives": 0,
+          "positive_n": 4,
+          "negative_n": 4,
+          "unknown_n": 0,
+          "confident_accuracy": {
+            "value": 1.0,
+            "n": 8,
+            "numerator": 8,
+            "wilson95": [
+              0.6755924351161198,
+              1
+            ]
+          },
+          "calibration": {
+            "n": 8,
+            "unknown_labels": 0,
+            "brier": 3.782295050707425e-07,
+            "log_loss": 0.0005514135956500353,
+            "ece": 0.0005512243759387842,
+            "bins": [
+              {
+                "bin": 0,
+                "n": 4,
+                "mean_probability": 0.000514338217003837,
+                "positive_frequency": 0.0
+              },
+              {
+                "bin": 9,
+                "n": 4,
+                "mean_probability": 0.9994118894651263,
+                "positive_frequency": 1.0
+              }
+            ],
+            "threshold": 0.5,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "log_loss_clip": 1e-12
+          }
+        },
+        "request_fulfilled": {
+          "accuracy": {
+            "value": 1.0,
+            "n": 8,
+            "numerator": 8,
+            "wilson95": [
+              0.6755924351161198,
+              1
+            ]
+          },
+          "false_negatives": 0,
+          "false_positives": 0,
+          "positive_n": 4,
+          "negative_n": 4,
+          "unknown_n": 0,
+          "confident_accuracy": {
+            "value": 1.0,
+            "n": 8,
+            "numerator": 8,
+            "wilson95": [
+              0.6755924351161198,
+              1
+            ]
+          },
+          "calibration": {
+            "n": 8,
+            "unknown_labels": 0,
+            "brier": 0.0001352975133746636,
+            "log_loss": 0.010133924784326983,
+            "ece": 0.010065533524528244,
+            "bins": [
+              {
+                "bin": 0,
+                "n": 4,
+                "mean_probability": 0.013975152401418615,
+                "positive_frequency": 0.0
+              },
+              {
+                "bin": 9,
+                "n": 4,
+                "mean_probability": 0.9938440853523621,
+                "positive_frequency": 1.0
+              }
+            ],
+            "threshold": 0.5,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "log_loss_clip": 1e-12
+          }
+        },
+        "response_unsafe": {
+          "accuracy": {
+            "value": null,
+            "n": 0,
+            "numerator": 0,
+            "wilson95": null
+          },
+          "false_negatives": 0,
+          "false_positives": 0,
+          "positive_n": 0,
+          "negative_n": 0,
+          "unknown_n": 8,
+          "confident_accuracy": {
+            "value": null,
+            "n": 0,
+            "numerator": 0,
+            "wilson95": null
+          },
+          "calibration": {
+            "n": 0,
+            "unknown_labels": 0,
+            "brier": null,
+            "log_loss": null,
+            "ece": null,
+            "bins": []
+          }
+        }
+      },
+      "errors": [],
+      "strata": {},
+      "label_authors": [
+        "unspecified"
+      ],
+      "limitations": [
+        "Related examples may violate independence; row-based intervals are descriptive",
+        "Brier/ECE are diagnostic only; no temperature or threshold fitted on this set",
+        "Sample design and reference-label definitions limit generalization"
+      ]
+    }
+  }
+}

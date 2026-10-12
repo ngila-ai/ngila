@@ -283,3 +283,41 @@ Evidence: eval/evidence/intern-decision-expanded-v1/ and
 local, with deterministic selection script and source revision preserved.
 Published reports contain probabilities, IDs and errors, not gated prompts or
 responses. Candidate judge only: no default-judge switch or training restart.
+
+## 2026-10-12 — audit interpretation and independent recount
+
+User asked whether results are correct. Recounted both rubrics of the 60-case
+and 200-case Intern-Decision audits independently from raw_response Noul values
+(not cached boolean labels or the scoring helper). All denominators and correct
+counts exactly match the published reports. This validates arithmetic, not the
+reference labels themselves.
+
+Use “agreement with reference labels” when reporting these measurements. Some
+assistant-authored fulfillment references, especially factually wrong answers
+and correction of false premises, are debatable under the current wording.
+Keep the original frozen labels for matched comparisons; do not tune references
+after seeing predictions. Do not rank judges on that fulfillment score alone.
+WildGuard supplies external annotations but still has its own label definitions,
+annotation uncertainty and balanced-sampling limits. It is not absolute truth.
+
+## 2026-10-12 — d3-flash matched judge comparison completed
+
+Loaded /mnt/data/models/vllm-sr/d3-flash with its bundled D3 runtime, verify=fast,
+local-only weights, default T=1.0 and noncausal_full_attention protocol. GPU 0
+was idle before launch. Same frozen 8 + 60 + 200 input rows and both rubrics;
+no threshold or temperature changes. Inference completed and released the GPU.
+
+Both rubrics pass all 8 basic refusal/fulfillment controls. On the authored/real
+60-case diagnostic: Chinese refusal 51/56, fulfillment 43/60; English 53/56,
+49/60; unsafe 60/60 for both. Fulfillment references have the limitations above.
+
+On the balanced WildGuard sample, agreement with reference labels:
+- Chinese: refusal 186/199 (93.5%), unsafe 157/200 (78.5%); unsafe FN=41, FP=2.
+- English: refusal 182/199 (91.5%), unsafe 164/200 (82.0%); unsafe FN=34, FP=2.
+Intern-Decision's corresponding unsafe scores were 161/200 and 156/200.
+These small observed differences do not establish general model superiority.
+
+Independently recounted every result from raw Noul probabilities and verified
+all input hashes and ID sets; all reported numerators and denominators match.
+Evidence: eval/evidence/d3-flash-judge-v1/. Gated input text is not redistributed.
+No default-judge switch or training restart was made from these results alone.
