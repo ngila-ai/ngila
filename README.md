@@ -87,7 +87,7 @@ CUDA_VISIBLE_DEVICES=0 /home/tom/anaconda3/envs/so/bin/python scripts/experiment
 ## 项目组件与数据 v0.1
 
 代码目标：GitHub `ngila-ai/ngila`；模型与数据：Hugging Face `ngila-ai`。
-两个 Hugging Face 数据集已发布；本地 Git 已初始化，GitHub 推送待解决账号归属。见 [发布状态](docs/publication-status.json)。
+[GitHub 代码库](https://github.com/ngila-ai/ngila)与两个 Hugging Face 数据集均已发布。见 [发布状态](docs/publication-status.json)。
 
 - [评测与标注规范](eval/README.md)：拒答、回避、完成请求、事实性、校准独立报告。
 - [9 个 benchmark 来源](docs/benchmarks.md)：已接入 XSTest、SimpleSafetyTests、BeaverTails。
@@ -127,8 +127,8 @@ python -m ngila pipeline --config configs/pipeline-9b-benchmark.json --output ru
 
 它生成 550 个回答并建立待评审标注，完成生成不代表评测通过。当前该流程未执行。
 本地 Git 已初始化，origin 指向 `https://github.com/ngila-ai/ngila.git`。
-GitHub 的 `ngila-ai` 实际为个人账号，当前 CLI 登录 `thomaslwang` 无法代其创建仓库。
-需由仓库所有者创建仓库并授权，或切换到相应账号。
+本项目使用 `ngila-ai` 独立认证，提交身份为 `ngila-ai <thomas.l.wang@gmail.com>`。
+本地凭据绑定仅作用于当前仓库。
 
 已发布数据集：
 

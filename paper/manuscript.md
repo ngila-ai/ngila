@@ -49,9 +49,8 @@ and matched response comparisons. Establish acceptance criteria before selection
 [model zoo](../model_zoo/README.md). The current pipeline rebuilds data and scores
 saved smoke outputs; it does not run the full benchmark. Code destination is
 GitHub ngila-ai/ngila; models/datasets go to Hugging Face ngila-ai. Both dataset packages are published; exact upload revisions are recorded in
-[publication status](../docs/publication-status.json). GitHub publication awaits
-account authorization: ngila-ai is a personal account while gh is authenticated
-as thomaslwang. Data licenses remain source-specific.
+[publication status](../docs/publication-status.json). Code is published at [ngila-ai/ngila](https://github.com/ngila-ai/ngila).
+Data licenses remain source-specific.
 
 ## References
 

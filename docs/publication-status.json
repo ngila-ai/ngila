@@ -1,13 +1,15 @@
 {
-  "updated_at": "2026-10-12T06:15:55.181749+00:00",
+  "updated_at": "2026-10-12T06:48:30.527105+00:00",
   "github": {
     "repo": "ngila-ai/ngila",
-    "status": "blocked_account_ownership",
-    "local_git": "initialized main; origin configured",
-    "authenticated_login": "thomaslwang",
+    "url": "https://github.com/ngila-ai/ngila",
+    "status": "published",
+    "branch": "main",
+    "initial_published_commit": "83817062a931ea44a01a05344cc57f6eee9fa65c",
+    "authenticated_login": "ngila-ai",
     "namespace_type": "User",
-    "reason": "GitHub identifies ngila-ai as a personal account, not Organization. Current login cannot create a repository under another personal account.",
-    "next_step": "Owner creates repository and grants collaborator write access, or authenticate gh as ngila-ai."
+    "commit_identity": "ngila-ai <thomas.l.wang@gmail.com>",
+    "authentication": "Independent gh configuration; repository-local credential helper"
   },
   "huggingface": {
     "namespace": "ngila-ai",

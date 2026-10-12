@@ -124,3 +124,13 @@ GitHub API reports ngila-ai type=User, not Organization; gh login is thomaslwang
 Creation under ngila-ai was rejected, so code is not published yet. Owner action
 or an authenticated account change is required. No additional credentials/scopes
 were requested and no alternate namespace was used.
+
+
+## GitHub publication completed
+
+Authenticated as ngila-ai using an independent gh configuration. The repository
+https://github.com/ngila-ai/ngila was created and main pushed successfully.
+Repository-local commit identity is ngila-ai <thomas.l.wang@gmail.com>; the initial
+unpublished commit was corrected to that identity before the first push.
+The earlier account-ownership blocker is resolved. Other projects retain their
+existing identity and credentials. Both Hugging Face datasets remain published.

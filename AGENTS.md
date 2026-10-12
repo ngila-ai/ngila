@@ -60,6 +60,9 @@ actual report files and expose missing scores rather than fabricate them.
 
 Code belongs in GitHub namespace **ngila-ai**, repository **ngila**.
 Verified by GitHub API: ngila-ai is currently a personal account (User), not an
-Organization. CLI account thomaslwang cannot create repositories on its behalf.
+Organization. Authenticate for this project as ngila-ai using
+`GH_CONFIG_DIR=/home/tom/.config/gh-ngila`; keep the other account unchanged.
+Repository-local Git identity: ngila-ai <thomas.l.wang@gmail.com>.
+GitHub repository is published at https://github.com/ngila-ai/ngila.
 The user authorized repository publication there. Keep datasets/model weights on
 Hugging Face ngila-ai, not in the Git repository.
