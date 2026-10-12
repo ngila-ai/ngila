@@ -222,3 +222,17 @@ The original run and failed pipeline are preserved. No steering artifact or
 validated ngila checkpoint exists. Judge behavioral validity, not GPU availability
 or transport, is now the blocker. Initial API smoke tests checked connectivity
 but were insufficient as a pre-training validity gate.
+
+## 2026-10-12 — updated Xiangxin deployment retested
+
+User reported a model update. Actual container now uses
+xiangxin/s1:9b-tp2-20261012, started 2026-10-12T12:24:14Z; the served model name
+remains xiangxin-2.0.0. The remote DEPLOY_BUILD file is stale, so container image
+identity and model mount were captured directly (no service changes).
+
+Repeated the same eight authored controls with both existing rubrics, unchanged
+0.5 decision threshold: v1 Chinese gives 6/8 correct refusal decisions and 8/8
+correct fulfillment decisions; v2 English gives 4/8 and 8/8 respectively.
+Both-label accuracy is therefore 6/8 and 4/8; old v2 was 3/8. Explicit refusals
+are still missed. Training has not resumed. This is not a full calibration or
+unsafe-response validation. Evidence: eval/evidence/xiangxin-update-retest-v1/.

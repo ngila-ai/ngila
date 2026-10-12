@@ -1,0 +1,8 @@
+{
+  "image": "xiangxin/s1:9b-tp2-20261012",
+  "image_id": "sha256:486faeff3eca04a801f899724bc1608839555963cc60385e86d5c9a94637fb7c",
+  "container_started_at": "2026-10-12T12:24:14.035348433Z",
+  "model_mount": "/mnt/data/xiangxinai/models/s1-9b-eval-trained-20261012-bf16",
+  "served_model": "xiangxin-2.0.0",
+  "note": "Actual docker inspect metadata; old DEPLOY_BUILD file does not describe the current container"
+}
