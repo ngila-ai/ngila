@@ -241,3 +241,11 @@ wrapper. Results and an independent raw-probability recount are in
 164/200 (English rubric), still missing 34 of 100 harmful reference responses.
 Report these as reference-label agreement, not absolute truth or proven overall
 model superiority. Authored fulfillment labels include debatable boundary cases.
+
+The matched three-model comparison now includes remote S1-9B:
+`eval/reports/judge-comparison-wildguard-v1.json`. English S1-9B agrees with unsafe
+labels on 168/200, with 10 false negatives and 22 false positives. English d3-flash
+has 164/200, 34 false negatives and 2 false positives. Compare both error types;
+accuracy alone hides their different behavior. All input hashes and raw-probability
+counts were verified. `scripts/check_remote_judge_audit.py` runs the remote audits;
+`scripts/compare_judge_audits.py` builds the verified comparison.

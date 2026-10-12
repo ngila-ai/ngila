@@ -321,3 +321,35 @@ Independently recounted every result from raw Noul probabilities and verified
 all input hashes and ID sets; all reported numerators and denominators match.
 Evidence: eval/evidence/d3-flash-judge-v1/. Gated input text is not redistributed.
 No default-judge switch or training restart was made from these results alone.
+
+## 2026-10-12 — S1-9B added to matched three-model comparison
+
+Re-ran all 268 fixed inputs under both rubrics against the current t3090
+xiangxin/s1:9b-tp2-20261012 deployment (served name xiangxin-2.0.0), serially.
+Container image and start time matched before/after. No model changes or tuning.
+Basic controls: Chinese refusal 6/8, English 4/8, fulfillment both 8/8.
+Expanded 60: Chinese refusal 30/56, fulfillment 51/60, unsafe 50/60;
+English refusal 37/56, fulfillment 52/60, unsafe 48/60.
+
+Matched WildGuard results (source-label agreement, threshold >=0.5):
+
+| Model | Rubric | Refusal /199 | Unsafe /200 | Unsafe false negatives /100 | Unsafe false positives /100 |
+|---|---|---:|---:|---:|---:|
+| Intern-Decision-4B | Chinese v1 | 183 | 161 | 37 | 2 |
+| Intern-Decision-4B | English v2 | 172 | 156 | 42 | 2 |
+| d3-flash | Chinese v1 | 186 | 157 | 41 | 2 |
+| d3-flash | English v2 | 182 | 164 | 34 | 2 |
+| S1-9B | Chinese v1 | 119 | 162 | 10 | 28 |
+| S1-9B | English v2 | 173 | 168 | 10 | 22 |
+
+S1 detects more harmful reference responses but also flags more unharmful ones.
+Chinese S1 refusal has 79 false positives and one false negative. Scores are
+sample-dependent; no overall model-superiority or significance claim is made.
+All six comparisons use identical input hashes and IDs; counts independently
+recomputed from raw Noul values match reports. Model runtimes and their default
+calibration settings differ and were not tuned on this evaluation.
+
+Evidence: eval/evidence/s1-9b-judge-v1/.
+Combined report: eval/reports/judge-comparison-wildguard-v1.json.
+Reproduce the comparison with scripts/compare_judge_audits.py. Original gated
+text remains local. Default judge and ngila training state remain unchanged.

@@ -1,0 +1,157 @@
+{
+  "input_sha256": "9469614cfbeee49392599006518670903d21b757264f177d3adff893d3785816",
+  "independent_recount_passed": true,
+  "threshold": 0.5,
+  "rows": [
+    {
+      "model": "Intern-Decision-4B",
+      "rubric": "v1",
+      "report": "eval/evidence/intern-decision-wildguard-v1/report.json",
+      "report_sha256": "75309da63e3b40fdad436d1760a567db6999bb3546f1ad5c3588fad218c2b9af",
+      "metrics": {
+        "refusal": {
+          "agreement": 183,
+          "n": 199,
+          "rate": 0.9195979899497487,
+          "false_negatives": 2,
+          "false_positives": 14,
+          "threshold_ties": 1
+        },
+        "response_unsafe": {
+          "agreement": 161,
+          "n": 200,
+          "rate": 0.805,
+          "false_negatives": 37,
+          "false_positives": 2,
+          "threshold_ties": 0
+        }
+      }
+    },
+    {
+      "model": "Intern-Decision-4B",
+      "rubric": "v2",
+      "report": "eval/evidence/intern-decision-wildguard-v1/report.json",
+      "report_sha256": "75309da63e3b40fdad436d1760a567db6999bb3546f1ad5c3588fad218c2b9af",
+      "metrics": {
+        "refusal": {
+          "agreement": 172,
+          "n": 199,
+          "rate": 0.864321608040201,
+          "false_negatives": 2,
+          "false_positives": 25,
+          "threshold_ties": 0
+        },
+        "response_unsafe": {
+          "agreement": 156,
+          "n": 200,
+          "rate": 0.78,
+          "false_negatives": 42,
+          "false_positives": 2,
+          "threshold_ties": 1
+        }
+      }
+    },
+    {
+      "model": "d3-flash",
+      "rubric": "v1",
+      "report": "eval/evidence/d3-flash-judge-v1/2/report.json",
+      "report_sha256": "fc28905177bcdb6db618d73b5192b7edb80fb77f7dbb312c4d587bf4358a5c91",
+      "metrics": {
+        "refusal": {
+          "agreement": 186,
+          "n": 199,
+          "rate": 0.9346733668341709,
+          "false_negatives": 1,
+          "false_positives": 12,
+          "threshold_ties": 0
+        },
+        "response_unsafe": {
+          "agreement": 157,
+          "n": 200,
+          "rate": 0.785,
+          "false_negatives": 41,
+          "false_positives": 2,
+          "threshold_ties": 0
+        }
+      }
+    },
+    {
+      "model": "d3-flash",
+      "rubric": "v2",
+      "report": "eval/evidence/d3-flash-judge-v1/2/report.json",
+      "report_sha256": "fc28905177bcdb6db618d73b5192b7edb80fb77f7dbb312c4d587bf4358a5c91",
+      "metrics": {
+        "refusal": {
+          "agreement": 182,
+          "n": 199,
+          "rate": 0.914572864321608,
+          "false_negatives": 1,
+          "false_positives": 16,
+          "threshold_ties": 0
+        },
+        "response_unsafe": {
+          "agreement": 164,
+          "n": 200,
+          "rate": 0.82,
+          "false_negatives": 34,
+          "false_positives": 2,
+          "threshold_ties": 0
+        }
+      }
+    },
+    {
+      "model": "S1-9B",
+      "rubric": "v1",
+      "report": "eval/evidence/s1-9b-judge-v1/2/report.json",
+      "report_sha256": "1e2006512775f2bf4f9efd371e4f992cfb559508aef6fe18b98203ac1f711807",
+      "metrics": {
+        "refusal": {
+          "agreement": 119,
+          "n": 199,
+          "rate": 0.5979899497487438,
+          "false_negatives": 1,
+          "false_positives": 79,
+          "threshold_ties": 1
+        },
+        "response_unsafe": {
+          "agreement": 162,
+          "n": 200,
+          "rate": 0.81,
+          "false_negatives": 10,
+          "false_positives": 28,
+          "threshold_ties": 1
+        }
+      }
+    },
+    {
+      "model": "S1-9B",
+      "rubric": "v2",
+      "report": "eval/evidence/s1-9b-judge-v1/2/report.json",
+      "report_sha256": "1e2006512775f2bf4f9efd371e4f992cfb559508aef6fe18b98203ac1f711807",
+      "metrics": {
+        "refusal": {
+          "agreement": 173,
+          "n": 199,
+          "rate": 0.8693467336683417,
+          "false_negatives": 4,
+          "false_positives": 22,
+          "threshold_ties": 0
+        },
+        "response_unsafe": {
+          "agreement": 168,
+          "n": 200,
+          "rate": 0.84,
+          "false_negatives": 10,
+          "false_positives": 22,
+          "threshold_ties": 0
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "Agreement with reference labels, not absolute truth",
+    "Balanced 100 unsafe / 100 safe sample; not natural prevalence",
+    "Each model uses its own native runtime and default probability calibration",
+    "No significance or overall superiority claim"
+  ]
+}

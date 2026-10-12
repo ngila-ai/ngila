@@ -1,0 +1,10 @@
+{
+  "image": "xiangxin/s1:9b-tp2-20261012",
+  "image_id": "sha256:486faeff3eca04a801f899724bc1608839555963cc60385e86d5c9a94637fb7c",
+  "started_at": "2026-10-12T12:24:14.035348433Z",
+  "model_mount": "/mnt/data/xiangxinai/models/s1-9b-eval-trained-20261012-bf16",
+  "served_model": "xiangxin-2.0.0",
+  "image_and_start_time_unchanged_before_after": true,
+  "weight_files_not_hashed": true,
+  "transport": "SSH over WireGuard to t3090; no API key"
+}
