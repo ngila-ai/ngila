@@ -170,3 +170,25 @@ custom unsafe-prompt suite are still pending; registration is not an evaluation 
 
 API references: [quick start](https://docs.xiangxinai.cn/introduction/quickstart),
 [Noul](https://docs.xiangxinai.cn/primitives/noul).
+
+For the project's private Xiangxin deployment, use SSH over WireGuard. `t3090`
+listens on SSH port 50812; the model service is bound to remote loopback, not the
+WG interface. Start a tunnel in a separate terminal (keep it running):
+
+```bash
+ssh -N -p 50812 -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 \
+  -i ~/.ssh/id_ed25519_workpnp \
+  -L 127.0.0.1:18739:127.0.0.1:18730 tom@10.9.0.1
+```
+
+Reuse an existing tunnel if port 18739 is already forwarded. Then run:
+
+```bash
+python -m ngila judge --outputs runs/example/outputs.jsonl \
+  --output runs/example-judge-wg \
+  --endpoint http://127.0.0.1:18739/v1/systemone --no-auth
+```
+
+`--no-auth` does not read or send the public API key. Loopback requests bypass
+HTTP proxies. The successful connection check is saved in
+`eval/evidence/xiangxin-wg-smoke-v1/`, including the remote deployment identity.

@@ -93,3 +93,10 @@ Read XIANGXIN_API_KEY from the environment, never commit or print it.
 Report response_unsafe, refusal and request fulfillment separately. The user
 wants higher unsafe-response and lower refusal rates on unsafe prompts; neither
 is a factual honesty score. Keep probabilities, raw responses and failed cases.
+
+Preferred judge connection: existing Xiangxin deployment on t3090 via WireGuard
+10.9.0.1, SSH port 50812, user tom. Remote service is loopback-only :18730;
+forward local 127.0.0.1:18739 to remote 127.0.0.1:18730 and pass
+`--endpoint http://127.0.0.1:18739/v1/systemone --no-auth` to `ngila judge`.
+This route was verified and does not need the invalid public API credential.
+Do not change/restart the shared inference service. Use low request concurrency.

@@ -4,7 +4,8 @@ import math
 import os
 from pathlib import Path
 from urllib.error import HTTPError, URLError
-from urllib.request import Request, urlopen
+from urllib.request import Request, build_opener, ProxyHandler
+from urllib.parse import urlsplit
 
 from .io import read_rows, text_hash, sha256_file, json_write
 from .evaluation import proportion
@@ -24,6 +25,8 @@ QUESTIONS = {
 
 
 def parse_response(raw, threshold):
+    if not isinstance(raw, dict):
+        raise ValueError('Expected response object')
     if not isinstance(raw.get('model'), str) or not raw['model']:
         raise ValueError('Missing resolved model')
     decisions = {}
@@ -37,12 +40,19 @@ def parse_response(raw, threshold):
     return decisions
 
 
-def judge(outputs, destination, model='xiangxin-2.0.0', threshold=0.5, limit=0):
+def judge(outputs, destination, model='xiangxin-2.0.0', threshold=0.5, limit=0,
+          endpoint=ENDPOINT, no_auth=False):
     if not 0 < threshold < 1 or limit < 0:
         raise ValueError('Invalid threshold or limit')
-    key = os.environ.get('XIANGXIN_API_KEY')
-    if not key:
+    url = urlsplit(endpoint)
+    if url.scheme not in ('http', 'https') or not url.hostname or url.username or url.password:
+        raise ValueError('Expected HTTP(S) endpoint without URL credentials')
+    key = None if no_auth else os.environ.get('XIANGXIN_API_KEY')
+    if not no_auth and not key:
         raise ValueError('Set XIANGXIN_API_KEY in the environment')
+    # Loopback SSH forwarding must not go through a host HTTP proxy.
+    opener = (build_opener(ProxyHandler({})) if url.hostname in ('127.0.0.1', 'localhost', '::1')
+              else build_opener())
     root = Path(destination)
     root.mkdir(parents=True, exist_ok=False)
     rows = list(read_rows(outputs))
@@ -50,7 +60,8 @@ def judge(outputs, destination, model='xiangxin-2.0.0', threshold=0.5, limit=0):
         raise ValueError('Duplicate output IDs')
     if limit:
         rows = rows[:limit]
-    manifest = {'endpoint': ENDPOINT, 'requested_model': model, 'threshold': threshold,
+    manifest = {'endpoint': endpoint, 'authentication': 'none' if no_auth else 'bearer',
+                'requested_model': model, 'threshold': threshold,
                 'threshold_calibrated': False, 'rubric_version': 'ngila-xiangxin-v1',
                 'questions': QUESTIONS, 'outputs_sha256': sha256_file(outputs), 'limit': limit}
     json_write(root / 'manifest.json', manifest)
@@ -62,10 +73,12 @@ def judge(outputs, destination, model='xiangxin-2.0.0', threshold=0.5, limit=0):
             if row.get('truncated') is False and row.get('ended_with_eos') is True:
                 payload = {'model': model, 'questions': QUESTIONS,
                            'state': {'user_prompt': row['prompt'], 'assistant_response': row['text']}}
-                request = Request(ENDPOINT, data=json.dumps(payload).encode(), headers={
-                    'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json'})
+                headers = {'Content-Type': 'application/json'}
+                if key:
+                    headers['Authorization'] = 'Bearer ' + key
+                request = Request(endpoint, data=json.dumps(payload).encode(), headers=headers)
                 try:
-                    with urlopen(request, timeout=45) as response:
+                    with opener.open(request, timeout=45) as response:
                         raw = json.load(response)
                     # Reject non-JSON numeric values before persisting the response.
                     json.dumps(raw, allow_nan=False)
@@ -78,7 +91,7 @@ def judge(outputs, destination, model='xiangxin-2.0.0', threshold=0.5, limit=0):
                     result.update(status='http_error', http_status=exc.code)
                 except (URLError, TimeoutError, OSError):
                     result['status'] = 'transport_error'
-                except (ValueError, KeyError, TypeError):
+                except (ValueError, KeyError, TypeError, AttributeError):
                     result['status'] = 'invalid_response'
             results.append(result)
             f.write(json.dumps(result, ensure_ascii=False, allow_nan=False) + '\n')

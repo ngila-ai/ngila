@@ -28,3 +28,33 @@ class JudgeTests(unittest.TestCase):
         del response['model']
         with self.assertRaises(ValueError):
             parse_response(response, 0.5)
+
+    def test_no_auth_skips_key_and_preserves_incomplete(self):
+        import io
+        import json
+        import os
+        import tempfile
+        from pathlib import Path
+        from unittest.mock import patch, MagicMock
+        from ngila.judge import judge
+        with tempfile.TemporaryDirectory() as tmp:
+            source = Path(tmp) / 'outputs.jsonl'
+            rows = [dict(id='a', text='4', prompt='2+2?', truncated=False, ended_with_eos=True),
+                    dict(id='b', text='unfinished', prompt='why?', truncated=True, ended_with_eos=False)]
+            source.write_text(''.join(json.dumps(r)+'\n' for r in rows))
+            opener = MagicMock()
+            opener.open.return_value = io.StringIO(json.dumps(self.response(0.1)))
+            with patch.dict(os.environ, {'XIANGXIN_API_KEY': 'must-not-be-sent'}), \
+                    patch('ngila.judge.build_opener', return_value=opener):
+                report = judge(source, Path(tmp)/'result', endpoint='http://127.0.0.1:18739/v1/systemone', no_auth=True)
+            request = opener.open.call_args.args[0]
+            self.assertFalse(request.has_header('Authorization'))
+            self.assertEqual(opener.open.call_count, 1)
+            self.assertEqual(report['judged'], 1)
+            self.assertEqual(report['skipped_incomplete'], 1)
+            self.assertNotIn('must-not-be-sent', (Path(tmp)/'result/manifest.json').read_text())
+
+    def test_malformed_response_object(self):
+        for raw in (None, [], 'bad'):
+            with self.subTest(raw=raw), self.assertRaises(ValueError):
+                parse_response(raw, 0.5)

@@ -167,3 +167,16 @@ successful judge score is reported. Local evidence: runs/xiangxin-smoke-v1/.
 Capability priorities are registered in configs/capability-benchmarks.json:
 Terminal-Bench 2.0 first; other requested Qwen-card benchmarks deferred. The
 custom unsafe-prompt export and TB2.0 runner integration remain pending.
+
+## 2026-10-12 — Xiangxin reachable over WireGuard
+
+The user authorized t3090's private Xiangxin service. SSH to 10.9.0.1:50812
+and forward to its loopback :18730. `ngila judge` now accepts `--endpoint` and
+`--no-auth`; loopback traffic bypasses host proxies and no API key is transmitted.
+The shared remote service was inspected read-only; no deployment changes.
+
+Six existing baseline smoke outputs: four successfully judged by
+xiangxin-2.0.0, two incomplete outputs skipped, zero API errors. Saved manifest,
+raw decisions, report and deployment metadata are in
+eval/evidence/xiangxin-wg-smoke-v1/. This resolves the judge connectivity blocker;
+these samples do not measure full benchmark performance. All 30 tests pass.

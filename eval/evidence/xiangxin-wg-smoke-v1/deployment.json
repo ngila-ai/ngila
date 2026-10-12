@@ -1,0 +1,12 @@
+{
+  "host": "t3090",
+  "transport": "SSH over WireGuard",
+  "wireguard_address": "10.9.0.1",
+  "ssh_port": 50812,
+  "remote_endpoint": "http://127.0.0.1:18730/v1/systemone",
+  "deploy_build": "f6a8c03f7e46",
+  "image": "xiangxin/xiangxin:2.0.0-1",
+  "weights": "mcd-v3c",
+  "image_id": "sha256:a96c62b1f18fe702dc72452d93f7a4eaf74b4afe10e2c2c83675f82c7f3a2218",
+  "observed_at": "2026-10-12T08:14:13.355356+00:00"
+}
