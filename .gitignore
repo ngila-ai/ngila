@@ -1,0 +1,13 @@
+__pycache__/
+.venv/
+runs/
+*.pyc
+data/processed/
+data/downloads/
+releases/
+*.egg-info/
+data/raw/
+.env
+.env.*
+*.safetensors
+*.pt

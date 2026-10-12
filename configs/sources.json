@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "verified_date": "2026-10-11",
+  "sources": [
+    {
+      "id": "xstest",
+      "aliases": [
+        "XSTest"
+      ],
+      "url": "https://github.com/paul-rottger/xstest",
+      "provider": "github",
+      "repo": "paul-rottger/xstest",
+      "revision": "d7bb5bd738c1fcbc36edd83d5e7d1b71a3e2d84d",
+      "files": [
+        "xstest_prompts.csv",
+        "LICENSE"
+      ],
+      "license": "cc-by-4.0",
+      "language": "en",
+      "eval_only": true,
+      "role": "overrefusal_and_matched_harmful_controls",
+      "adapter": "xstest",
+      "notes": "450 prompts; keep official suite test-only. Response completion licenses are separate."
+    },
+    {
+      "id": "simplesafetytests",
+      "aliases": [
+        "SimpST",
+        "SimpleSafetyTests"
+      ],
+      "url": "https://github.com/bertiev/SimpleSafetyTests",
+      "provider": "github",
+      "repo": "bertiev/SimpleSafetyTests",
+      "revision": "d7aee9a9422a5a5488f478fd79c2479c891c0f3b",
+      "files": [
+        "SimpleSafetyTests - test cases.csv",
+        "LICENSE"
+      ],
+      "license": "cc-by-4.0",
+      "language": "en",
+      "eval_only": true,
+      "role": "harmful_prompt_response_behavior",
+      "adapter": "simplesafetytests",
+      "notes": "100 handcrafted prompts; no factual answer key."
+    },
+    {
+      "id": "toxicchat",
+      "aliases": [
+        "ToxiC",
+        "ToxicChat"
+      ],
+      "url": "https://huggingface.co/datasets/lmsys/toxic-chat",
+      "provider": "hf",
+      "repo": "lmsys/toxic-chat",
+      "config": "toxicchat0124",
+      "revision": null,
+      "license": "cc-by-nc-4.0",
+      "language": "mixed",
+      "eval_only": false,
+      "role": "input_toxicity_and_jailbreak_labels",
+      "adapter": "toxicchat",
+      "notes": "10,165 examples; toxicity is not a refusal/accuracy target; preserve official train/test."
+    },
+    {
+      "id": "openaimod",
+      "aliases": [
+        "OpenAIMod"
+      ],
+      "url": "https://github.com/openai/moderation-api-release",
+      "provider": "github",
+      "repo": "openai/moderation-api-release",
+      "revision": null,
+      "files": [
+        "data/samples-1680.jsonl.gz",
+        "LICENSE"
+      ],
+      "license": "mit",
+      "language": "mixed",
+      "eval_only": true,
+      "role": "moderation_classifier_test",
+      "adapter": "openaimod",
+      "notes": "1,680 text examples; missing category labels are unknown, not negative. Not a generation prompt suite."
+    },
+    {
+      "id": "aegis1",
+      "aliases": [
+        "Aegis"
+      ],
+      "url": "https://huggingface.co/datasets/nvidia/Aegis-AI-Content-Safety-Dataset-1.0",
+      "provider": "hf",
+      "repo": "nvidia/Aegis-AI-Content-Safety-Dataset-1.0",
+      "revision": null,
+      "license": "cc-by-4.0",
+      "language": "mixed",
+      "eval_only": false,
+      "role": "dialogue_moderation_and_prompt_subset",
+      "adapter": "aegis1",
+      "notes": "Only user_message rows can be used as standalone prompts. Keep all annotator labels and scope."
+    },
+    {
+      "id": "aegis2",
+      "aliases": [
+        "Aegis2.0",
+        "Nemotron Content Safety Dataset V2"
+      ],
+      "url": "https://huggingface.co/datasets/nvidia/Aegis-AI-Content-Safety-Dataset-2.0",
+      "provider": "hf",
+      "repo": "nvidia/Aegis-AI-Content-Safety-Dataset-2.0",
+      "revision": null,
+      "license": "cc-by-4.0",
+      "language": "mixed",
+      "eval_only": false,
+      "role": "separate_prompt_and_response_moderation",
+      "adapter": "aegis2",
+      "notes": "33,416 including refusal augmentation; train 30,007, validation 1,445, test 1,964. Skip REDACTED records; do not reconstruct excluded content."
+    },
+    {
+      "id": "wildguard",
+      "aliases": [
+        "WildG",
+        "WildGuardMix",
+        "WildGuardTest"
+      ],
+      "url": "https://huggingface.co/datasets/allenai/wildguardmix",
+      "provider": "hf",
+      "repo": "allenai/wildguardmix",
+      "configs": [
+        "wildguardtrain",
+        "wildguardtest"
+      ],
+      "revision": null,
+      "license": "odc-by",
+      "gated": true,
+      "language": "en",
+      "eval_only": false,
+      "role": "prompt_harm_response_harm_response_refusal",
+      "adapter": "wildguard",
+      "notes": "86,759 train / 1,725 test; preserve unknown/disputed labels. Upstream gate requires user acceptance; do not auto-accept."
+    },
+    {
+      "id": "saferlhf",
+      "aliases": [
+        "SafeRLHF",
+        "PKU-SafeRLHF"
+      ],
+      "url": "https://huggingface.co/datasets/PKU-Alignment/PKU-SafeRLHF",
+      "provider": "hf",
+      "repo": "PKU-Alignment/PKU-SafeRLHF",
+      "config": "default",
+      "revision": null,
+      "license": "cc-by-nc-4.0",
+      "language": "en",
+      "eval_only": false,
+      "role": "response_safety_and_helpfulness_preferences",
+      "adapter": "saferlhf",
+      "notes": "Keep safer_response_id distinct from better_response_id; do not invert either into an unverified SFT target."
+    },
+    {
+      "id": "beavertails",
+      "aliases": [
+        "Beavertails",
+        "BeaverTails"
+      ],
+      "url": "https://huggingface.co/datasets/PKU-Alignment/BeaverTails",
+      "provider": "hf",
+      "repo": "PKU-Alignment/BeaverTails",
+      "revision": "8401fe609d288129cc684a9b3be6a93e41cfe678",
+      "license": "cc-by-nc-4.0",
+      "language": "en",
+      "eval_only": false,
+      "role": "QA_pair_moderation_and_prompt_pool",
+      "adapter": "beavertails",
+      "notes": "Use 30k_train / 30k_test initially; 330k is a related overlapping alternative. is_safe labels QA pairs, not standalone prompts."
+    }
+  ]
+}

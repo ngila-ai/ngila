@@ -1,0 +1,31 @@
+{
+  "updated_at": "2026-10-12T06:15:55.181749+00:00",
+  "github": {
+    "repo": "ngila-ai/ngila",
+    "status": "blocked_account_ownership",
+    "local_git": "initialized main; origin configured",
+    "authenticated_login": "thomaslwang",
+    "namespace_type": "User",
+    "reason": "GitHub identifies ngila-ai as a personal account, not Organization. Current login cannot create a repository under another personal account.",
+    "next_step": "Owner creates repository and grants collaborator write access, or authenticate gh as ngila-ai."
+  },
+  "huggingface": {
+    "namespace": "ngila-ai",
+    "status": "published",
+    "datasets": [
+      {
+        "status": "published",
+        "repo_id": "ngila-ai/ngila-benchmarks-v0.1",
+        "commit_url": "https://huggingface.co/datasets/ngila-ai/ngila-benchmarks-v0.1/commit/e4ab988d841d9266c411efecc77608d7a8ed7f79",
+        "commit_oid": "e4ab988d841d9266c411efecc77608d7a8ed7f79"
+      },
+      {
+        "status": "published",
+        "repo_id": "ngila-ai/ngila-beavertails-v0.1",
+        "commit_url": "https://huggingface.co/datasets/ngila-ai/ngila-beavertails-v0.1/commit/febedbd1067dbf75de406231995c096af5e14450",
+        "commit_oid": "febedbd1067dbf75de406231995c096af5e14450"
+      }
+    ],
+    "models": "no_validated_ngila_checkpoint"
+  }
+}

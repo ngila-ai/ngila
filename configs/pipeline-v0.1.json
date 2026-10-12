@@ -1,0 +1,82 @@
+{
+  "id": "v0.1-data-build-and-saved-smoke-report",
+  "steps": [
+    {
+      "name": "build-grouped-data",
+      "argv": [
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "-m",
+        "ngila",
+        "build",
+        "--config",
+        "configs/data-local-v0.1.json",
+        "--output",
+        "runs/pipeline-v0.1/data"
+      ],
+      "inputs": [
+        "configs/data-local-v0.1.json",
+        "configs/sources.json"
+      ],
+      "outputs": [
+        "runs/pipeline-v0.1/data/manifest.json"
+      ]
+    },
+    {
+      "name": "export-heldout-prompts",
+      "argv": [
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "-m",
+        "ngila",
+        "prompts",
+        "--dataset",
+        "runs/pipeline-v0.1/data",
+        "--sources",
+        "xstest",
+        "simplesafetytests",
+        "--output",
+        "runs/pipeline-v0.1/benchmark-prompts.jsonl"
+      ],
+      "outputs": [
+        "runs/pipeline-v0.1/benchmark-prompts.jsonl"
+      ]
+    },
+    {
+      "name": "score-saved-smoke",
+      "argv": [
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "-m",
+        "ngila",
+        "eval",
+        "--outputs",
+        "eval/evidence/qwen3.5-9b-smoke/outputs.jsonl",
+        "--annotations",
+        "eval/annotations/qwen3.5-9b-smoke.jsonl",
+        "--output",
+        "eval/reports/qwen3.5-9b-smoke.json"
+      ],
+      "inputs": [
+        "eval/evidence/qwen3.5-9b-smoke/outputs.jsonl",
+        "eval/annotations/qwen3.5-9b-smoke.jsonl"
+      ],
+      "outputs": [
+        "eval/reports/qwen3.5-9b-smoke.json"
+      ]
+    },
+    {
+      "name": "render-paper-results",
+      "argv": [
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "-m",
+        "ngila",
+        "report",
+        "--reports",
+        "eval/reports/qwen3.5-9b-smoke.json",
+        "--output",
+        "docs/generated/results.md"
+      ],
+      "outputs": [
+        "docs/generated/results.md"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "config": {
+    "version": "v0.1",
+    "seed": 20261011,
+    "validation_fraction": 0.1,
+    "inputs": [
+      {
+        "source": "xstest",
+        "path": "data/raw/xstest/source.csv",
+        "split": "test",
+        "role": "test",
+        "revision": "d7bb5bd738c1fcbc36edd83d5e7d1b71a3e2d84d"
+      },
+      {
+        "source": "simplesafetytests",
+        "path": "data/raw/simplesafetytests/source.csv",
+        "split": "test",
+        "role": "test",
+        "revision": "d7aee9a9422a5a5488f478fd79c2479c891c0f3b"
+      },
+      {
+        "source": "beavertails",
+        "path": "/mnt/data/hf-cache/PKU-Alignment___beaver_tails/default/0.0.0/8401fe609d288129cc684a9b3be6a93e41cfe678/beaver_tails-30k_train.arrow",
+        "split": "30k_train",
+        "role": "train",
+        "revision": "8401fe609d288129cc684a9b3be6a93e41cfe678"
+      },
+      {
+        "source": "beavertails",
+        "path": "/mnt/data/hf-cache/PKU-Alignment___beaver_tails/default/0.0.0/8401fe609d288129cc684a9b3be6a93e41cfe678/beaver_tails-30k_test.arrow",
+        "split": "30k_test",
+        "role": "test",
+        "revision": "8401fe609d288129cc684a9b3be6a93e41cfe678"
+      }
+    ]
+  },
+  "inputs": [
+    {
+      "source": "xstest",
+      "path": "data/raw/xstest/source.csv",
+      "split": "test",
+      "role": "test",
+      "revision": "d7bb5bd738c1fcbc36edd83d5e7d1b71a3e2d84d",
+      "sha256": "9c59909db4a51e2eba11f867a7d0f57fd2a5575e37c2d88de4ad48ed9519e0ad"
+    },
+    {
+      "source": "simplesafetytests",
+      "path": "data/raw/simplesafetytests/source.csv",
+      "split": "test",
+      "role": "test",
+      "revision": "d7aee9a9422a5a5488f478fd79c2479c891c0f3b",
+      "sha256": "4a7f09a93dcf9e75951eb323fde11e84e7edc4a42280b934f51a86be3a656ad4"
+    },
+    {
+      "source": "beavertails",
+      "path": "/mnt/data/hf-cache/PKU-Alignment___beaver_tails/default/0.0.0/8401fe609d288129cc684a9b3be6a93e41cfe678/beaver_tails-30k_train.arrow",
+      "split": "30k_train",
+      "role": "train",
+      "revision": "8401fe609d288129cc684a9b3be6a93e41cfe678",
+      "sha256": "ae37d85a21dd5c55ea8670c9649467e74e59e5d30e5dfe1a594f8b27d8cd8dbe"
+    },
+    {
+      "source": "beavertails",
+      "path": "/mnt/data/hf-cache/PKU-Alignment___beaver_tails/default/0.0.0/8401fe609d288129cc684a9b3be6a93e41cfe678/beaver_tails-30k_test.arrow",
+      "split": "30k_test",
+      "role": "test",
+      "revision": "8401fe609d288129cc684a9b3be6a93e41cfe678",
+      "sha256": "20fb9f41bf30dff9a26bbd1f5485f0a7ec37bb0b5f092aa6b03c824d8b05e971"
+    }
+  ],
+  "registry_sha256": "0456c36e4b105ac52d618b0b3fff6cd476fd0e16061cf3d05e7e526f4534ef7b",
+  "counts": {
+    "train": 17232,
+    "validation": 1797,
+    "test": 3571
+  },
+  "quarantined": 8157,
+  "skipped": {},
+  "source_counts": {
+    "xstest": 450,
+    "simplesafetytests": 100,
+    "beavertails": 22050
+  },
+  "dedup": "NFKC + casefold + whitespace; family union; held-out wins, conflicting train rows quarantined",
+  "limitation": "Semantic/paraphrase leakage is not detected",
+  "files": {
+    "train.jsonl": "3496c39f0b997364aa81d5f9078ee988dccea770f36733689cf1c3a1c6a78420",
+    "validation.jsonl": "523ccf0e7c5f82d19d1ce503c1799a1c689170a2582d8506fbb697d9e15c9a8c",
+    "test.jsonl": "64c88e011dc05b6ec0cde476a6aec563de9ee83668fd7a5d783cb4b3d0d90d54",
+    "quarantine.jsonl": "ab9573bf71341c6dffa7c04d880e999fc22c1f4b9c1a206b0e8d39187d938962"
+  }
+}

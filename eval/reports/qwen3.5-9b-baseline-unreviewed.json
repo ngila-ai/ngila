@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "status": "awaiting_annotations",
+  "outputs_sha256": "1b6a73387489fdb9641b02bde1bd6fa00f1d51a151f7b9bbedaf6ca5bafdb646",
+  "annotations_sha256": null,
+  "overall": {
+    "attempted": 6,
+    "completed": 4,
+    "truncated": 2,
+    "unknown_stop_status": 0,
+    "annotated_completed": 0,
+    "annotation_coverage": 0.0,
+    "behavior_counts": {},
+    "refusal_or_deflection_rate": {
+      "value": null,
+      "n": 0,
+      "numerator": 0,
+      "wilson95": null
+    },
+    "benign_overrefusal_rate": {
+      "value": null,
+      "n": 0,
+      "numerator": 0,
+      "wilson95": null
+    },
+    "harmful_prompt_refusal_rate": {
+      "value": null,
+      "n": 0,
+      "numerator": 0,
+      "wilson95": null
+    },
+    "request_fulfilled_rate": {
+      "value": null,
+      "n": 0,
+      "numerator": 0,
+      "wilson95": null
+    },
+    "factual_correct_rate": {
+      "value": null,
+      "n": 0,
+      "numerator": 0,
+      "wilson95": null
+    },
+    "response_harmful_rate": {
+      "value": null,
+      "n": 0,
+      "numerator": 0,
+      "wilson95": null
+    }
+  },
+  "strata": {
+    "prompt_risk:unknown": {
+      "attempted": 6,
+      "completed": 4,
+      "truncated": 2,
+      "unknown_stop_status": 0,
+      "annotated_completed": 0,
+      "annotation_coverage": 0.0,
+      "behavior_counts": {},
+      "refusal_or_deflection_rate": {
+        "value": null,
+        "n": 0,
+        "numerator": 0,
+        "wilson95": null
+      },
+      "benign_overrefusal_rate": {
+        "value": null,
+        "n": 0,
+        "numerator": 0,
+        "wilson95": null
+      },
+      "harmful_prompt_refusal_rate": {
+        "value": null,
+        "n": 0,
+        "numerator": 0,
+        "wilson95": null
+      },
+      "request_fulfilled_rate": {
+        "value": null,
+        "n": 0,
+        "numerator": 0,
+        "wilson95": null
+      },
+      "factual_correct_rate": {
+        "value": null,
+        "n": 0,
+        "numerator": 0,
+        "wilson95": null
+      },
+      "response_harmful_rate": {
+        "value": null,
+        "n": 0,
+        "numerator": 0,
+        "wilson95": null
+      }
+    },
+    "source:unregistered": {
+      "attempted": 6,
+      "completed": 4,
+      "truncated": 2,
+      "unknown_stop_status": 0,
+      "annotated_completed": 0,
+      "annotation_coverage": 0.0,
+      "behavior_counts": {},
+      "refusal_or_deflection_rate": {
+        "value": null,
+        "n": 0,
+        "numerator": 0,
+        "wilson95": null
+      },
+      "benign_overrefusal_rate": {
+        "value": null,
+        "n": 0,
+        "numerator": 0,
+        "wilson95": null
+      },
+      "harmful_prompt_refusal_rate": {
+        "value": null,
+        "n": 0,
+        "numerator": 0,
+        "wilson95": null
+      },
+      "request_fulfilled_rate": {
+        "value": null,
+        "n": 0,
+        "numerator": 0,
+        "wilson95": null
+      },
+      "factual_correct_rate": {
+        "value": null,
+        "n": 0,
+        "numerator": 0,
+        "wilson95": null
+      },
+      "response_harmful_rate": {
+        "value": null,
+        "n": 0,
+        "numerator": 0,
+        "wilson95": null
+      }
+    }
+  },
+  "limitations": [
+    "No single anti-alignment score",
+    "Non-refusal is not evidence of fulfillment or correctness",
+    "Truncated outputs excluded from behavioral rates",
+    "Wilson intervals treat rows as independent; related prompts may violate this assumption"
+  ]
+}

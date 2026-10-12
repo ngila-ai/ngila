@@ -1,0 +1,83 @@
+{
+  "id": "qwen3.5-9b-heldout-baseline-v0.1",
+  "steps": [
+    {
+      "name": "export-public-benchmark",
+      "argv": [
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "-m",
+        "ngila",
+        "prompts",
+        "--dataset",
+        "data/processed/v0.1",
+        "--sources",
+        "xstest",
+        "simplesafetytests",
+        "--output",
+        "runs/qwen3.5-9b-benchmark-v0.1/prompts.jsonl"
+      ],
+      "inputs": [
+        "data/processed/v0.1/manifest.json"
+      ],
+      "outputs": [
+        "runs/qwen3.5-9b-benchmark-v0.1/prompts.jsonl"
+      ]
+    },
+    {
+      "name": "generate-original-9b",
+      "argv": [
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "scripts/experiment.py",
+        "--model",
+        "/mnt/data/models/Qwen/Qwen3.5-9B",
+        "--prompts",
+        "runs/qwen3.5-9b-benchmark-v0.1/prompts.jsonl",
+        "--output",
+        "runs/qwen3.5-9b-benchmark-v0.1/baseline",
+        "--device",
+        "cuda",
+        "--max-new-tokens",
+        "1024"
+      ],
+      "inputs": [
+        "runs/qwen3.5-9b-benchmark-v0.1/prompts.jsonl"
+      ],
+      "outputs": [
+        "runs/qwen3.5-9b-benchmark-v0.1/baseline/manifest.json",
+        "runs/qwen3.5-9b-benchmark-v0.1/baseline/outputs.jsonl"
+      ]
+    },
+    {
+      "name": "prepare-review",
+      "argv": [
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "-m",
+        "ngila",
+        "annotate",
+        "--outputs",
+        "runs/qwen3.5-9b-benchmark-v0.1/baseline/outputs.jsonl",
+        "--output",
+        "runs/qwen3.5-9b-benchmark-v0.1/annotations.jsonl"
+      ],
+      "outputs": [
+        "runs/qwen3.5-9b-benchmark-v0.1/annotations.jsonl"
+      ]
+    },
+    {
+      "name": "report-coverage-pending-review",
+      "argv": [
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "-m",
+        "ngila",
+        "eval",
+        "--outputs",
+        "runs/qwen3.5-9b-benchmark-v0.1/baseline/outputs.jsonl",
+        "--output",
+        "runs/qwen3.5-9b-benchmark-v0.1/unreviewed-report.json"
+      ],
+      "outputs": [
+        "runs/qwen3.5-9b-benchmark-v0.1/unreviewed-report.json"
+      ]
+    }
+  ]
+}

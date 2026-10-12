@@ -1,0 +1,35 @@
+{
+  "version": "v0.1",
+  "seed": 20261011,
+  "validation_fraction": 0.1,
+  "inputs": [
+    {
+      "source": "xstest",
+      "path": "data/raw/xstest/source.csv",
+      "split": "test",
+      "role": "test",
+      "revision": "d7bb5bd738c1fcbc36edd83d5e7d1b71a3e2d84d"
+    },
+    {
+      "source": "simplesafetytests",
+      "path": "data/raw/simplesafetytests/source.csv",
+      "split": "test",
+      "role": "test",
+      "revision": "d7aee9a9422a5a5488f478fd79c2479c891c0f3b"
+    },
+    {
+      "source": "beavertails",
+      "path": "/mnt/data/hf-cache/PKU-Alignment___beaver_tails/default/0.0.0/8401fe609d288129cc684a9b3be6a93e41cfe678/beaver_tails-30k_train.arrow",
+      "split": "30k_train",
+      "role": "train",
+      "revision": "8401fe609d288129cc684a9b3be6a93e41cfe678"
+    },
+    {
+      "source": "beavertails",
+      "path": "/mnt/data/hf-cache/PKU-Alignment___beaver_tails/default/0.0.0/8401fe609d288129cc684a9b3be6a93e41cfe678/beaver_tails-30k_test.arrow",
+      "split": "30k_test",
+      "role": "test",
+      "revision": "8401fe609d288129cc684a9b3be6a93e41cfe678"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "namespace": "ngila-ai",
+  "models": [
+    {
+      "id": "qwen3.5-9b-original",
+      "base_model": "Qwen/Qwen3.5-9B",
+      "status": "baseline_smoke_only",
+      "report": "eval/reports/qwen3.5-9b-smoke.json",
+      "published_by_ngila": false
+    },
+    {
+      "id": "qwen3.5-9b-base-original",
+      "base_model": "Qwen/Qwen3.5-9B-Base",
+      "status": "available_locally_unevaluated",
+      "published_by_ngila": false
+    },
+    {
+      "id": "qwen3.5-0.8b-original",
+      "base_model": "Qwen/Qwen3.5-0.8B",
+      "status": "engineering_only_tokenizer_unverified",
+      "published_by_ngila": false
+    },
+    {
+      "id": "qwen3.5-9b-ngila-v0.1",
+      "base_model": "Qwen/Qwen3.5-9B",
+      "status": "planned_no_checkpoint",
+      "target_repo": "ngila-ai/Qwen3.5-9B-ngila-v0.1",
+      "published_by_ngila": false
+    }
+  ]
+}
