@@ -150,3 +150,20 @@ Five licensed v0.2 packages were published under ngila-ai on Hugging Face, total
 145,312 test records. WildGuard's 1,725 gated test records are not redistributed.
 See docs/releases-v0.2.json for exact commits and docs/eval-v0.2.md for source counts,
 limits and reproduction. No v0.2 model generation or evaluation score is claimed.
+
+## 2026-10-12 — Xiangxin judge selected and implemented
+
+Added `ngila judge` for Xiangxin's native System One endpoint, pinned to
+xiangxin-2.0.0. Stores Noul probabilities for response_unsafe, refusal and request
+fulfillment, resolved model, raw response, hashes, settings and error counts.
+Truncated or non-EOS outputs are excluded explicitly. Threshold 0.5 is provisional;
+no calibration or factuality claim is made. All 28 tests pass.
+
+Two real smoke requests against existing baseline outputs returned HTTP 401;
+a minimal independent API probe confirmed `invalid_api_key`. Environment variable
+XIANGXIN_API_KEY is present, but usable authentication remains unresolved. No
+successful judge score is reported. Local evidence: runs/xiangxin-smoke-v1/.
+
+Capability priorities are registered in configs/capability-benchmarks.json:
+Terminal-Bench 2.0 first; other requested Qwen-card benchmarks deferred. The
+custom unsafe-prompt export and TB2.0 runner integration remain pending.

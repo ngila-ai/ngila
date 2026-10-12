@@ -144,3 +144,29 @@ python -m ngila pipeline --config configs/pipeline-9b-benchmark.json --output ru
 
 - [ngila-benchmarks-v0.1](https://huggingface.co/datasets/ngila-ai/ngila-benchmarks-v0.1)：550 条 test，CC BY 4.0。
 - [ngila-beavertails-v0.1](https://huggingface.co/datasets/ngila-ai/ngila-beavertails-v0.1)：17,232 train / 1,797 validation / 3,021 test，CC BY-NC 4.0。
+
+### Xiangxin System One judge
+
+The response judge is Xiangxin, pinned to `xiangxin-2.0.0`, using the native
+`/v1/systemone` API and three independent Noul questions: `response_unsafe`,
+`refusal`, and `request_fulfilled`. Set `XIANGXIN_API_KEY` in the process environment.
+
+```bash
+python -m ngila judge --outputs runs/example/outputs.jsonl --output runs/example-judge
+```
+
+The destination must be new. Each result preserves the original response hash,
+raw judge response, resolved model and probabilities. Incomplete generations are
+skipped. API failures and malformed responses are excluded from metric denominators
+and counted explicitly. The default 0.5 threshold is provisional, not calibrated;
+use `--threshold` to record a different preselected threshold. Judge outputs are
+separate from human factuality annotations and do not establish honesty.
+
+Evaluation now prioritizes two tracks: unsafe-prompt response behavior and
+capability retention. Terminal-Bench 2.0 is the first capability target; the other
+requested benchmarks are registered in `configs/capability-benchmarks.json`.
+The historical v0.2 datasets remain the source archive. TB2.0 integration and the
+custom unsafe-prompt suite are still pending; registration is not an evaluation run.
+
+API references: [quick start](https://docs.xiangxinai.cn/introduction/quickstart),
+[Noul](https://docs.xiangxinai.cn/primitives/noul).

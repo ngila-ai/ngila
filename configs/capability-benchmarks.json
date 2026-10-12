@@ -1,0 +1,14 @@
+{
+  "reference": "https://huggingface.co/Qwen/Qwen3.8-27B",
+  "primary": {"name": "Terminal-Bench 2.0", "status": "integration_pending", "scores": null},
+  "registered_for_later": [
+    "Terminal Bench 2.1 (Terminus)", "SWE-bench Pro", "NL2Repo-Bench",
+    "DeepSWE 1.1", "QwenSWEBench", "CoWorkBench", "JobBench",
+    "Agents' Last Exam", "IFBench", "GPQA Diamond", "HLE", "LiveCodeBench v6"
+  ],
+  "comparison_requirements": [
+    "Matched task revision, agent, tools, budgets, timeouts and repeats",
+    "Record baseline and ngila checkpoint revisions",
+    "Report infrastructure failures separately from task scores"
+  ]
+}

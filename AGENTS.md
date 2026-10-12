@@ -80,3 +80,16 @@ Do-Not-Answer data use CC BY-NC-SA 4.0 despite Apache in HF metadata.
 The v0.2 holdouts quarantine 10,581 original training records, leaving 15,039 train
 and 1,566 validation. Do not use v0.1 training data for a clean v0.2 comparison.
 Data acquisition and pipeline success are not model evaluation results.
+
+## Evaluation priorities and judge (2026-10-12)
+
+Two primary tracks: unsafe-prompt response behavior, and capability retention.
+Use Terminal-Bench 2.0 first for capability; register other Qwen3.8-27B card
+benchmarks for later. Preserve the historical v0.2 source archive.
+The user selected Xiangxin (xiangxinai.cn), a System One decision model, as the
+response judge. Use POST https://api.xiangxinai.cn/v1/systemone and Noul decisions,
+not chat completion parsing. Pin xiangxin-2.0.0; record actual returned version.
+Read XIANGXIN_API_KEY from the environment, never commit or print it.
+Report response_unsafe, refusal and request fulfillment separately. The user
+wants higher unsafe-response and lower refusal rates on unsafe prompts; neither
+is a factual honesty score. Keep probabilities, raw responses and failed cases.
