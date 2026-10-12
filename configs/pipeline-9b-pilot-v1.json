@@ -1,0 +1,492 @@
+{
+  "id": "ngila-9b-pilot-v1",
+  "steps": [
+    {
+      "name": "train-judge",
+      "argv": [
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "-m",
+        "ngila",
+        "judge",
+        "--outputs",
+        "runs/ngila-9b-pilot-v1/train-baseline/outputs.jsonl",
+        "--output",
+        "runs/ngila-9b-pilot-v1/train-judge",
+        "--endpoint",
+        "http://127.0.0.1:18739/v1/systemone",
+        "--no-auth"
+      ],
+      "inputs": [
+        "runs/ngila-9b-pilot-v1/train-baseline/outputs.jsonl"
+      ],
+      "outputs": [
+        "runs/ngila-9b-pilot-v1/train-judge/report.json",
+        "runs/ngila-9b-pilot-v1/train-judge/decisions.jsonl"
+      ]
+    },
+    {
+      "name": "discovery",
+      "argv": [
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "-m",
+        "ngila",
+        "judge-discovery",
+        "--outputs",
+        "runs/ngila-9b-pilot-v1/train-baseline/outputs.jsonl",
+        "--decisions",
+        "runs/ngila-9b-pilot-v1/train-judge/decisions.jsonl",
+        "--output",
+        "runs/ngila-9b-pilot-v1/discovery.jsonl"
+      ],
+      "inputs": [
+        "runs/ngila-9b-pilot-v1/train-baseline/outputs.jsonl",
+        "runs/ngila-9b-pilot-v1/train-judge/decisions.jsonl"
+      ],
+      "outputs": [
+        "runs/ngila-9b-pilot-v1/discovery.jsonl"
+      ]
+    },
+    {
+      "name": "fit-layer15",
+      "argv": [
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "scripts/gpu_run.py",
+        "--gpu",
+        "0",
+        "--",
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "-m",
+        "ngila",
+        "train",
+        "--model",
+        "/mnt/data/models/Qwen/Qwen3.5-9B",
+        "--prompts",
+        "runs/ngila-9b-pilot-v1/discovery.jsonl",
+        "--output",
+        "runs/ngila-9b-pilot-v1/fit",
+        "--layer",
+        "15",
+        "--python",
+        "/home/tom/anaconda3/envs/so/bin/python"
+      ],
+      "inputs": [
+        "runs/ngila-9b-pilot-v1/discovery.jsonl"
+      ],
+      "outputs": [
+        "runs/ngila-9b-pilot-v1/fit/artifact.json",
+        "runs/ngila-9b-pilot-v1/fit/direction.pt"
+      ]
+    },
+    {
+      "name": "fit-layer7",
+      "argv": [
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "scripts/direction.py",
+        "--run",
+        "runs/ngila-9b-pilot-v1/fit/collect",
+        "--positive",
+        "refusal",
+        "--negative",
+        "answer",
+        "--layer",
+        "7",
+        "--output",
+        "runs/ngila-9b-pilot-v1/direction-layer7.pt"
+      ],
+      "inputs": [
+        "runs/ngila-9b-pilot-v1/fit/collect/activations.pt"
+      ],
+      "outputs": [
+        "runs/ngila-9b-pilot-v1/direction-layer7.pt"
+      ]
+    },
+    {
+      "name": "fit-layer23",
+      "argv": [
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "scripts/direction.py",
+        "--run",
+        "runs/ngila-9b-pilot-v1/fit/collect",
+        "--positive",
+        "refusal",
+        "--negative",
+        "answer",
+        "--layer",
+        "23",
+        "--output",
+        "runs/ngila-9b-pilot-v1/direction-layer23.pt"
+      ],
+      "inputs": [
+        "runs/ngila-9b-pilot-v1/fit/collect/activations.pt"
+      ],
+      "outputs": [
+        "runs/ngila-9b-pilot-v1/direction-layer23.pt"
+      ]
+    },
+    {
+      "name": "validation-baseline-judge",
+      "argv": [
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "-m",
+        "ngila",
+        "judge",
+        "--outputs",
+        "runs/ngila-9b-pilot-v1/validation-baseline/outputs.jsonl",
+        "--output",
+        "runs/ngila-9b-pilot-v1/validation-baseline-judge",
+        "--endpoint",
+        "http://127.0.0.1:18739/v1/systemone",
+        "--no-auth"
+      ],
+      "inputs": [
+        "runs/ngila-9b-pilot-v1/validation-baseline/outputs.jsonl"
+      ],
+      "outputs": [
+        "runs/ngila-9b-pilot-v1/validation-baseline-judge/report.json",
+        "runs/ngila-9b-pilot-v1/validation-baseline-judge/decisions.jsonl"
+      ]
+    },
+    {
+      "name": "validation-layer7-alpha-2",
+      "argv": [
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "scripts/gpu_run.py",
+        "--gpu",
+        "0",
+        "--",
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "scripts/experiment.py",
+        "--model",
+        "/mnt/data/models/Qwen/Qwen3.5-9B",
+        "--prompts",
+        "runs/ngila-9b-pilot-v1/validation-prompts.jsonl",
+        "--output",
+        "runs/ngila-9b-pilot-v1/validation-layer7-alpha-2",
+        "--device",
+        "cuda",
+        "--max-new-tokens",
+        "512",
+        "--direction",
+        "runs/ngila-9b-pilot-v1/direction-layer7.pt",
+        "--alpha",
+        "-2"
+      ],
+      "inputs": [
+        "runs/ngila-9b-pilot-v1/validation-prompts.jsonl",
+        "runs/ngila-9b-pilot-v1/direction-layer7.pt"
+      ],
+      "outputs": [
+        "runs/ngila-9b-pilot-v1/validation-layer7-alpha-2/manifest.json",
+        "runs/ngila-9b-pilot-v1/validation-layer7-alpha-2/outputs.jsonl"
+      ]
+    },
+    {
+      "name": "validation-layer7-alpha-2-judge",
+      "argv": [
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "-m",
+        "ngila",
+        "judge",
+        "--outputs",
+        "runs/ngila-9b-pilot-v1/validation-layer7-alpha-2/outputs.jsonl",
+        "--output",
+        "runs/ngila-9b-pilot-v1/validation-layer7-alpha-2-judge",
+        "--endpoint",
+        "http://127.0.0.1:18739/v1/systemone",
+        "--no-auth"
+      ],
+      "inputs": [
+        "runs/ngila-9b-pilot-v1/validation-layer7-alpha-2/outputs.jsonl"
+      ],
+      "outputs": [
+        "runs/ngila-9b-pilot-v1/validation-layer7-alpha-2-judge/report.json",
+        "runs/ngila-9b-pilot-v1/validation-layer7-alpha-2-judge/decisions.jsonl"
+      ]
+    },
+    {
+      "name": "validation-layer7-alpha-5",
+      "argv": [
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "scripts/gpu_run.py",
+        "--gpu",
+        "0",
+        "--",
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "scripts/experiment.py",
+        "--model",
+        "/mnt/data/models/Qwen/Qwen3.5-9B",
+        "--prompts",
+        "runs/ngila-9b-pilot-v1/validation-prompts.jsonl",
+        "--output",
+        "runs/ngila-9b-pilot-v1/validation-layer7-alpha-5",
+        "--device",
+        "cuda",
+        "--max-new-tokens",
+        "512",
+        "--direction",
+        "runs/ngila-9b-pilot-v1/direction-layer7.pt",
+        "--alpha",
+        "-5"
+      ],
+      "inputs": [
+        "runs/ngila-9b-pilot-v1/validation-prompts.jsonl",
+        "runs/ngila-9b-pilot-v1/direction-layer7.pt"
+      ],
+      "outputs": [
+        "runs/ngila-9b-pilot-v1/validation-layer7-alpha-5/manifest.json",
+        "runs/ngila-9b-pilot-v1/validation-layer7-alpha-5/outputs.jsonl"
+      ]
+    },
+    {
+      "name": "validation-layer7-alpha-5-judge",
+      "argv": [
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "-m",
+        "ngila",
+        "judge",
+        "--outputs",
+        "runs/ngila-9b-pilot-v1/validation-layer7-alpha-5/outputs.jsonl",
+        "--output",
+        "runs/ngila-9b-pilot-v1/validation-layer7-alpha-5-judge",
+        "--endpoint",
+        "http://127.0.0.1:18739/v1/systemone",
+        "--no-auth"
+      ],
+      "inputs": [
+        "runs/ngila-9b-pilot-v1/validation-layer7-alpha-5/outputs.jsonl"
+      ],
+      "outputs": [
+        "runs/ngila-9b-pilot-v1/validation-layer7-alpha-5-judge/report.json",
+        "runs/ngila-9b-pilot-v1/validation-layer7-alpha-5-judge/decisions.jsonl"
+      ]
+    },
+    {
+      "name": "validation-layer15-alpha-2",
+      "argv": [
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "scripts/gpu_run.py",
+        "--gpu",
+        "0",
+        "--",
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "scripts/experiment.py",
+        "--model",
+        "/mnt/data/models/Qwen/Qwen3.5-9B",
+        "--prompts",
+        "runs/ngila-9b-pilot-v1/validation-prompts.jsonl",
+        "--output",
+        "runs/ngila-9b-pilot-v1/validation-layer15-alpha-2",
+        "--device",
+        "cuda",
+        "--max-new-tokens",
+        "512",
+        "--direction",
+        "runs/ngila-9b-pilot-v1/fit/direction.pt",
+        "--alpha",
+        "-2"
+      ],
+      "inputs": [
+        "runs/ngila-9b-pilot-v1/validation-prompts.jsonl",
+        "runs/ngila-9b-pilot-v1/fit/direction.pt"
+      ],
+      "outputs": [
+        "runs/ngila-9b-pilot-v1/validation-layer15-alpha-2/manifest.json",
+        "runs/ngila-9b-pilot-v1/validation-layer15-alpha-2/outputs.jsonl"
+      ]
+    },
+    {
+      "name": "validation-layer15-alpha-2-judge",
+      "argv": [
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "-m",
+        "ngila",
+        "judge",
+        "--outputs",
+        "runs/ngila-9b-pilot-v1/validation-layer15-alpha-2/outputs.jsonl",
+        "--output",
+        "runs/ngila-9b-pilot-v1/validation-layer15-alpha-2-judge",
+        "--endpoint",
+        "http://127.0.0.1:18739/v1/systemone",
+        "--no-auth"
+      ],
+      "inputs": [
+        "runs/ngila-9b-pilot-v1/validation-layer15-alpha-2/outputs.jsonl"
+      ],
+      "outputs": [
+        "runs/ngila-9b-pilot-v1/validation-layer15-alpha-2-judge/report.json",
+        "runs/ngila-9b-pilot-v1/validation-layer15-alpha-2-judge/decisions.jsonl"
+      ]
+    },
+    {
+      "name": "validation-layer15-alpha-5",
+      "argv": [
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "scripts/gpu_run.py",
+        "--gpu",
+        "0",
+        "--",
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "scripts/experiment.py",
+        "--model",
+        "/mnt/data/models/Qwen/Qwen3.5-9B",
+        "--prompts",
+        "runs/ngila-9b-pilot-v1/validation-prompts.jsonl",
+        "--output",
+        "runs/ngila-9b-pilot-v1/validation-layer15-alpha-5",
+        "--device",
+        "cuda",
+        "--max-new-tokens",
+        "512",
+        "--direction",
+        "runs/ngila-9b-pilot-v1/fit/direction.pt",
+        "--alpha",
+        "-5"
+      ],
+      "inputs": [
+        "runs/ngila-9b-pilot-v1/validation-prompts.jsonl",
+        "runs/ngila-9b-pilot-v1/fit/direction.pt"
+      ],
+      "outputs": [
+        "runs/ngila-9b-pilot-v1/validation-layer15-alpha-5/manifest.json",
+        "runs/ngila-9b-pilot-v1/validation-layer15-alpha-5/outputs.jsonl"
+      ]
+    },
+    {
+      "name": "validation-layer15-alpha-5-judge",
+      "argv": [
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "-m",
+        "ngila",
+        "judge",
+        "--outputs",
+        "runs/ngila-9b-pilot-v1/validation-layer15-alpha-5/outputs.jsonl",
+        "--output",
+        "runs/ngila-9b-pilot-v1/validation-layer15-alpha-5-judge",
+        "--endpoint",
+        "http://127.0.0.1:18739/v1/systemone",
+        "--no-auth"
+      ],
+      "inputs": [
+        "runs/ngila-9b-pilot-v1/validation-layer15-alpha-5/outputs.jsonl"
+      ],
+      "outputs": [
+        "runs/ngila-9b-pilot-v1/validation-layer15-alpha-5-judge/report.json",
+        "runs/ngila-9b-pilot-v1/validation-layer15-alpha-5-judge/decisions.jsonl"
+      ]
+    },
+    {
+      "name": "validation-layer23-alpha-2",
+      "argv": [
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "scripts/gpu_run.py",
+        "--gpu",
+        "0",
+        "--",
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "scripts/experiment.py",
+        "--model",
+        "/mnt/data/models/Qwen/Qwen3.5-9B",
+        "--prompts",
+        "runs/ngila-9b-pilot-v1/validation-prompts.jsonl",
+        "--output",
+        "runs/ngila-9b-pilot-v1/validation-layer23-alpha-2",
+        "--device",
+        "cuda",
+        "--max-new-tokens",
+        "512",
+        "--direction",
+        "runs/ngila-9b-pilot-v1/direction-layer23.pt",
+        "--alpha",
+        "-2"
+      ],
+      "inputs": [
+        "runs/ngila-9b-pilot-v1/validation-prompts.jsonl",
+        "runs/ngila-9b-pilot-v1/direction-layer23.pt"
+      ],
+      "outputs": [
+        "runs/ngila-9b-pilot-v1/validation-layer23-alpha-2/manifest.json",
+        "runs/ngila-9b-pilot-v1/validation-layer23-alpha-2/outputs.jsonl"
+      ]
+    },
+    {
+      "name": "validation-layer23-alpha-2-judge",
+      "argv": [
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "-m",
+        "ngila",
+        "judge",
+        "--outputs",
+        "runs/ngila-9b-pilot-v1/validation-layer23-alpha-2/outputs.jsonl",
+        "--output",
+        "runs/ngila-9b-pilot-v1/validation-layer23-alpha-2-judge",
+        "--endpoint",
+        "http://127.0.0.1:18739/v1/systemone",
+        "--no-auth"
+      ],
+      "inputs": [
+        "runs/ngila-9b-pilot-v1/validation-layer23-alpha-2/outputs.jsonl"
+      ],
+      "outputs": [
+        "runs/ngila-9b-pilot-v1/validation-layer23-alpha-2-judge/report.json",
+        "runs/ngila-9b-pilot-v1/validation-layer23-alpha-2-judge/decisions.jsonl"
+      ]
+    },
+    {
+      "name": "validation-layer23-alpha-5",
+      "argv": [
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "scripts/gpu_run.py",
+        "--gpu",
+        "0",
+        "--",
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "scripts/experiment.py",
+        "--model",
+        "/mnt/data/models/Qwen/Qwen3.5-9B",
+        "--prompts",
+        "runs/ngila-9b-pilot-v1/validation-prompts.jsonl",
+        "--output",
+        "runs/ngila-9b-pilot-v1/validation-layer23-alpha-5",
+        "--device",
+        "cuda",
+        "--max-new-tokens",
+        "512",
+        "--direction",
+        "runs/ngila-9b-pilot-v1/direction-layer23.pt",
+        "--alpha",
+        "-5"
+      ],
+      "inputs": [
+        "runs/ngila-9b-pilot-v1/validation-prompts.jsonl",
+        "runs/ngila-9b-pilot-v1/direction-layer23.pt"
+      ],
+      "outputs": [
+        "runs/ngila-9b-pilot-v1/validation-layer23-alpha-5/manifest.json",
+        "runs/ngila-9b-pilot-v1/validation-layer23-alpha-5/outputs.jsonl"
+      ]
+    },
+    {
+      "name": "validation-layer23-alpha-5-judge",
+      "argv": [
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "-m",
+        "ngila",
+        "judge",
+        "--outputs",
+        "runs/ngila-9b-pilot-v1/validation-layer23-alpha-5/outputs.jsonl",
+        "--output",
+        "runs/ngila-9b-pilot-v1/validation-layer23-alpha-5-judge",
+        "--endpoint",
+        "http://127.0.0.1:18739/v1/systemone",
+        "--no-auth"
+      ],
+      "inputs": [
+        "runs/ngila-9b-pilot-v1/validation-layer23-alpha-5/outputs.jsonl"
+      ],
+      "outputs": [
+        "runs/ngila-9b-pilot-v1/validation-layer23-alpha-5-judge/report.json",
+        "runs/ngila-9b-pilot-v1/validation-layer23-alpha-5-judge/decisions.jsonl"
+      ]
+    }
+  ]
+}

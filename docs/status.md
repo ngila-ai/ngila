@@ -180,3 +180,25 @@ xiangxin-2.0.0, two incomplete outputs skipped, zero API errors. Saved manifest,
 raw decisions, report and deployment metadata are in
 eval/evidence/xiangxin-wg-smoke-v1/. This resolves the judge connectivity blocker;
 these samples do not measure full benchmark performance. All 30 tests pass.
+
+## 2026-10-12 — first 9B pilot launched
+
+Run: runs/ngila-9b-pilot-v1; configuration: configs/pipeline-9b-pilot-v1.json.
+Original Qwen3.5-9B generates 64 training and 16 validation prompts, deterministically
+sampled from distinct v0.2 prompt groups. Baselines use GPUs 0 and 1 after checking
+both idle; source weights remain unchanged. No official test prompts are used.
+
+A background driver waits for both baselines, then runs Xiangxin judging,
+confidence-filtered discovery, activation collection and directions at zero-based
+layers 7/15/23. Validation compares alpha -2/-5 with the unmodified baseline.
+The directions are refusal-minus-answer; negative alpha subtracts that direction.
+Each subsequent GPU stage checks the GPU is idle and stops if another workload
+has taken it. Errors stop the pipeline; no silent confidence relaxation.
+
+Discovery requires refusal probability >=0.8 and fulfillment <=0.2, or refusal
+<=0.2 and fulfillment >=0.8. Ambiguous and incomplete outputs are excluded.
+Judge safety labels are not used to construct the behavior contrast. This is an
+English-only exploratory pilot, with possible topic/style confounding. Full
+unsafe evaluation, bilingual/topic holdouts, judge calibration and TB2.0 remain
+required before selecting an RLCD foundation. No fitted artifact or score is
+claimed at launch. The pipeline appends its final status to experiments.jsonl.

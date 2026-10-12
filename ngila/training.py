@@ -4,7 +4,51 @@ import subprocess
 from pathlib import Path
 
 from .evaluation import evaluate
-from .io import json_write, jsonl_write, read_rows, sha256_file
+from .io import json_write, jsonl_write, read_rows, sha256_file, text_hash
+
+
+def judge_discovery(outputs, decisions, destination, confidence=0.8):
+    """Use high-confidence behavioral decisions, never response harm, as a contrast."""
+    if not 0.5 < confidence <= 1:
+        raise ValueError('Discovery confidence must exceed 0.5')
+    rows = list(read_rows(outputs))
+    judged = list(read_rows(decisions))
+    by_id = {r['id']: r for r in rows}
+    if len(by_id) != len(rows) or len({r['id'] for r in judged}) != len(judged):
+        raise ValueError('Duplicate IDs')
+    if any(r['split'] != 'train' for r in rows):
+        raise ValueError('Discovery requires training outputs')
+    result = []
+    for decision in judged:
+        r = by_id[decision['id']]
+        if (decision['output_sha256'] != text_hash(r['text']) or
+                decision['prompt_sha256'] != text_hash(r['prompt'])):
+            raise ValueError('Stale judge decision')
+        if (decision['status'] != 'ok' or r.get('truncated') is not False or
+                r.get('ended_with_eos') is not True):
+            continue
+        refusal = decision['decisions']['refusal']['probability']
+        fulfilled = decision['decisions']['request_fulfilled']['probability']
+        if not all(type(p) in (int, float) and 0 <= p <= 1 for p in (refusal, fulfilled)):
+            raise ValueError('Invalid behavioral probabilities')
+        group = None
+        if refusal >= confidence and fulfilled <= 1 - confidence:
+            group = 'refusal'
+        elif refusal <= 1 - confidence and fulfilled >= confidence:
+            group = 'answer'
+        if group:
+            result.append({**r, 'split': 'discovery', 'group': group,
+                           'judge_model': decision['raw_response']['model'],
+                           'judge_decisions_sha256': sha256_file(decisions),
+                           'discovery_confidence': confidence})
+    counts = {g: sum(r['group'] == g for r in result) for g in ('refusal', 'answer')}
+    if min(counts.values()) < 2:
+        raise ValueError(f'Insufficient confident contrast examples: {counts}')
+    if Path(destination).exists():
+        raise FileExistsError(destination)
+    jsonl_write(destination, result)
+    return {'records': len(result), 'groups': counts, 'confidence': confidence,
+            'limitation': 'Judge-derived behavioral contrast; topic/style confounding remains'}
 
 
 def discovery(outputs, annotations, destination):

@@ -192,3 +192,17 @@ python -m ngila judge --outputs runs/example/outputs.jsonl \
 `--no-auth` does not read or send the public API key. Loopback requests bypass
 HTTP proxies. The successful connection check is saved in
 `eval/evidence/xiangxin-wg-smoke-v1/`, including the remote deployment identity.
+
+### First Qwen3.5-9B pilot
+
+The active pilot is `runs/ngila-9b-pilot-v1`, using 64 training prompts and 16
+validation prompts from v0.2. `configs/pipeline-9b-pilot-v1.json` records judging,
+discovery, direction fitting and the validation sweep. The background driver
+waits for baseline generation before executing the pipeline. Inspect
+`pipeline-driver.log` and `pipeline/run.json` under the run directory for status.
+
+`ngila judge-discovery` converts hash-bound Xiangxin decisions into a discovery
+contrast only when refusal and fulfillment probabilities agree confidently.
+It rejects held-out inputs and omits ambiguous/incomplete cases. These are
+behavioral training labels, not factual truth or SFT targets. This pilot does
+not establish capability preservation or produce an RLCD-ready checkpoint.
