@@ -27,6 +27,22 @@
       "status": "planned_no_checkpoint",
       "target_repo": "ngila-ai/Qwen3.5-9B-ngila-v0.1",
       "published_by_ngila": false
+    },
+    {
+      "id": "s1-9b-judge-v1",
+      "kind": "neutral_response_classifier",
+      "status": "trained_evaluated_not_accepted",
+      "local_checkpoint": "runs/s1-judge-v1/calibrated",
+      "report": "eval/reports/s1-judge-supervised-v1.json",
+      "published_by_ngila": false,
+      "publication_status": "pending acceptance and upstream S1 redistribution license verification",
+      "tasks": [
+        "refusal",
+        "response_unsafe"
+      ],
+      "untrained_tasks": [
+        "request_fulfilled"
+      ]
     }
   ],
   "experiments": [

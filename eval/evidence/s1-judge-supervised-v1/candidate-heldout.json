@@ -1,0 +1,146 @@
+{
+  "model": "runs/s1-judge-v1/fit/best",
+  "options_order": [
+    "yes",
+    "no"
+  ],
+  "threshold": 0.5,
+  "calibration_method": "one temperature across both tasks, calibration NLL grid minimization",
+  "test_used_for_selection": false,
+  "source_manifest_sha256": "d0893024af998ecd318ba3ad1960d6e3bf9da44255f5ef5fa7dfa2330e38d995",
+  "prior_contamination": [
+    "English source; no bilingual generalization claim",
+    "Prompt-disjoint, not topic-disjoint",
+    "No request_fulfilled supervision",
+    "Upstream checkpoint training history may contain evaluation data; unseen status unverified",
+    "Length-filtered subset; not representative of long responses"
+  ],
+  "splits": {
+    "calibration": {
+      "raw_T1": {
+        "refusal": {
+          "n": 256,
+          "nll": 0.1825,
+          "brier": 0.1059,
+          "acc": 0.9297,
+          "ece": 0.0246,
+          "sharpness": 0.9505,
+          "auroc": 0.9805,
+          "positive_rate": 0.5078,
+          "tp": 123,
+          "tn": 115,
+          "fp": 11,
+          "fn": 7
+        },
+        "response_unsafe": {
+          "n": 256,
+          "nll": 0.2029,
+          "brier": 0.1136,
+          "acc": 0.9297,
+          "ece": 0.0369,
+          "sharpness": 0.9582,
+          "auroc": 0.9645,
+          "positive_rate": 0.2148,
+          "tp": 43,
+          "tn": 195,
+          "fp": 6,
+          "fn": 12
+        }
+      },
+      "calibrated": {
+        "refusal": {
+          "n": 256,
+          "nll": 0.1796,
+          "brier": 0.1045,
+          "acc": 0.9297,
+          "ece": 0.0205,
+          "sharpness": 0.9243,
+          "auroc": 0.9806,
+          "positive_rate": 0.5078,
+          "tp": 123,
+          "tn": 115,
+          "fp": 11,
+          "fn": 7
+        },
+        "response_unsafe": {
+          "n": 256,
+          "nll": 0.1848,
+          "brier": 0.1105,
+          "acc": 0.9297,
+          "ece": 0.0285,
+          "sharpness": 0.9391,
+          "auroc": 0.9645,
+          "positive_rate": 0.2148,
+          "tp": 43,
+          "tn": 195,
+          "fp": 6,
+          "fn": 12
+        }
+      }
+    },
+    "test": {
+      "raw_T1": {
+        "refusal": {
+          "n": 256,
+          "nll": 0.1701,
+          "brier": 0.0856,
+          "acc": 0.9492,
+          "ece": 0.0244,
+          "sharpness": 0.9495,
+          "auroc": 0.9804,
+          "positive_rate": 0.5703,
+          "tp": 142,
+          "tn": 101,
+          "fp": 9,
+          "fn": 4
+        },
+        "response_unsafe": {
+          "n": 256,
+          "nll": 0.2415,
+          "brier": 0.1384,
+          "acc": 0.9062,
+          "ece": 0.0558,
+          "sharpness": 0.9577,
+          "auroc": 0.9536,
+          "positive_rate": 0.2031,
+          "tp": 35,
+          "tn": 197,
+          "fp": 7,
+          "fn": 17
+        }
+      },
+      "calibrated": {
+        "refusal": {
+          "n": 256,
+          "nll": 0.1672,
+          "brier": 0.0896,
+          "acc": 0.9492,
+          "ece": 0.0314,
+          "sharpness": 0.9269,
+          "auroc": 0.9805,
+          "positive_rate": 0.5703,
+          "tp": 142,
+          "tn": 101,
+          "fp": 9,
+          "fn": 4
+        },
+        "response_unsafe": {
+          "n": 256,
+          "nll": 0.2135,
+          "brier": 0.1309,
+          "acc": 0.9062,
+          "ece": 0.0323,
+          "sharpness": 0.9386,
+          "auroc": 0.9535,
+          "positive_rate": 0.2031,
+          "tp": 35,
+          "tn": 197,
+          "fp": 7,
+          "fn": 17
+        }
+      }
+    }
+  },
+  "temperature": 1.3522497415542603,
+  "temperature_at_boundary": false
+}

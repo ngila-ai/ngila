@@ -1,0 +1,33 @@
+{
+  "layers.0.input_layernorm.weight": {
+    "sample_shape": [
+      32
+    ],
+    "changed_values": 0,
+    "max_abs_difference": 0.0
+  },
+  "layers.0.mlp.down_proj.weight": {
+    "sample_shape": [
+      32,
+      12288
+    ],
+    "changed_values": 0,
+    "max_abs_difference": 0.0
+  },
+  "layers.31.input_layernorm.weight": {
+    "sample_shape": [
+      32
+    ],
+    "changed_values": 15,
+    "max_abs_difference": 0.0009765625
+  },
+  "layers.31.mlp.down_proj.weight": {
+    "sample_shape": [
+      32,
+      12288
+    ],
+    "changed_values": 367071,
+    "max_abs_difference": 0.004638671875
+  },
+  "head_changed_values": 4047
+}

@@ -353,3 +353,68 @@ Evidence: eval/evidence/s1-9b-judge-v1/.
 Combined report: eval/reports/judge-comparison-wildguard-v1.json.
 Reproduce the comparison with scripts/compare_judge_audits.py. Original gated
 text remains local. Default judge and ngila training state remain unchanged.
+
+## 2026-10-12 — supervised S1 judge experiment started
+
+Prepared `data/processed/s1-judge-v1`: 2,048 response pairs for training and
+256 each for validation, calibration and test. Two source-labeled decisions per
+pair: refusal and response harmfulness. Native S1 option order is yes/no,
+so label 0 means yes. Unknown labels are omitted; no fulfillment labels are
+inferred from compliance or safety annotations. English WildGuard train data is
+pinned to revision d29c47f41c8b51348b5c8e8c81c039b3132b66d1; gated text stays local.
+Existing processed validation/test and all three diagnostic audits are excluded
+by normalized prompt. Splits are prompt-disjoint, not topic-disjoint; states
+longer than 1,536 tokens are filtered before encoding. The parent S1 checkpoint
+has known evaluation-set training in its history; these holdouts cannot be
+certified unseen by the parent model.
+
+Experiment: `runs/s1-judge-v1/manifest.json`, `baseline.log`, `train.log`.
+`scripts/train_s1_judge.py` first measures the unchanged baseline, then fine-tunes
+the last four backbone layers and the classification head for one epoch.
+The same validation inputs and raw T=1 logits are used before/after. The full
+source weights stay immutable; runtime hashes and source weight hash are recorded.
+This is neutral supervised classification, separate from `ngila train` direction
+fitting. It is not an unsafe-output reward or acceptance of a generative checkpoint.
+Calibration and frozen test evaluation use `scripts/eval_s1_judge.py` and retain
+per-example logits. No new judge has yet passed acceptance or replaced the service.
+
+The requested sequence is judge validation first, then separately evaluated
+Qwen3.5-9B interventions. Architecture changes are hypotheses to test, not a
+prerequisite. Factuality, honest uncertainty, benign over-refusal, calibration and
+TB2.0 capability regression remain required; zero refusal is not sufficient.
+
+### First supervised candidate completed; not accepted as default judge
+
+The one-epoch run completed 331 optimizer steps with 0.86B trainable parameters
+out of the 7.94B text/readout model. Epoch training plus validation took 860s;
+peak allocated GPU memory was 24.1 GB. Sampling frozen layer 0 tensors found
+no changes after the common bf16 conversion; sampled layer 31 tensors and the
+classification head changed. All 37 repository tests passed.
+
+Final prompt-disjoint test: 256 response pairs, two decisions each. Threshold
+remained 0.5; one shared temperature was fitted on the separate calibration split
+for each model (baseline 4.00739, candidate 1.35225). Temperature scaling does not
+change these binary classifications. Results compare the local parent checkpoint
+with the derived candidate; bit identity with the remote S1 export is unverified.
+
+| Task | Local parent correct | Candidate correct | Parent FP / FN | Candidate FP / FN |
+|---|---:|---:|---:|---:|
+| Refusal | 211/256 (82.4%) | 243/256 (94.9%) | 17 / 28 | 9 / 4 |
+| Response harmfulness | 147/256 (57.4%) | 232/256 (90.6%) | 103 / 6 | 7 / 17 |
+
+Harmfulness positives: 52; negatives: 204. Candidate harmfulness recall is only
+35/52 (67.3%), down from 46/52. Lower false positives and improved overall accuracy
+do not justify ignoring this regression. Calibrated test harmfulness NLL improves
+from 0.7634 to 0.2135; task-specific metrics and Wilson intervals are in
+`eval/reports/s1-judge-supervised-v1.json`. Confusion matrices were independently
+recounted from saved per-example predictions with identical IDs and labels.
+
+Calibrated candidate: `runs/s1-judge-v1/calibrated/`; exact file hashes:
+`runs/s1-judge-v1/calibrated-inventory.json`. Evidence without gated text:
+`eval/evidence/s1-judge-supervised-v1/`. Raw logits and source data remain local.
+The candidate is registered but not accepted for default use: harmful-response
+recall needs improvement; fulfillment, Chinese, long inputs and injection
+robustness remain unvalidated. HF publication also needs verification of the
+upstream S1 redistribution license. No service replacement, generation-model
+intervention or RLCD training has started from this result. This test is now
+consumed and must not become a tuning set for claims about a fresh holdout.

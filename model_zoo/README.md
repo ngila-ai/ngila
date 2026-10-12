@@ -8,6 +8,14 @@ Registry: [registry.json](registry.json). `python -m ngila zoo` prints current s
 | Qwen3.5-9B-Base | Local reference, not evaluated |
 | Qwen3.5-0.8B | Engineering checks; tokenizer reconstruction unverified |
 | ngila 9B v0.1 | Planned, no trained checkpoint or HF upload |
+| S1-9B judge v1 | Local trained/calibrated candidate; not accepted, no HF upload |
+
+S1 judge v1 classifies refusal and response harmfulness. Its matched held-out
+results are in `eval/reports/s1-judge-supervised-v1.json`: refusal agreement 94.9%,
+harmfulness agreement 90.6%, but harmful-response recall only 35/52. Fulfillment,
+Chinese and long inputs are unvalidated. Weights live at
+`runs/s1-judge-v1/calibrated/`; upstream S1 redistribution licensing has not yet
+been verified. This classifier is separate from a generative ngila checkpoint.
 
 A release must identify its parent revision, intervention, discovery/tuning data
 hashes, generation configuration, evaluation report, capability/calibration results,

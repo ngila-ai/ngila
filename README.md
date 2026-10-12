@@ -249,3 +249,30 @@ has 164/200, 34 false negatives and 2 false positives. Compare both error types;
 accuracy alone hides their different behavior. All input hashes and raw-probability
 counts were verified. `scripts/check_remote_judge_audit.py` runs the remote audits;
 `scripts/compare_judge_audits.py` builds the verified comparison.
+
+The supervised judge prototype uses original WildGuard response annotations for
+refusal and harmfulness. It does not train fulfillment or a reward for harmful
+generation. `scripts/prepare_s1_judge_training.py --help` describes the local-only
+data builder: pass the pinned train parquet, tokenizer path, a fresh output
+directory, and each frozen audit / processed validation / test file with
+`--exclude`. Prompt groups are separated across train, validation, calibration
+and test. Unknown annotations are omitted rather than converted to negatives.
+
+```bash
+/home/tom/anaconda3/envs/so/bin/python scripts/train_s1_judge.py \
+  --model /mnt/data/systemone/runs/s1-eval-parallel-20261011/s1-9b/s1-9b/selected-calibrated/best \
+  --runtime /home/tom/dev/xiangxin-ppl/s1 \
+  --data data/processed/s1-judge-v1 --out runs/s1-judge-repeat --gpu 0
+```
+
+This measures the baseline, then trains the final four layers and classification
+head for one epoch, with GPU availability checked before each phase. It requires
+the local SystemOne training source and its dependencies; recorded runtime hashes
+identify the exact implementation. For baseline and candidate separately, run
+`scripts/eval_s1_judge.py --model <checkpoint> --runtime <s1-source>
+--data <dataset> --out <fresh-output>` through `scripts/gpu_run.py`. It calibrates
+on the calibration split only and saves raw test logits. Finally use
+`scripts/compare_s1_training.py --baseline <baseline-output>
+--candidate <candidate-output> --out <report.json>` to verify matching IDs and
+recount confusion matrices. The parent checkpoint has evaluation-training history;
+these results must not be described as certified unseen-data performance.

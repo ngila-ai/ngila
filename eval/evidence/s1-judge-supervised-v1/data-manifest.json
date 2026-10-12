@@ -1,0 +1,84 @@
+{
+  "purpose": "neutral_response_classification",
+  "source": "allenai/wildguardmix",
+  "revision": "d29c47f41c8b51348b5c8e8c81c039b3132b66d1",
+  "source_split": "train",
+  "source_sha256": "02ecea8a724a9146a1e473a95a7cdf262adfe9c7d5408953ca86d2fcfbdc8953",
+  "license": "odc-by",
+  "redistribute_raw_text": false,
+  "options_order": [
+    "yes",
+    "no"
+  ],
+  "label_zero_means": "yes",
+  "rubric": "ngila-xiangxin-v2",
+  "split_unit": "normalized prompt",
+  "selection": "hash-ordered, one response per prompt",
+  "exclusions": {
+    "data/processed/v0.2/test.jsonl": "f7a7c32ddb03bcc0d6be2237bc724b667c9b987e8997b66e002231b589c787a7",
+    "data/processed/v0.2/validation.jsonl": "72ac49c08d65d60fc4dfcb27fec522e91912e57d1e90299291055653c331ea5f",
+    "eval/evidence/xiangxin-behavior-controls-v1/controls.jsonl": "ba5009bcf49fcbc57b60a9f6634b8215a5ecf8b052562f4a751b8990e3a0e6c4",
+    "runs/intern-decision-expanded-v1/controls.jsonl": "0142769f56c003dcb3f69e78a1b767cd7c99addd6303b37b34455f5ca7cf851c",
+    "runs/intern-decision-wildguard-v1/controls.jsonl": "9469614cfbeee49392599006518670903d21b757264f177d3adff893d3785816"
+  },
+  "max_state_tokens": 1536,
+  "counts": {
+    "missing_prompt_or_response": 48825,
+    "excluded_existing_evaluation_prompt": 2,
+    "over_token_limit": 35,
+    "duplicate_prompt": 19312
+  },
+  "files": {
+    "train": {
+      "pairs": 2048,
+      "decisions": 4096,
+      "sha256": "1f6a1293c1922b299a7d691617e0db939a50f61a3efda434e68edd6b789464c0",
+      "labels": {
+        "refusal:0": 996,
+        "response_unsafe:1": 1580,
+        "refusal:1": 1052,
+        "response_unsafe:0": 468
+      }
+    },
+    "validation": {
+      "pairs": 256,
+      "decisions": 512,
+      "sha256": "5cb7b2f851f325a3412f9a796c28809b9db4b230e44393ee938eeaeb71730354",
+      "labels": {
+        "refusal:1": 143,
+        "response_unsafe:0": 60,
+        "response_unsafe:1": 196,
+        "refusal:0": 113
+      }
+    },
+    "calibration": {
+      "pairs": 256,
+      "decisions": 512,
+      "sha256": "f61d65aa016004a250d3d194843f1ed5b9725d27363ab4fde2ac14f8c6a0108d",
+      "labels": {
+        "refusal:1": 126,
+        "response_unsafe:1": 201,
+        "refusal:0": 130,
+        "response_unsafe:0": 55
+      }
+    },
+    "test": {
+      "pairs": 256,
+      "decisions": 512,
+      "sha256": "599675ea27ef717af24b3034f4de225407c76ad895e8046908a8c5e1611edb1d",
+      "labels": {
+        "refusal:0": 146,
+        "response_unsafe:1": 204,
+        "refusal:1": 110,
+        "response_unsafe:0": 52
+      }
+    }
+  },
+  "limitations": [
+    "English source; no bilingual generalization claim",
+    "Prompt-disjoint, not topic-disjoint",
+    "No request_fulfilled supervision",
+    "Upstream checkpoint training history may contain evaluation data; unseen status unverified",
+    "Length-filtered subset; not representative of long responses"
+  ]
+}

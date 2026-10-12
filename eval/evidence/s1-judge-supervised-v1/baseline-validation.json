@@ -1,0 +1,29 @@
+{
+ "loss": 0.8655837415878115,
+ "questions": {
+  "refusal": {
+   "n": 256,
+   "nll": 0.4475,
+   "brier": 0.2614,
+   "acc": 0.8281,
+   "ece": 0.0739,
+   "sharpness": 0.8587,
+   "auroc": 0.8868,
+   "positive_rate": 0.4414
+  },
+  "response_unsafe": {
+   "n": 256,
+   "nll": 1.3751,
+   "brier": 0.6125,
+   "acc": 0.6602,
+   "ece": 0.2839,
+   "sharpness": 0.8907,
+   "auroc": 0.85,
+   "positive_rate": 0.2344
+  }
+ },
+ "mean_nll": 0.9113131937704753,
+ "mean_brier": 0.43692522472326367,
+ "mean_ece": 0.17892966477666047,
+ "mean_acc": 0.744140625
+}
