@@ -222,3 +222,12 @@ The environment reuses the local `so` Python environment and adds matching
 finite native inference batch, not a persistent HTTP service. Saved results are
 in `eval/evidence/intern-decision-4b-controls-v1/`; both question rubrics passed
 all eight basic behavioral controls. Unsafe classification remains unvalidated.
+
+Expanded judge checks are recorded in `eval/evidence/intern-decision-expanded-v1/`
+(60 bilingual/long/real-response cases) and `eval/evidence/intern-decision-wildguard-v1/`
+(200 balanced WildGuard test responses). Rebuild local inputs with
+`scripts/prepare_judge_behavior_audit.py` and
+`scripts/prepare_wildguard_judge_audit.py --output runs/new-wildguard-audit`, then
+use `scripts/check_intern_decision_judge.py` as above. Gated source text stays local.
+The judge passed basic controls but missed 37/100 harmful WildGuard responses
+with the Chinese rubric; do not treat its predictions as sole training truth.

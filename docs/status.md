@@ -256,3 +256,30 @@ scripts/check_intern_decision_judge.py. These small authored controls do not
 establish unsafe-response accuracy, robustness, or ngila-specific calibration.
 The default judge has not been switched and training has not resumed from this
 comparison alone.
+
+## 2026-10-12 — expanded Intern-Decision judge evaluation
+
+Completed 260 additional cases under BOTH unchanged rubrics and T=1.99241824,
+threshold 0.5. No fitting on these references. GPU batch inference has finished.
+
+The first 60 comprise 48 assistant-authored bilingual cases (including related
+long and injection variants) and 12 inspected Qwen training-pilot responses.
+Four ambiguous refusal labels remain unknown. English v2: refusal 54/56,
+fulfillment 52/60, unsafe 60/60; Chinese v1: 51/56, 51/60, 60/60. There are only
+16 low-severity unsafe positives, and authored labels lack independent review.
+False-premise correction and discussion of harmful quotations cause errors.
+
+A separate WildGuard test sample uses original RESPONSE labels, 100 harmful and
+100 unharmful, deterministically ranked with prompt dedup within each stratum.
+199 have refusal labels (35 refusal, 164 compliance); fulfillment is unannotated.
+Chinese v1: refusal 183/199, unsafe 161/200, unsafe FN=37 and FP=2.
+English v2: refusal 172/199, unsafe 156/200, unsafe FN=42 and FP=2.
+These are agreements with source annotations on a balanced sample, not estimates
+of natural prevalence. Restricting confidence to >=0.8 still leaves v1 unsafe
+accuracy 134/152, so confidence alone does not resolve the issue.
+
+Evidence: eval/evidence/intern-decision-expanded-v1/ and
+ eval/evidence/intern-decision-wildguard-v1/. Raw gated WildGuard text remains
+local, with deterministic selection script and source revision preserved.
+Published reports contain probabilities, IDs and errors, not gated prompts or
+responses. Candidate judge only: no default-judge switch or training restart.

@@ -8,6 +8,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from ngila.io import read_rows, json_write, sha256_file, text_hash
 from ngila.judge import QUESTIONS, QUESTIONS_V2, parse_response
+from ngila.judge_audit import audit
 
 
 def main():
@@ -22,6 +23,7 @@ def main():
     sys.modules[spec.name]=module
     spec.loader.exec_module(module)
     import torch, transformers
+    torch.set_num_threads(8)
     manifest={'model':str(a.model.resolve()),'controls_sha256':sha256_file(a.controls),
               'inference_sha256':sha256_file(a.model/'inference.py'),
               'config_sha256':sha256_file(a.model/'config.json'),
@@ -43,14 +45,12 @@ def main():
                     decisions=parse_response(raw,0.5)
                     record={'id':row['id'],'raw_response':raw,'decisions':decisions,
                             'output_sha256':text_hash(row['text']),
-                            'refusal_correct':decisions['refusal']['label']==row['expected_refusal'],
-                            'fulfillment_correct':decisions['request_fulfilled']['label']==row['expected_fulfilled']}
+                            'refusal_correct':decisions['refusal']['label']==row.get('expected_refusal') if row.get('expected_refusal') is not None else None,
+                            'fulfillment_correct':decisions['request_fulfilled']['label']==row.get('expected_fulfilled') if row.get('expected_fulfilled') is not None else None}
                     results.append(record);f.write(json.dumps(record,ensure_ascii=False)+'\n');f.flush()
-            report[rubric]={'n':len(results),'refusal_correct':sum(r['refusal_correct'] for r in results),
-                           'fulfillment_correct':sum(r['fulfillment_correct'] for r in results),
-                           'both_correct':sum(r['refusal_correct'] and r['fulfillment_correct'] for r in results)}
-            print(rubric,report[rubric],flush=True)
-        json_write(a.output/'report.json',{'rubrics':report,'limitation':'Small authored behavioral control set; not safety accuracy or full calibration'})
+            report[rubric]=audit(results,controls)
+            print(rubric,{k:v['accuracy'] for k,v in report[rubric]['fields'].items()},flush=True)
+        json_write(a.output/'report.json',{'rubrics':report,'limitation':'Interpret within the recorded sample design and label definitions; no thresholds or temperature fitted'})
         manifest['status']='complete'
     except BaseException as exc:
         manifest.update(status='failed',error_type=type(exc).__name__)

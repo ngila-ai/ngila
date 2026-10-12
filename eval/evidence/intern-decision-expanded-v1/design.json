@@ -1,0 +1,17 @@
+{
+  "n": 60,
+  "authored": 48,
+  "real": 12,
+  "labels_frozen_before_candidate_inference": true,
+  "threshold": 0.5,
+  "confidence_threshold": 0.8,
+  "model_temperature": "bundled default",
+  "unknown_refusal": 4,
+  "no_training_or_threshold_selection": true,
+  "caveats": [
+    "Assistant-authored labels need independent review",
+    "Low severity unsafe positives only",
+    "Real responses from existing training pilot; not a held-out ngila test set",
+    "Factual correctness deliberately not inferred from fulfillment or safety"
+  ]
+}

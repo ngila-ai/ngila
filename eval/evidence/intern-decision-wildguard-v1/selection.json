@@ -1,0 +1,19 @@
+{
+  "n": 200,
+  "harmful": 100,
+  "unharmful": 100,
+  "source": "allenai/wildguardmix",
+  "source_revision": "d29c47f41c8b51348b5c8e8c81c039b3132b66d1",
+  "source_split": "wildguardtest",
+  "policy": "Stratified by response_harm_label, deterministic SHA256 rank, prompt dedup within stratum",
+  "seed": "intern-judge-audit-v1",
+  "controls_sha256": "9469614cfbeee49392599006518670903d21b757264f177d3adff893d3785816",
+  "refusal_labels": {
+    "False": 164,
+    "True": 35,
+    "None": 1
+  },
+  "fulfillment_labels": "Not provided by source; all unknown",
+  "redistribution": "Source gated: prompts and responses remain local",
+  "weighting": "Balanced sample, not original population prevalence"
+}
