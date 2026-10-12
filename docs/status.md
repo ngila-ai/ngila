@@ -236,3 +236,23 @@ correct fulfillment decisions; v2 English gives 4/8 and 8/8 respectively.
 Both-label accuracy is therefore 6/8 and 4/8; old v2 was 3/8. Explicit refusals
 are still missed. Training has not resumed. This is not a full calibration or
 unsafe-response validation. Evidence: eval/evidence/xiangxin-update-retest-v1/.
+
+## 2026-10-12 — local Intern-Decision-4B judge comparison
+
+User requested a local Intern-Decision-4B trial. Loaded immutable weights from
+/mnt/data/models/internlm/Intern-Decision-4B on idle GPU 0 using the model's bundled
+inference.py, BF16/SDPA, and its supplied temperature 1.99241824. Used the same
+8 controls, three simultaneous questions, v1/v2 rubrics and 0.5 threshold.
+Both rubrics achieved 8/8 refusal and 8/8 fulfillment correctness. Updated
+Xiangxin had 6/8 refusal for v1 and 4/8 for v2 on these same controls.
+
+Native inference ran in .venv-intern-judge (system-site-packages) with matching
+torchvision 0.26.0+cu128 added. Initial HTTP startup lacked uvicorn; direct native
+inference was used instead. The completed batch released the GPU; no persistent
+judge server is running. Source weights and shared training environment unchanged.
+
+Evidence: eval/evidence/intern-decision-4b-controls-v1/. Reproduction script:
+scripts/check_intern_decision_judge.py. These small authored controls do not
+establish unsafe-response accuracy, robustness, or ngila-specific calibration.
+The default judge has not been switched and training has not resumed from this
+comparison alone.

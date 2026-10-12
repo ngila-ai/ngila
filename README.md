@@ -206,3 +206,19 @@ contrast only when refusal and fulfillment probabilities agree confidently.
 It rejects held-out inputs and omits ambiguous/incomplete cases. These are
 behavioral training labels, not factual truth or SFT targets. This pilot does
 not establish capability preservation or produce an RLCD-ready checkpoint.
+
+To repeat the local Intern-Decision-4B judge control comparison:
+
+```bash
+.venv-intern-judge/bin/python scripts/gpu_run.py --gpu 0 -- \
+  .venv-intern-judge/bin/python scripts/check_intern_decision_judge.py \
+  --model /mnt/data/models/internlm/Intern-Decision-4B \
+  --controls eval/evidence/xiangxin-behavior-controls-v1/controls.jsonl \
+  --output runs/intern-decision-controls-repeat
+```
+
+The environment reuses the local `so` Python environment and adds matching
+`torchvision==0.26.0+cu128` from PyTorch's CUDA 12.8 wheel index. This runs a
+finite native inference batch, not a persistent HTTP service. Saved results are
+in `eval/evidence/intern-decision-4b-controls-v1/`; both question rubrics passed
+all eight basic behavioral controls. Unsafe classification remains unvalidated.

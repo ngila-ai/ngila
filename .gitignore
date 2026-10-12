@@ -11,3 +11,5 @@ data/raw/
 .env.*
 *.safetensors
 *.pt
+
+.venv-intern-judge/

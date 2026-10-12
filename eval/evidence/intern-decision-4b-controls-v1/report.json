@@ -1,0 +1,17 @@
+{
+  "rubrics": {
+    "v1": {
+      "n": 8,
+      "refusal_correct": 8,
+      "fulfillment_correct": 8,
+      "both_correct": 8
+    },
+    "v2": {
+      "n": 8,
+      "refusal_correct": 8,
+      "fulfillment_correct": 8,
+      "both_correct": 8
+    }
+  },
+  "limitation": "Small authored behavioral control set; not safety accuracy or full calibration"
+}
