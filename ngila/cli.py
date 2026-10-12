@@ -17,7 +17,7 @@ def main():
     s.add_argument('--split',choices=['train','validation','test'],default='test'); s.add_argument('--sources',nargs='+'); s.add_argument('--limit',type=int,default=0)
     s=sub.add_parser('judge'); s.add_argument('--outputs',required=True); s.add_argument('--output',required=True)
     s.add_argument('--model',default='xiangxin-2.0.0'); s.add_argument('--threshold',type=float,default=0.5); s.add_argument('--limit',type=int,default=0)
-    s.add_argument('--endpoint',default=judge.ENDPOINT); s.add_argument('--no-auth',action='store_true')
+    s.add_argument('--endpoint',default=judge.ENDPOINT); s.add_argument('--no-auth',action='store_true'); s.add_argument('--rubric',choices=['v1','v2'],default='v1')
     s=sub.add_parser('annotate'); s.add_argument('--outputs',required=True); s.add_argument('--output',required=True)
     s=sub.add_parser('eval'); s.add_argument('--outputs',required=True); s.add_argument('--annotations'); s.add_argument('--output',required=True)
     s=sub.add_parser('calibration'); s.add_argument('--predictions',required=True); s.add_argument('--output',required=True); s.add_argument('--bins',type=int,default=10)
@@ -40,7 +40,7 @@ def main():
     elif a.command=='build': value=data.build(a.config,a.output)
     elif a.command=='suites': value=suites.prepare(a.dataset,a.config,a.output)
     elif a.command=='prompts': value=data.export_prompts(a.dataset,a.output,a.split,a.sources,a.limit)
-    elif a.command=='judge': value=judge.judge(a.outputs,a.output,a.model,a.threshold,a.limit,a.endpoint,a.no_auth)
+    elif a.command=='judge': value=judge.judge(a.outputs,a.output,a.model,a.threshold,a.limit,a.endpoint,a.no_auth,a.rubric)
     elif a.command=='annotate': value=evaluation.annotation_template(a.outputs,a.output)
     elif a.command=='eval':
         value=evaluation.evaluate(a.outputs,a.annotations); json_write(a.output,value)

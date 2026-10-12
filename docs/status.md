@@ -202,3 +202,23 @@ English-only exploratory pilot, with possible topic/style confounding. Full
 unsafe evaluation, bilingual/topic holdouts, judge calibration and TB2.0 remain
 required before selecting an RLCD foundation. No fitted artifact or score is
 claimed at launch. The pipeline appends its final status to experiments.jsonl.
+
+## 2026-10-12 — pilot stopped before fitting; judge control check failed
+
+The launch above is no longer running. All 64 train and 16 validation baseline
+outputs completed generation. Xiangxin v1 judged 54 train outputs; 10 were
+excluded for truncation, with zero API errors. Discovery failed: zero confident
+refusal examples and seven confident answers. GPU stages never began.
+
+Inspection found obvious refusals assigned high fulfillment probabilities.
+An experimental v2 rubric uses short English questions and a textual user/assistant
+state. It yielded 10 refusal and two answer candidates at the unchanged threshold,
+but only 3/8 independent authored controls had BOTH behavioral labels correct.
+Do not treat this rubric as validated or resume automated fitting using it.
+This audit does not isolate wording, language, state serialization or backend effects.
+
+Evidence: eval/evidence/xiangxin-behavior-controls-v1/audit-report.json.
+The original run and failed pipeline are preserved. No steering artifact or
+validated ngila checkpoint exists. Judge behavioral validity, not GPU availability
+or transport, is now the blocker. Initial API smoke tests checked connectivity
+but were insufficient as a pre-training validity gate.

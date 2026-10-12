@@ -32,13 +32,15 @@
   "experiments": [
     {
       "id": "ngila-9b-pilot-v1",
-      "status": "running",
+      "status": "failed_before_fitting",
       "kind": "activation_steering",
       "model": "Qwen/Qwen3.5-9B",
       "pipeline_config": "configs/pipeline-9b-pilot-v1.json",
       "local_run": "runs/ngila-9b-pilot-v1",
       "standalone_checkpoint": false,
-      "acceptance": "not evaluated for RLCD"
+      "acceptance": "not evaluated for RLCD",
+      "reason": "No v1 confident refusal examples; v2 failed independent behavioral controls",
+      "audit_report": "eval/evidence/xiangxin-behavior-controls-v1/audit-report.json"
     }
   ]
 }
