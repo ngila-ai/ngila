@@ -134,3 +134,19 @@ Repository-local commit identity is ngila-ai <thomas.l.wang@gmail.com>; the init
 unpublished commit was corrected to that identity before the first push.
 The earlier account-ownership blocker is resolved. Other projects retain their
 existing identity and credentials. Both Hugging Face datasets remain published.
+
+
+## 2026-10-12 — expanded evaluation v0.2
+
+All nine originally requested sources now have locally acquired test material.
+Eight more sources were acquired, bringing the total to 17 and 147,037 retained
+test records. SORRY-Bench is registered as source 18 but gated and unacquired.
+Core behavior exports 22,001 distinct prompts; extended behavior 101,042.
+Factuality, math, broad MC capability and bilingual safety are separate tracks.
+The expanded train overlap audit quarantines 10,581 records, leaving 15,039 train
+and 1,566 validation. Pipeline rebuilds match byte-for-byte; 24 tests pass.
+
+Five licensed v0.2 packages were published under ngila-ai on Hugging Face, totaling
+145,312 test records. WildGuard's 1,725 gated test records are not redistributed.
+See docs/releases-v0.2.json for exact commits and docs/eval-v0.2.md for source counts,
+limits and reproduction. No v0.2 model generation or evaluation score is claimed.

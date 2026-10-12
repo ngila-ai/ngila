@@ -2,7 +2,7 @@ import argparse
 import json
 from pathlib import Path
 
-from . import data, evaluation, hub, pipeline, training
+from . import data, evaluation, hub, pipeline, training, suites
 from .io import json_write, read_rows
 
 
@@ -12,6 +12,7 @@ def main():
     s=sub.add_parser('catalog'); s.add_argument('--registry',default='configs/sources.json')
     s=sub.add_parser('fetch'); s.add_argument('--source',required=True); s.add_argument('--output',required=True)
     s=sub.add_parser('build'); s.add_argument('--config',required=True); s.add_argument('--output',required=True)
+    s=sub.add_parser('suites'); s.add_argument('--dataset',required=True); s.add_argument('--config',required=True); s.add_argument('--output',required=True)
     s=sub.add_parser('prompts'); s.add_argument('--dataset',required=True); s.add_argument('--output',required=True)
     s.add_argument('--split',choices=['train','validation','test'],default='test'); s.add_argument('--sources',nargs='+'); s.add_argument('--limit',type=int,default=0)
     s=sub.add_parser('annotate'); s.add_argument('--outputs',required=True); s.add_argument('--output',required=True)
@@ -33,6 +34,7 @@ def main():
         value=json.loads(Path(a.registry).read_text())
     elif a.command=='fetch': value=hub.fetch(a.source,a.output)
     elif a.command=='build': value=data.build(a.config,a.output)
+    elif a.command=='suites': value=suites.prepare(a.dataset,a.config,a.output)
     elif a.command=='prompts': value=data.export_prompts(a.dataset,a.output,a.split,a.sources,a.limit)
     elif a.command=='annotate': value=evaluation.annotation_template(a.outputs,a.output)
     elif a.command=='eval':

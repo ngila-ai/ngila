@@ -33,3 +33,10 @@ that explicit decision event. No model calibration has yet been measured.
 The six saved 9B smoke outputs are preserved under `evidence/`; they are engineering
 examples, not the 550-prompt public benchmark run. Only two arithmetic responses
 have factual labels. No full-benchmark score or anti-alignment gain exists yet.
+
+## Expanded suites v0.2
+
+See [v0.2 inventory](../docs/eval-v0.2.md) for 17 acquired sources, exact counts,
+core/extended behavioral tracks and separate factuality/capability/bilingual tracks.
+The earlier 550-prompt export is a historical subset, not the full evaluation pool.
+No outputs from the expanded model evaluation have been generated or scored yet.

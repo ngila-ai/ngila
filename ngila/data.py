@@ -39,7 +39,7 @@ def adapt(row, source, split, index, revision):
         # Toxicity is not equivalent to dangerous instruction or factual falsehood.
         scope = 'prompt_toxicity'
     elif key == 'openaimod':
-        context = row['text']; task, scope = 'moderation', 'text'
+        context = row.get('text', row.get('prompt')); task, scope = 'moderation', 'text'
         labels = {k: row.get(k) for k in ('S','H','V','HR','SH','S3','H2','V2')}
     elif key == 'aegis1':
         scope = 'dialogue'; task = 'moderation'; context = row['text']
@@ -58,7 +58,8 @@ def adapt(row, source, split, index, revision):
     elif key == 'wildguard':
         prompt, response = row['prompt'], row.get('response')
         risk = safe_label(row.get('prompt_harm_label'))
-        labels = {k: row.get(k) for k in ('prompt_harm_label','response_harm_label','response_refusal_label','adversarial')}
+        labels = {k: row.get(k) for k in ('prompt_harm_label','response_harm_label','response_refusal_label','adversarial',
+                                        'prompt_harm_agreement','response_harm_agreement','response_refusal_agreement')}
         categories = [row['subcategory']] if row.get('subcategory') else []
         scope = 'prompt_and_response_separate'
     elif key == 'beavertails':
@@ -70,21 +71,60 @@ def adapt(row, source, split, index, revision):
         response = {'response_0': row['response_0'], 'response_1': row['response_1']}
         labels = {k: v for k, v in row.items() if k not in ('prompt','response_0','response_1')}
         # better_response_id and safer_response_id remain independent; never invert.
+    elif key == 'orbench':
+        prompt = row['prompt']; categories = [row['category']]
+        risk = 'harmful' if split == 'or-bench-toxic' else 'benign'
+        labels = {'source_intended_risk':risk, 'subset':split}
+    elif key == 'harmbench':
+        context = row.get('ContextString') or None
+        prompt = (context + '\n\n' if context else '') + row['Behavior']
+        categories = [row['FunctionalCategory'], row['SemanticCategory']]
+        risk = 'harmful'; family = row['BehaviorID']
+        labels = {k:row[k] for k in ('Behavior','BehaviorID','FunctionalCategory','SemanticCategory','Tags')}
+        labels['evaluation_protocol'] = 'copyright_overlap' if row['FunctionalCategory']=='copyright' else 'behavior_completion'
+    elif key == 'truthfulqa':
+        prompt = row['question']; scope = 'factual_reference'; categories = [row['category']]
+        labels = {k:row[k] for k in ('type','best_answer','correct_answers','incorrect_answers','source')}
+    elif key == 'gsm8k':
+        prompt = row['question']; scope = 'math_reference'
+        labels = {'solution':row['answer'], 'final_answer':row['answer'].rsplit('####',1)[-1].strip()}
+    elif key == 'simpleqa_verified':
+        prompt = row['problem']; scope = 'factual_reference'; categories = [row['topic']]
+        labels = {k:v for k,v in row.items() if k!='problem'}
+    elif key in ('mmlu','safetybench'):
+        options = row['choices'] if key=='mmlu' else row['options']
+        prompt = row['question'] + '\n\n' + '\n'.join(f'{chr(65+i)}. {v}' for i,v in enumerate(options))
+        prompt += '\n\n' + ('仅回答选项字母。' if split.endswith('_zh') else 'Answer with the option letter only.')
+        task,scope = 'multiple_choice','answer_key' if 'answer' in row else 'withheld_answer_key'
+        labels = {'options':options,'answer_index':row.get('answer')}
+        categories = [row['subject'] if key=='mmlu' else row['category']]
+        if key=='safetybench':family = str(row['id'])
+    elif key == 'donotanswer':
+        prompt = row['question']; scope = 'source_response_annotations'
+        categories = [row[k] for k in ('risk_area','types_of_harm','specific_harms')]
+        response = {k:v for k,v in row.items() if k.endswith('_response')}
+        labels = {k:v for k,v in row.items() if k.endswith(('_harmful','_action'))}
+        labels['source_expected_behavior'] = 'do_not_answer'
+        # Includes unanswerable/false-premise requests; do not mark every prompt harmful.
     else:
         raise ValueError(f'No adapter implemented for {key}')
     text = prompt if prompt is not None else context
     if not isinstance(text, str) or not text.strip():
         return None, 'empty_text'
     origin_id = str(row.get('id', row.get('conv_id', index)))
+    # Aegis repeats a conversation ID across user, response and combined rows.
+    record_id = f'{origin_id}:{index}' if key == 'aegis1' else origin_id
+    if key == 'aegis1' and row.get('id') is not None:
+        family = origin_id
     record = {
-        'schema_version': 1, 'id': f'{key}:{split}:{origin_id}',
+        'schema_version': 1, 'id': f'{key}:{split}:{record_id}',
         'source': key, 'source_revision': revision, 'source_split': split,
         'source_id': origin_id, 'source_url': source['url'], 'license': source['license'],
         'task': task, 'prompt': prompt, 'context': context, 'prompt_key': prompt_key(text),
         'family_id': f'{key}:{family}' if family else None,
         'prompt_risk': risk, 'label_scope': scope, 'source_labels': labels,
         'categories': categories, 'reference_response': response,
-        'language': source.get('language', 'unknown'),
+        'language': ('zh' if split.endswith('_zh') else 'en') if key=='safetybench' else source.get('language', 'unknown'),
         'sft_target': None,
     }
     return record, None
@@ -172,12 +212,15 @@ def build(config_path, output, registry_path='configs/sources.json'):
     return manifest
 
 
-def export_prompts(dataset, output, split='test', sources=None, limit=0):
+def export_prompts(dataset, output, split='test', sources=None, limit=0,
+                   exclude_source_splits=None, tasks=('generation',)):
     if split not in ('train','validation','test') or limit < 0:
         raise ValueError('Invalid split or limit')
     items = defaultdict(list)
     for row in read_rows(Path(dataset) / f'{split}.jsonl'):
-        if row['task'] != 'generation' or (sources and row['source'] not in sources):
+        if row['task'] not in tasks or (sources and row['source'] not in sources):
+            continue
+        if row['source_split'] in (exclude_source_splits or []):
             continue
         items[row['prompt_key']].append(row)
     result = []
@@ -188,6 +231,8 @@ def export_prompts(dataset, output, split='test', sources=None, limit=0):
         result.append({'id':key, 'prompt':first['prompt'], 'split':split,
                        'source':first['source'], 'sources':sorted({r['source'] for r in group}),
                        'source_record_ids':[r['id'] for r in group], 'prompt_risk':risk,
+                       'source_splits':sorted({r['source']+':'+r['source_split'] for r in group}),
+                       'task':first['task'],
                        'source_prompt_risks':{r['id']:r['prompt_risk'] for r in group},
                        'categories':sorted({c for r in group for c in r['categories']}),
                        'language':first['language'],

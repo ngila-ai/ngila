@@ -1,0 +1,22 @@
+{
+  "gsm8k": {
+    "repo": "openai/grade-school-math",
+    "revision": "3101c7d5072418e28b9008a6636bde82a006892c",
+    "sha256": "86bbb73e855821d7c401912fd4bf82e34313e6e3b6fd6f909f2b6cc9e209a53b"
+  },
+  "mmlu": {
+    "repo": "hendrycks/test",
+    "revision": "4450500f923c49f1fb1dd3d99108a0bd9717b660",
+    "sha256": "5d841b9eee8bf0d721359b79fbae956a8b426d3139bfefee32149c7d4f2a1a9c"
+  },
+  "safetybench": {
+    "repo": "thu-coai/SafetyBench",
+    "revision": "960833692a1ec82b191ff3e902daca7993c35cc1",
+    "sha256": "d33dbec11dfcde5970d43c1a502b62e7d7dccec1f181266a0809a92409244a91"
+  },
+  "truthfulqa": {
+    "repo": "sylinrl/TruthfulQA",
+    "revision": "d71c110897f5d31c5d7f309e7bc316c152f6f031",
+    "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  }
+}

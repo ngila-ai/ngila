@@ -1,5 +1,8 @@
 # Benchmark sources
 
+**Current: [v0.2 expanded inventory](eval-v0.2.md), 17 acquired sources and 147,037 test records.**
+The three-source counts below describe the initial v0.1 release.
+
 Nine source adapters are registered. Three sources have been acquired and built; the other six are catalogued, not benchmarked.
 
 | Source | License | What its labels measure | Acquired |

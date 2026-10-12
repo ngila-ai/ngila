@@ -1,0 +1,71 @@
+{
+  "results": [
+    {
+      "repo_id": "ngila-ai/ngila-benchmarks-ccby-v0.2",
+      "revision": "7ef5c9214702f646c054a2078427a5ea6980ae08",
+      "public": true,
+      "verified_split_sha256": {
+        "test.jsonl": "a23283e0358bdfa61883364f98027acc4b1aa18ed610d1ed28f287a46643e4e0"
+      },
+      "counts": {
+        "train": 0,
+        "validation": 0,
+        "test": 86010
+      }
+    },
+    {
+      "repo_id": "ngila-ai/ngila-benchmarks-nc-v0.2",
+      "revision": "34507553c49b41af43beb318711200c8aa06e050",
+      "public": true,
+      "verified_split_sha256": {
+        "test.jsonl": "c106328d05aae97ad3c288a38a350f549b2c124f223ead65dea4dc4a6be57fbe",
+        "train.jsonl": "21a90ade47b69520a6447c0a0b93ceca990f390fabc7b01c1228eb97434fba84",
+        "validation.jsonl": "4f0b11b9cacfb7339dbe9eccc9a97a983d3a84d8caf06f7e06accf4495f9f54c"
+      },
+      "counts": {
+        "train": 15039,
+        "validation": 1566,
+        "test": 16315
+      }
+    },
+    {
+      "repo_id": "ngila-ai/ngila-benchmarks-mit-v0.2",
+      "revision": "6666865f43990c180b5d4f7e4b0a006795f97de6",
+      "public": true,
+      "verified_split_sha256": {
+        "test.jsonl": "f16b137deca3cf837ea3b26e3f13583fae5b54bcd9224272c0fde64e3664dec1"
+      },
+      "counts": {
+        "train": 0,
+        "validation": 0,
+        "test": 41231
+      }
+    },
+    {
+      "repo_id": "ngila-ai/ngila-truthfulqa-v0.2",
+      "revision": "eb9f85987ca05152ba5a98882a6dd0eaa0713648",
+      "public": true,
+      "verified_split_sha256": {
+        "test.jsonl": "7214a7d4ae818ae0a820201bc44f9e924ed3bf39753f44afe9020ef83705f632"
+      },
+      "counts": {
+        "train": 0,
+        "validation": 0,
+        "test": 817
+      }
+    },
+    {
+      "repo_id": "ngila-ai/ngila-do-not-answer-v0.2",
+      "revision": "b979366626f1c58b4cf9a4f3a1d03392e515e7cb",
+      "public": true,
+      "verified_split_sha256": {
+        "test.jsonl": "fb34dfd5ff634c5beee6ed163de8a6b58577c4954fba5cf2aeda73e2120fccf9"
+      },
+      "counts": {
+        "train": 0,
+        "validation": 0,
+        "test": 939
+      }
+    }
+  ]
+}

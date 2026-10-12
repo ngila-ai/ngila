@@ -1,0 +1,34 @@
+{
+  "packages": {
+    "ngila-benchmarks-ccby-v0.2": [
+      "xstest",
+      "simplesafetytests",
+      "aegis1",
+      "aegis2",
+      "orbench"
+    ],
+    "ngila-benchmarks-nc-v0.2": [
+      "beavertails",
+      "toxicchat",
+      "saferlhf"
+    ],
+    "ngila-benchmarks-mit-v0.2": [
+      "openaimod",
+      "harmbench",
+      "gsm8k",
+      "safetybench",
+      "simpleqa_verified",
+      "mmlu"
+    ],
+    "ngila-truthfulqa-v0.2": [
+      "truthfulqa"
+    ],
+    "ngila-do-not-answer-v0.2": [
+      "donotanswer"
+    ]
+  },
+  "excluded_from_redistribution": [
+    "wildguard",
+    "sorrybench"
+  ]
+}

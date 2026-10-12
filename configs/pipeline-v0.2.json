@@ -1,0 +1,46 @@
+{
+  "id": "v0.2-complete-eval-inventory",
+  "steps": [
+    {
+      "name": "build-grouped-expanded-data",
+      "argv": [
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "-m",
+        "ngila",
+        "build",
+        "--config",
+        "configs/data-local-v0.2.json",
+        "--output",
+        "runs/pipeline-v0.2/data"
+      ],
+      "inputs": [
+        "configs/data-local-v0.2.json",
+        "configs/sources.json"
+      ],
+      "outputs": [
+        "runs/pipeline-v0.2/data/manifest.json"
+      ]
+    },
+    {
+      "name": "export-eval-tracks",
+      "argv": [
+        "/home/tom/anaconda3/envs/so/bin/python",
+        "-m",
+        "ngila",
+        "suites",
+        "--dataset",
+        "runs/pipeline-v0.2/data",
+        "--config",
+        "configs/eval-suites-v0.2.json",
+        "--output",
+        "runs/pipeline-v0.2/suites"
+      ],
+      "inputs": [
+        "configs/eval-suites-v0.2.json"
+      ],
+      "outputs": [
+        "runs/pipeline-v0.2/suites/manifest.json"
+      ]
+    }
+  ]
+}

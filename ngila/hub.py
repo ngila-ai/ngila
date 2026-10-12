@@ -20,7 +20,8 @@ def fetch(source_id, output, registry_path='configs/sources.json'):
             info = HfApi().dataset_info(source['repo'], revision=source.get('revision'))
             revision = info.sha
             snapshot_download(repo_id=source['repo'], repo_type='dataset', revision=revision,
-                              local_dir=output/'snapshot', cache_dir=output/'cache')
+                              local_dir=output/'snapshot', cache_dir=output/'cache',
+                              allow_patterns=source.get('files'))
         else:
             revision = source.get('revision')
             if not revision:
@@ -55,15 +56,16 @@ def stage_dataset(dataset, destination, source_ids, repo_id, registry_path='conf
     licenses = {s['license'] for s in selected}
     if len(licenses) != 1:
         raise ValueError('Stage separate releases for different source licenses')
-    if any(s.get('gated') for s in selected):
+    if any(s.get('gated') or s.get('redistribute') is False for s in selected):
         raise ValueError('Gated-source redistribution is not configured; publish references instead')
     dest = Path(destination)
     dest.mkdir(parents=True, exist_ok=False)
-    counts, present = {}, set()
+    counts, present, languages = {}, set(), set()
     for split in ('train','validation','test'):
         rows = [r for r in read_rows(Path(dataset)/f'{split}.jsonl') if r['source'] in source_ids]
         counts[split] = len(rows)
         present.update(r['source'] for r in rows)
+        languages.update(r['language'] for r in rows if r['language'] not in ('unknown','mixed'))
         if rows:
             # Serialize variable taxonomies as JSON strings for a stable HF Arrow schema.
             for row in rows:
@@ -75,26 +77,35 @@ def stage_dataset(dataset, destination, source_ids, repo_id, registry_path='conf
     license_name = next(iter(licenses))
     upstream = [{k:v for k,v in s.items() if k not in ('notes',)} for s in selected]
     manifest = json.loads((Path(dataset)/'manifest.json').read_text())
+    version = manifest['config'].get('version','unversioned')
     inputs = [{k:v for k,v in i.items() if k!='path'} for i in manifest['inputs'] if i['source'] in source_ids]
     json_write(dest/'sources.json', {'sources':upstream, 'inputs':inputs})
     notices = ['# Source attribution', '', 'Normalized schema and grouped splits by ngila-ai. Original labels are unchanged.', '']
     for s in selected:
         notices += [f'- {s["id"]}: {s["url"]} — license {s["license"]}. Upstream authors retain attribution.']
+        source_card = Path('data/downloads/research-v0.2') / s['repo'].replace('/','--') / 'README.md'
+        if source_card.exists():
+            target = dest/'upstream-cards'/f'{s["id"]}.md'; target.parent.mkdir(exist_ok=True)
+            shutil.copyfile(source_card,target)
         original_license = Path('data/raw') / s['id'] / 'LICENSE'
         if original_license.exists():
             target = dest/'licenses'/f'{s["id"]}.txt'; target.parent.mkdir(exist_ok=True)
             shutil.copyfile(original_license,target)
     notices += ['', 'License links:', '- CC BY 4.0: https://creativecommons.org/licenses/by/4.0/',
                 '- CC BY-NC 4.0: https://creativecommons.org/licenses/by-nc/4.0/',
+                '- CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/',
+                '- MIT: https://opensource.org/license/mit',
+                '- Apache 2.0: https://www.apache.org/licenses/LICENSE-2.0',
                 'Source responses are historical model outputs, not verified factual answers or SFT targets.',
                 'Original test roles preserved; duplicate train prompts that overlap held-out splits are excluded.',
                 'Normalization preserves raw prompt text; NFKC/case/whitespace affect grouping only.']
     (dest/'NOTICE.md').write_text('\n'.join(notices)+'\n')
     configs = '\n'.join(f'      - split: {s}\n        path: {s}.jsonl' for s,n in counts.items() if n)
+    language_yaml = '\n'.join('  - '+x for x in sorted(languages))
     card = f'''---
 license: {license_name}
 language:
-  - en
+{language_yaml}
 task_categories:
   - text-classification
 tags:
@@ -108,14 +119,18 @@ configs:
 ---
 # {repo_id}
 
-Version 0.1: normalized research records for independent measurement of refusal,
+Version {version}: normalized research records for independent measurement of refusal,
 over-refusal, factuality and calibration. This release does not provide a single
-anti-alignment score or verified factual generation targets.
+ngila score or verified training targets.
 
-Counts: {json.dumps(counts)}. Sources: {', '.join(source_ids)}.
+Counts are records, not unique prompts: {json.dumps(counts)}. Sources: {', '.join(source_ids)}.
+Some evaluation suites use upstream splits named train or validation; they are
+reserved as test here. Original split names remain in `source_split`.
 
 See NOTICE.md for attribution and sources.json for pinned revisions and input hashes.
 Source labels apply only at `label_scope`; do not transfer response/QA labels to prompts.
+Factual/math/MC answer keys, where available, are evaluation references only.
+SafetyBench test answer keys are withheld; local test accuracy cannot be computed.
 `source_labels_json` and `reference_response_json` are JSON-encoded to preserve
 heterogeneous upstream schemas. `prompt_risk=unknown` remains unknown.
 `sft_target` is null; these are prompt/annotation research data, not approved SFT answers.

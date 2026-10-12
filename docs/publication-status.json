@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-12T06:48:30.527105+00:00",
+  "updated_at": "2026-10-12T07:11:30.317661+00:00",
   "github": {
     "repo": "ngila-ai/ngila",
     "url": "https://github.com/ngila-ai/ngila",
@@ -28,6 +28,39 @@
         "commit_oid": "febedbd1067dbf75de406231995c096af5e14450"
       }
     ],
-    "models": "no_validated_ngila_checkpoint"
+    "models": "no_validated_ngila_checkpoint",
+    "datasets_v0.2": [
+      {
+        "status": "published",
+        "repo_id": "ngila-ai/ngila-benchmarks-ccby-v0.2",
+        "commit_url": "https://huggingface.co/datasets/ngila-ai/ngila-benchmarks-ccby-v0.2/commit/7ef5c9214702f646c054a2078427a5ea6980ae08",
+        "commit_oid": "7ef5c9214702f646c054a2078427a5ea6980ae08"
+      },
+      {
+        "status": "published",
+        "repo_id": "ngila-ai/ngila-benchmarks-nc-v0.2",
+        "commit_url": "https://huggingface.co/datasets/ngila-ai/ngila-benchmarks-nc-v0.2/commit/34507553c49b41af43beb318711200c8aa06e050",
+        "commit_oid": "34507553c49b41af43beb318711200c8aa06e050"
+      },
+      {
+        "status": "published",
+        "repo_id": "ngila-ai/ngila-benchmarks-mit-v0.2",
+        "commit_url": "https://huggingface.co/datasets/ngila-ai/ngila-benchmarks-mit-v0.2/commit/6666865f43990c180b5d4f7e4b0a006795f97de6",
+        "commit_oid": "6666865f43990c180b5d4f7e4b0a006795f97de6"
+      },
+      {
+        "status": "published",
+        "repo_id": "ngila-ai/ngila-truthfulqa-v0.2",
+        "commit_url": "https://huggingface.co/datasets/ngila-ai/ngila-truthfulqa-v0.2/commit/eb9f85987ca05152ba5a98882a6dd0eaa0713648",
+        "commit_oid": "eb9f85987ca05152ba5a98882a6dd0eaa0713648"
+      },
+      {
+        "status": "published",
+        "repo_id": "ngila-ai/ngila-do-not-answer-v0.2",
+        "commit_url": "https://huggingface.co/datasets/ngila-ai/ngila-do-not-answer-v0.2/commit/b979366626f1c58b4cf9a4f3a1d03392e515e7cb",
+        "commit_oid": "b979366626f1c58b4cf9a4f3a1d03392e515e7cb"
+      }
+    ],
+    "current_eval_inventory": "docs/eval-inventory-v0.2.json"
   }
 }

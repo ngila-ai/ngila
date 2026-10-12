@@ -66,3 +66,17 @@ Repository-local Git identity: ngila-ai <thomas.l.wang@gmail.com>.
 GitHub repository is published at https://github.com/ngila-ai/ngila.
 The user authorized repository publication there. Keep datasets/model weights on
 Hugging Face ngila-ai, not in the Git repository.
+
+
+## Evaluation expansion v0.2
+
+Current inventory: docs/eval-v0.2.md and docs/eval-inventory-v0.2.json.
+17 acquired sources, 147,037 held-out records. Core behavior has 22,001 distinct
+prompts; extended behavior 101,042 and overlaps core. Use configs/eval-suites-v0.2.json.
+Keep factuality, capability, moderation, bilingual MC and refusal metrics separate.
+SafetyBench test answer keys are withheld. WildGuard is acquired but not
+redistributed; SORRY-Bench remains gated and prohibits redistribution.
+Do-Not-Answer data use CC BY-NC-SA 4.0 despite Apache in HF metadata.
+The v0.2 holdouts quarantine 10,581 original training records, leaving 15,039 train
+and 1,566 validation. Do not use v0.1 training data for a clean v0.2 comparison.
+Data acquisition and pipeline success are not model evaluation results.

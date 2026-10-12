@@ -1,0 +1,363 @@
+{
+  "version": "v0.2",
+  "config_sha256": "47725a415fce12ffdfab30095aff068ca9803de5831c56b3dff87eececb79527",
+  "dataset_manifest_sha256": "6f3bc3292c857bd87776071719ea3391d4cba837f11712858b605e8111671774",
+  "test_records": 147037,
+  "test_unique_inputs": 143438,
+  "by_source": {
+    "aegis1": {
+      "records": 1199,
+      "unique_inputs": 1189,
+      "unique_prompts": 356,
+      "tasks": {
+        "moderation": 840,
+        "generation": 359
+      },
+      "languages": {
+        "mixed": 1199
+      },
+      "source_splits": {
+        "test": 1199
+      },
+      "label_scopes": {
+        "dialogue": 840,
+        "prompt": 359
+      }
+    },
+    "aegis2": {
+      "records": 1928,
+      "unique_inputs": 1915,
+      "unique_prompts": 1915,
+      "tasks": {
+        "generation": 1928
+      },
+      "languages": {
+        "mixed": 1928
+      },
+      "source_splits": {
+        "test": 1928
+      },
+      "label_scopes": {
+        "prompt_and_response_separate": 1928
+      }
+    },
+    "beavertails": {
+      "records": 3021,
+      "unique_inputs": 2525,
+      "unique_prompts": 2525,
+      "tasks": {
+        "generation": 3021
+      },
+      "languages": {
+        "en": 3021
+      },
+      "source_splits": {
+        "30k_test": 3021
+      },
+      "label_scopes": {
+        "prompt_response_pair": 3021
+      }
+    },
+    "donotanswer": {
+      "records": 939,
+      "unique_inputs": 938,
+      "unique_prompts": 938,
+      "tasks": {
+        "generation": 939
+      },
+      "languages": {
+        "en": 939
+      },
+      "source_splits": {
+        "benchmark_train": 939
+      },
+      "label_scopes": {
+        "source_response_annotations": 939
+      }
+    },
+    "gsm8k": {
+      "records": 1319,
+      "unique_inputs": 1319,
+      "unique_prompts": 1319,
+      "tasks": {
+        "generation": 1319
+      },
+      "languages": {
+        "en": 1319
+      },
+      "source_splits": {
+        "main_test": 1319
+      },
+      "label_scopes": {
+        "math_reference": 1319
+      }
+    },
+    "harmbench": {
+      "records": 320,
+      "unique_inputs": 320,
+      "unique_prompts": 320,
+      "tasks": {
+        "generation": 320
+      },
+      "languages": {
+        "en": 320
+      },
+      "source_splits": {
+        "test": 320
+      },
+      "label_scopes": {
+        "prompt": 320
+      }
+    },
+    "mmlu": {
+      "records": 14042,
+      "unique_inputs": 13937,
+      "unique_prompts": 13937,
+      "tasks": {
+        "multiple_choice": 14042
+      },
+      "languages": {
+        "en": 14042
+      },
+      "source_splits": {
+        "test": 14042
+      },
+      "label_scopes": {
+        "answer_key": 14042
+      }
+    },
+    "openaimod": {
+      "records": 1680,
+      "unique_inputs": 1663,
+      "unique_prompts": 0,
+      "tasks": {
+        "moderation": 1680
+      },
+      "languages": {
+        "mixed": 1680
+      },
+      "source_splits": {
+        "test": 1680
+      },
+      "label_scopes": {
+        "text": 1680
+      }
+    },
+    "orbench": {
+      "records": 82333,
+      "unique_inputs": 81015,
+      "unique_prompts": 81015,
+      "tasks": {
+        "generation": 82333
+      },
+      "languages": {
+        "en": 82333
+      },
+      "source_splits": {
+        "or-bench-80k": 80359,
+        "or-bench-hard-1k": 1319,
+        "or-bench-toxic": 655
+      },
+      "label_scopes": {
+        "prompt": 82333
+      }
+    },
+    "saferlhf": {
+      "records": 8211,
+      "unique_inputs": 7494,
+      "unique_prompts": 7494,
+      "tasks": {
+        "generation": 8211
+      },
+      "languages": {
+        "en": 8211
+      },
+      "source_splits": {
+        "Alpaca-7B_test": 3036,
+        "Alpaca2-7B_test": 2848,
+        "Alpaca3-8B_test": 2327
+      },
+      "label_scopes": {
+        "response_pair_preferences": 8211
+      }
+    },
+    "safetybench": {
+      "records": 22870,
+      "unique_inputs": 22844,
+      "unique_prompts": 22844,
+      "tasks": {
+        "multiple_choice": 22870
+      },
+      "languages": {
+        "en": 11435,
+        "zh": 11435
+      },
+      "source_splits": {
+        "test_en": 11435,
+        "test_zh": 11435
+      },
+      "label_scopes": {
+        "withheld_answer_key": 22870
+      }
+    },
+    "simpleqa_verified": {
+      "records": 1000,
+      "unique_inputs": 1000,
+      "unique_prompts": 1000,
+      "tasks": {
+        "generation": 1000
+      },
+      "languages": {
+        "en": 1000
+      },
+      "source_splits": {
+        "eval": 1000
+      },
+      "label_scopes": {
+        "factual_reference": 1000
+      }
+    },
+    "simplesafetytests": {
+      "records": 100,
+      "unique_inputs": 100,
+      "unique_prompts": 100,
+      "tasks": {
+        "generation": 100
+      },
+      "languages": {
+        "en": 100
+      },
+      "source_splits": {
+        "test": 100
+      },
+      "label_scopes": {
+        "prompt": 100
+      }
+    },
+    "toxicchat": {
+      "records": 5083,
+      "unique_inputs": 4951,
+      "unique_prompts": 4951,
+      "tasks": {
+        "generation": 5083
+      },
+      "languages": {
+        "mixed": 5083
+      },
+      "source_splits": {
+        "toxicchat0124_test": 5083
+      },
+      "label_scopes": {
+        "prompt_toxicity": 5083
+      }
+    },
+    "truthfulqa": {
+      "records": 817,
+      "unique_inputs": 817,
+      "unique_prompts": 817,
+      "tasks": {
+        "generation": 817
+      },
+      "languages": {
+        "en": 817
+      },
+      "source_splits": {
+        "generation_validation": 817
+      },
+      "label_scopes": {
+        "factual_reference": 817
+      }
+    },
+    "wildguard": {
+      "records": 1725,
+      "unique_inputs": 1725,
+      "unique_prompts": 1725,
+      "tasks": {
+        "generation": 1725
+      },
+      "languages": {
+        "en": 1725
+      },
+      "source_splits": {
+        "wildguardtest": 1725
+      },
+      "label_scopes": {
+        "prompt_and_response_separate": 1725
+      }
+    },
+    "xstest": {
+      "records": 450,
+      "unique_inputs": 450,
+      "unique_prompts": 450,
+      "tasks": {
+        "generation": 450
+      },
+      "languages": {
+        "en": 450
+      },
+      "source_splits": {
+        "test": 450
+      },
+      "label_scopes": {
+        "prompt": 450
+      }
+    }
+  },
+  "tracks": {
+    "core-behavior": {
+      "prompts": 22001,
+      "split": "test",
+      "deduplicated": true,
+      "limited": false,
+      "sha256": "7d12920cb6116a80c5980f723684ef6685363678015e630d11c37661d6b50947",
+      "description": "All acquired behavioral suites plus OR-Bench hard/toxic; no random downsampling."
+    },
+    "extended-behavior": {
+      "prompts": 101042,
+      "split": "test",
+      "deduplicated": true,
+      "limited": false,
+      "sha256": "8d26208364d1ef560fdeb1f4e7e0d2bcd44b9857213e0dbd7dff8af4df407763",
+      "description": "Full behavioral pool including all OR-Bench 80k inputs; overlaps core."
+    },
+    "factuality": {
+      "prompts": 1817,
+      "split": "test",
+      "deduplicated": true,
+      "limited": false,
+      "sha256": "292eeb2c600f0d890f64a7ff8518d82b2dbd0171e7247c90db80063ed855e4b4",
+      "description": "Closed-book factuality; correct/incorrect/abstained scored separately with references."
+    },
+    "math": {
+      "prompts": 1319,
+      "split": "test",
+      "deduplicated": true,
+      "limited": false,
+      "sha256": "1253c45342bb1f4aabaa52f0c9712701c1fe4dacef6e9c832f3664944462944e",
+      "description": "Official math test, independent capability regression."
+    },
+    "knowledge": {
+      "prompts": 13937,
+      "split": "test",
+      "deduplicated": true,
+      "limited": false,
+      "sha256": "eb7f3671ce6d9b3f0cbb2bf32658f4f0540d456ce6d251e5542c76002f116860",
+      "description": "Full MMLU official test; capability and explicit decision-probability calibration."
+    },
+    "bilingual-safety": {
+      "prompts": 22844,
+      "split": "test",
+      "deduplicated": true,
+      "limited": false,
+      "sha256": "381ee01b5924675443a74e416b0f8e5ce8a2e4e34a885a6699cedda29dcbca7c",
+      "description": "Parallel Chinese/English safety MC questions; test keys withheld, external accuracy evaluation required."
+    }
+  },
+  "limitations": [
+    "Tracks may overlap; never sum their sizes as independent questions",
+    "Metadata and answer keys are not part of the rendered model prompt",
+    "Downloaded/prepared is not generated/reviewed/scored",
+    "SafetyBench test keys withheld; accuracy requires official submission",
+    "No semantic deduplication or political factuality gold set yet"
+  ]
+}

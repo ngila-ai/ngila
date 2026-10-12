@@ -1,0 +1,394 @@
+{
+  "schema_version": 1,
+  "config": {
+    "version": "v0.2",
+    "seed": 20261011,
+    "validation_fraction": 0.1,
+    "inputs": [
+      {
+        "source": "xstest",
+        "path": "data/raw/xstest/source.csv",
+        "split": "test",
+        "role": "test",
+        "revision": "d7bb5bd738c1fcbc36edd83d5e7d1b71a3e2d84d"
+      },
+      {
+        "source": "simplesafetytests",
+        "path": "data/raw/simplesafetytests/source.csv",
+        "split": "test",
+        "role": "test",
+        "revision": "d7aee9a9422a5a5488f478fd79c2479c891c0f3b"
+      },
+      {
+        "source": "beavertails",
+        "path": "/mnt/data/hf-cache/PKU-Alignment___beaver_tails/default/0.0.0/8401fe609d288129cc684a9b3be6a93e41cfe678/beaver_tails-30k_train.arrow",
+        "split": "30k_train",
+        "role": "train",
+        "revision": "8401fe609d288129cc684a9b3be6a93e41cfe678"
+      },
+      {
+        "source": "beavertails",
+        "path": "/mnt/data/hf-cache/PKU-Alignment___beaver_tails/default/0.0.0/8401fe609d288129cc684a9b3be6a93e41cfe678/beaver_tails-30k_test.arrow",
+        "split": "30k_test",
+        "role": "test",
+        "revision": "8401fe609d288129cc684a9b3be6a93e41cfe678"
+      },
+      {
+        "source": "toxicchat",
+        "path": "data/downloads/research-v0.2/lmsys--toxic-chat/data/0124/toxic-chat_annotation_test.csv",
+        "split": "toxicchat0124_test",
+        "role": "test",
+        "revision": "29df8e4dba60e1f4af4b4075c0705c5b313548a8"
+      },
+      {
+        "source": "aegis1",
+        "path": "data/downloads/research-v0.2/nvidia--Aegis-AI-Content-Safety-Dataset-1.0/Content Moderation Extracted Annotations 02.08.24_test_release_0418_v1.parquet",
+        "split": "test",
+        "role": "test",
+        "revision": "bd96d862068e47630197de64eb91f8d1481ff3e0"
+      },
+      {
+        "source": "aegis2",
+        "path": "data/downloads/research-v0.2/nvidia--Aegis-AI-Content-Safety-Dataset-2.0/test.json",
+        "split": "test",
+        "role": "test",
+        "revision": "d86bb8bedff51d25ac834ab7838f1cc61acb7a2c"
+      },
+      {
+        "source": "wildguard",
+        "path": "data/downloads/research-v0.2/allenai--wildguardmix/test/wildguard_test.parquet",
+        "split": "wildguardtest",
+        "role": "test",
+        "revision": "d29c47f41c8b51348b5c8e8c81c039b3132b66d1"
+      },
+      {
+        "source": "saferlhf",
+        "path": "data/downloads/research-v0.2/PKU-Alignment--PKU-SafeRLHF/data/Alpaca-7B/test.jsonl",
+        "split": "Alpaca-7B_test",
+        "role": "test",
+        "revision": "9421ffafec3fa40a1f1a7d567b4d525079477ecb"
+      },
+      {
+        "source": "saferlhf",
+        "path": "data/downloads/research-v0.2/PKU-Alignment--PKU-SafeRLHF/data/Alpaca2-7B/test.jsonl",
+        "split": "Alpaca2-7B_test",
+        "role": "test",
+        "revision": "9421ffafec3fa40a1f1a7d567b4d525079477ecb"
+      },
+      {
+        "source": "saferlhf",
+        "path": "data/downloads/research-v0.2/PKU-Alignment--PKU-SafeRLHF/data/Alpaca3-8B/test.jsonl",
+        "split": "Alpaca3-8B_test",
+        "role": "test",
+        "revision": "9421ffafec3fa40a1f1a7d567b4d525079477ecb"
+      },
+      {
+        "source": "openaimod",
+        "path": "data/downloads/research-v0.2/openai--moderation-api-release/data/samples-1680.jsonl.gz",
+        "split": "test",
+        "role": "test",
+        "revision": "f4ab51b5edd3bfbcb349a56324274235b674e0e4"
+      },
+      {
+        "source": "orbench",
+        "path": "data/downloads/research-v0.2/bench-llm--or-bench/or-bench-80k.csv",
+        "split": "or-bench-80k",
+        "role": "test",
+        "revision": "e36d8b80e81837c8a8f264bbb2a49f1b32c7e272"
+      },
+      {
+        "source": "orbench",
+        "path": "data/downloads/research-v0.2/bench-llm--or-bench/or-bench-hard-1k.csv",
+        "split": "or-bench-hard-1k",
+        "role": "test",
+        "revision": "e36d8b80e81837c8a8f264bbb2a49f1b32c7e272"
+      },
+      {
+        "source": "orbench",
+        "path": "data/downloads/research-v0.2/bench-llm--or-bench/or-bench-toxic.csv",
+        "split": "or-bench-toxic",
+        "role": "test",
+        "revision": "e36d8b80e81837c8a8f264bbb2a49f1b32c7e272"
+      },
+      {
+        "source": "harmbench",
+        "path": "data/downloads/research-v0.2/centerforaisafety--HarmBench/data/behavior_datasets/harmbench_behaviors_text_test.csv",
+        "split": "test",
+        "role": "test",
+        "revision": "8e1604d1171fe8a48d8febecd22f600e462bdcdd"
+      },
+      {
+        "source": "truthfulqa",
+        "path": "data/downloads/research-v0.2/truthfulqa--truthful_qa/generation/validation-00000-of-00001.parquet",
+        "split": "generation_validation",
+        "role": "test",
+        "revision": "741b8276f2d1982aa3d5b832d3ee81ed3b896490"
+      },
+      {
+        "source": "gsm8k",
+        "path": "data/downloads/research-v0.2/openai--gsm8k/main/test-00000-of-00001.parquet",
+        "split": "main_test",
+        "role": "test",
+        "revision": "740312add88f781978c0658806c59bc2815b9866"
+      },
+      {
+        "source": "safetybench",
+        "path": "data/downloads/research-v0.2/thu-coai--SafetyBench/test_en.json",
+        "split": "test_en",
+        "role": "test",
+        "revision": "70538631943dc1517ae9bb0733251809f4445d0e"
+      },
+      {
+        "source": "safetybench",
+        "path": "data/downloads/research-v0.2/thu-coai--SafetyBench/test_zh.json",
+        "split": "test_zh",
+        "role": "test",
+        "revision": "70538631943dc1517ae9bb0733251809f4445d0e"
+      },
+      {
+        "source": "donotanswer",
+        "path": "data/downloads/research-v0.2/LibrAI--do-not-answer/data/train-00000-of-00001-6ba0076b818accff.parquet",
+        "split": "benchmark_train",
+        "role": "test",
+        "revision": "74e74f2e4507ef256fe536f78a776f4a1ff67955"
+      },
+      {
+        "source": "simpleqa_verified",
+        "path": "data/downloads/research-v0.2/google--simpleqa-verified/simpleqa_verified.csv",
+        "split": "eval",
+        "role": "test",
+        "revision": "0dc97e0d28d8233463e005cdc4475cc2a13ba2dc"
+      },
+      {
+        "source": "mmlu",
+        "path": "data/downloads/research-v0.2/cais--mmlu/all/test-00000-of-00001.parquet",
+        "split": "test",
+        "role": "test",
+        "revision": "c30699e8356da336a370243923dbaf21066bb9fe"
+      }
+    ]
+  },
+  "inputs": [
+    {
+      "source": "xstest",
+      "path": "data/raw/xstest/source.csv",
+      "split": "test",
+      "role": "test",
+      "revision": "d7bb5bd738c1fcbc36edd83d5e7d1b71a3e2d84d",
+      "sha256": "9c59909db4a51e2eba11f867a7d0f57fd2a5575e37c2d88de4ad48ed9519e0ad"
+    },
+    {
+      "source": "simplesafetytests",
+      "path": "data/raw/simplesafetytests/source.csv",
+      "split": "test",
+      "role": "test",
+      "revision": "d7aee9a9422a5a5488f478fd79c2479c891c0f3b",
+      "sha256": "4a7f09a93dcf9e75951eb323fde11e84e7edc4a42280b934f51a86be3a656ad4"
+    },
+    {
+      "source": "beavertails",
+      "path": "/mnt/data/hf-cache/PKU-Alignment___beaver_tails/default/0.0.0/8401fe609d288129cc684a9b3be6a93e41cfe678/beaver_tails-30k_train.arrow",
+      "split": "30k_train",
+      "role": "train",
+      "revision": "8401fe609d288129cc684a9b3be6a93e41cfe678",
+      "sha256": "ae37d85a21dd5c55ea8670c9649467e74e59e5d30e5dfe1a594f8b27d8cd8dbe"
+    },
+    {
+      "source": "beavertails",
+      "path": "/mnt/data/hf-cache/PKU-Alignment___beaver_tails/default/0.0.0/8401fe609d288129cc684a9b3be6a93e41cfe678/beaver_tails-30k_test.arrow",
+      "split": "30k_test",
+      "role": "test",
+      "revision": "8401fe609d288129cc684a9b3be6a93e41cfe678",
+      "sha256": "20fb9f41bf30dff9a26bbd1f5485f0a7ec37bb0b5f092aa6b03c824d8b05e971"
+    },
+    {
+      "source": "toxicchat",
+      "path": "data/downloads/research-v0.2/lmsys--toxic-chat/data/0124/toxic-chat_annotation_test.csv",
+      "split": "toxicchat0124_test",
+      "role": "test",
+      "revision": "29df8e4dba60e1f4af4b4075c0705c5b313548a8",
+      "sha256": "3c2e49889626f7738dca0a29bface0ba0a0595b2ffdd17f0e02f19df7c3c4c9b"
+    },
+    {
+      "source": "aegis1",
+      "path": "data/downloads/research-v0.2/nvidia--Aegis-AI-Content-Safety-Dataset-1.0/Content Moderation Extracted Annotations 02.08.24_test_release_0418_v1.parquet",
+      "split": "test",
+      "role": "test",
+      "revision": "bd96d862068e47630197de64eb91f8d1481ff3e0",
+      "sha256": "90cebe34ee64c7a0f533fe5534bc03f862f89981969c00376a45c9d9f4ca2159"
+    },
+    {
+      "source": "aegis2",
+      "path": "data/downloads/research-v0.2/nvidia--Aegis-AI-Content-Safety-Dataset-2.0/test.json",
+      "split": "test",
+      "role": "test",
+      "revision": "d86bb8bedff51d25ac834ab7838f1cc61acb7a2c",
+      "sha256": "b0a6d602260524866053cb34105194f074f2c2906e3691b68d43b9e6e9318f35"
+    },
+    {
+      "source": "wildguard",
+      "path": "data/downloads/research-v0.2/allenai--wildguardmix/test/wildguard_test.parquet",
+      "split": "wildguardtest",
+      "role": "test",
+      "revision": "d29c47f41c8b51348b5c8e8c81c039b3132b66d1",
+      "sha256": "6ccc2909c1ae6d41424fac69f1fc32535b1de39cb8f80407d81e8bc64a0bebca"
+    },
+    {
+      "source": "saferlhf",
+      "path": "data/downloads/research-v0.2/PKU-Alignment--PKU-SafeRLHF/data/Alpaca-7B/test.jsonl",
+      "split": "Alpaca-7B_test",
+      "role": "test",
+      "revision": "9421ffafec3fa40a1f1a7d567b4d525079477ecb",
+      "sha256": "fcfd18c5cd24f304a07a773f7f11c38b89ae9f8dee76e0324d740a0f34a6dd34"
+    },
+    {
+      "source": "saferlhf",
+      "path": "data/downloads/research-v0.2/PKU-Alignment--PKU-SafeRLHF/data/Alpaca2-7B/test.jsonl",
+      "split": "Alpaca2-7B_test",
+      "role": "test",
+      "revision": "9421ffafec3fa40a1f1a7d567b4d525079477ecb",
+      "sha256": "391849230d41e9d0760ed7f236c7eabd6fb9332c00b9a1b301202fa8fa9d651a"
+    },
+    {
+      "source": "saferlhf",
+      "path": "data/downloads/research-v0.2/PKU-Alignment--PKU-SafeRLHF/data/Alpaca3-8B/test.jsonl",
+      "split": "Alpaca3-8B_test",
+      "role": "test",
+      "revision": "9421ffafec3fa40a1f1a7d567b4d525079477ecb",
+      "sha256": "7f7ee8812fbeb52e1568a2b91d1d90bf6d0064b88ba8362198a7234d30007781"
+    },
+    {
+      "source": "openaimod",
+      "path": "data/downloads/research-v0.2/openai--moderation-api-release/data/samples-1680.jsonl.gz",
+      "split": "test",
+      "role": "test",
+      "revision": "f4ab51b5edd3bfbcb349a56324274235b674e0e4",
+      "sha256": "ef3f7de86ee394fe337b0a566ba4b9c7db058f3caa8d6a4a0006138b663ab9a8"
+    },
+    {
+      "source": "orbench",
+      "path": "data/downloads/research-v0.2/bench-llm--or-bench/or-bench-80k.csv",
+      "split": "or-bench-80k",
+      "role": "test",
+      "revision": "e36d8b80e81837c8a8f264bbb2a49f1b32c7e272",
+      "sha256": "22e956020cdfdd43c328f02441f003c933ee4e7083d02d9d24e414e4b42ae2e6"
+    },
+    {
+      "source": "orbench",
+      "path": "data/downloads/research-v0.2/bench-llm--or-bench/or-bench-hard-1k.csv",
+      "split": "or-bench-hard-1k",
+      "role": "test",
+      "revision": "e36d8b80e81837c8a8f264bbb2a49f1b32c7e272",
+      "sha256": "a6e2f1166416efe5901f3bb05c47dc92ab3aca3acfe143693d38b8057d841e6d"
+    },
+    {
+      "source": "orbench",
+      "path": "data/downloads/research-v0.2/bench-llm--or-bench/or-bench-toxic.csv",
+      "split": "or-bench-toxic",
+      "role": "test",
+      "revision": "e36d8b80e81837c8a8f264bbb2a49f1b32c7e272",
+      "sha256": "3be45901faae3b4b2b51bf7f8a2784c1650a1cc8c631dbc8b171d5312d4e0057"
+    },
+    {
+      "source": "harmbench",
+      "path": "data/downloads/research-v0.2/centerforaisafety--HarmBench/data/behavior_datasets/harmbench_behaviors_text_test.csv",
+      "split": "test",
+      "role": "test",
+      "revision": "8e1604d1171fe8a48d8febecd22f600e462bdcdd",
+      "sha256": "75d257b3e7428c52eb7b0154318f455af3e01b09a3794b5e2f3d36054f3c0e29"
+    },
+    {
+      "source": "truthfulqa",
+      "path": "data/downloads/research-v0.2/truthfulqa--truthful_qa/generation/validation-00000-of-00001.parquet",
+      "split": "generation_validation",
+      "role": "test",
+      "revision": "741b8276f2d1982aa3d5b832d3ee81ed3b896490",
+      "sha256": "dfb1004b8ab83b22e8e476c76d5ac6074ff35c43946a724e810de3d83c3e21a5"
+    },
+    {
+      "source": "gsm8k",
+      "path": "data/downloads/research-v0.2/openai--gsm8k/main/test-00000-of-00001.parquet",
+      "split": "main_test",
+      "role": "test",
+      "revision": "740312add88f781978c0658806c59bc2815b9866",
+      "sha256": "ee7b8da9e381df27b9e3f7758a159ab2bdaa4dbaa910546cbbc47e0cb44e4f59"
+    },
+    {
+      "source": "safetybench",
+      "path": "data/downloads/research-v0.2/thu-coai--SafetyBench/test_en.json",
+      "split": "test_en",
+      "role": "test",
+      "revision": "70538631943dc1517ae9bb0733251809f4445d0e",
+      "sha256": "ace04ac20f727423c854005a5ac221fcfa140c2e7f9bd47f3eaad4281fe5001b"
+    },
+    {
+      "source": "safetybench",
+      "path": "data/downloads/research-v0.2/thu-coai--SafetyBench/test_zh.json",
+      "split": "test_zh",
+      "role": "test",
+      "revision": "70538631943dc1517ae9bb0733251809f4445d0e",
+      "sha256": "1ce18932af7cbf934c9f6ae4ca00ff532a3bf2e77391417f25207047099f16d0"
+    },
+    {
+      "source": "donotanswer",
+      "path": "data/downloads/research-v0.2/LibrAI--do-not-answer/data/train-00000-of-00001-6ba0076b818accff.parquet",
+      "split": "benchmark_train",
+      "role": "test",
+      "revision": "74e74f2e4507ef256fe536f78a776f4a1ff67955",
+      "sha256": "cc03d6e34df834c4272ccb67eacb21f8016c1ac59c9dda77b74f93cc4154c04b"
+    },
+    {
+      "source": "simpleqa_verified",
+      "path": "data/downloads/research-v0.2/google--simpleqa-verified/simpleqa_verified.csv",
+      "split": "eval",
+      "role": "test",
+      "revision": "0dc97e0d28d8233463e005cdc4475cc2a13ba2dc",
+      "sha256": "b5db21155444763543fe31b67e7cf28ce2bb225742a5b889421c5f182e2f92f5"
+    },
+    {
+      "source": "mmlu",
+      "path": "data/downloads/research-v0.2/cais--mmlu/all/test-00000-of-00001.parquet",
+      "split": "test",
+      "role": "test",
+      "revision": "c30699e8356da336a370243923dbaf21066bb9fe",
+      "sha256": "74a41822ce7d3def56e1682f958469c04642a5336a5ce912fa375fdb90fb25d7"
+    }
+  ],
+  "registry_sha256": "543d35c2d6b4d088902f63b5749e673174251c1a3655c64b0a67c4ea73261a8f",
+  "counts": {
+    "train": 15039,
+    "validation": 1566,
+    "test": 147037
+  },
+  "quarantined": 10581,
+  "skipped": {
+    "aegis2:redacted_or_empty": 36
+  },
+  "source_counts": {
+    "xstest": 450,
+    "aegis2": 1928,
+    "simplesafetytests": 100,
+    "toxicchat": 5083,
+    "beavertails": 19626,
+    "saferlhf": 8211,
+    "aegis1": 1199,
+    "donotanswer": 939,
+    "truthfulqa": 817,
+    "gsm8k": 1319,
+    "wildguard": 1725,
+    "openaimod": 1680,
+    "orbench": 82333,
+    "harmbench": 320,
+    "safetybench": 22870,
+    "simpleqa_verified": 1000,
+    "mmlu": 14042
+  },
+  "dedup": "NFKC + casefold + whitespace; family union; held-out wins, conflicting train rows quarantined",
+  "limitation": "Semantic/paraphrase leakage is not detected",
+  "files": {
+    "train.jsonl": "e842665780ea4496a40cecf6608d3745c4d1bcb33b4d96119579d9ac76865f64",
+    "validation.jsonl": "72ac49c08d65d60fc4dfcb27fec522e91912e57d1e90299291055653c331ea5f",
+    "test.jsonl": "f7a7c32ddb03bcc0d6be2237bc724b667c9b987e8997b66e002231b589c787a7",
+    "quarantine.jsonl": "3242d77cded71246f89b17025b3c37893dab6e06dc62d4831ff91af044b14359"
+  }
+}

@@ -84,7 +84,17 @@ CUDA_VISIBLE_DEVICES=0 /home/tom/anaconda3/envs/so/bin/python scripts/experiment
 
 这些是研究参考，不是本项目已经复现的结论。
 
-## 项目组件与数据 v0.1
+## 当前评测数据 v0.2
+
+已扩充至 **17 个来源、147,037 条测试记录**；另登记 SORRY-Bench，等待上游访问授权。
+核心行为评测 **22,001 条去重提示**，扩展行为评测 **101,042 条**；事实性、数学、
+知识和中英双语安全测试分别报告。数据已准备不代表模型已完成评测。
+
+完整数量、限制、复现命令与发布记录见 [v0.2 评测清单](docs/eval-v0.2.md)。
+新测试集查出更多训练重叠，v0.2 train/validation 为 **15,039 / 1,566**；
+使用 v0.1 训练数据时，不能宣称 v0.2 无泄漏。
+
+## 初始项目组件与数据 v0.1
 
 代码目标：GitHub `ngila-ai/ngila`；模型与数据：Hugging Face `ngila-ai`。
 [GitHub 代码库](https://github.com/ngila-ai/ngila)与两个 Hugging Face 数据集均已发布。见 [发布状态](docs/publication-status.json)。

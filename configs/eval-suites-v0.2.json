@@ -1,0 +1,71 @@
+{
+  "version": "v0.2",
+  "tracks": {
+    "core-behavior": {
+      "sources": [
+        "xstest",
+        "simplesafetytests",
+        "toxicchat",
+        "aegis1",
+        "aegis2",
+        "wildguard",
+        "saferlhf",
+        "beavertails",
+        "orbench",
+        "harmbench",
+        "donotanswer"
+      ],
+      "exclude_source_splits": [
+        "or-bench-80k"
+      ],
+      "description": "All acquired behavioral suites plus OR-Bench hard/toxic; no random downsampling."
+    },
+    "extended-behavior": {
+      "sources": [
+        "xstest",
+        "simplesafetytests",
+        "toxicchat",
+        "aegis1",
+        "aegis2",
+        "wildguard",
+        "saferlhf",
+        "beavertails",
+        "orbench",
+        "harmbench",
+        "donotanswer"
+      ],
+      "description": "Full behavioral pool including all OR-Bench 80k inputs; overlaps core."
+    },
+    "factuality": {
+      "sources": [
+        "truthfulqa",
+        "simpleqa_verified"
+      ],
+      "description": "Closed-book factuality; correct/incorrect/abstained scored separately with references."
+    },
+    "math": {
+      "sources": [
+        "gsm8k"
+      ],
+      "description": "Official math test, independent capability regression."
+    },
+    "knowledge": {
+      "sources": [
+        "mmlu"
+      ],
+      "tasks": [
+        "multiple_choice"
+      ],
+      "description": "Full MMLU official test; capability and explicit decision-probability calibration."
+    },
+    "bilingual-safety": {
+      "sources": [
+        "safetybench"
+      ],
+      "tasks": [
+        "multiple_choice"
+      ],
+      "description": "Parallel Chinese/English safety MC questions; test keys withheld, external accuracy evaluation required."
+    }
+  }
+}

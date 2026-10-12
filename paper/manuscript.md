@@ -59,3 +59,12 @@ Data licenses remain source-specific.
 - [BeaverTails](https://huggingface.co/datasets/PKU-Alignment/BeaverTails)
 - [Refusal direction research](https://arxiv.org/abs/2406.11717)
 - [Qwen censorship reference](https://vas-blog.pages.dev/qwen-censorship/)
+
+## Dataset expansion, 2026-10-12
+
+[v0.2](../docs/eval-v0.2.md) incorporates 17 acquired sources and 147,037 held-out
+records. Core behavior uses 22,001 deduplicated prompts, extended behavior 101,042;
+these tracks overlap. Factuality, math, knowledge and bilingual safety are separate
+tracks. The added holdouts raise quarantined training records to 10,581, leaving
+15,039 train and 1,566 validation. This is a data/infrastructure result, not an
+ngila checkpoint improvement. There are still no expanded-benchmark model scores.

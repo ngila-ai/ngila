@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "verified_date": "2026-10-11",
+  "verified_date": "2026-10-12",
   "sources": [
     {
       "id": "xstest",
@@ -53,13 +53,18 @@
       "provider": "hf",
       "repo": "lmsys/toxic-chat",
       "config": "toxicchat0124",
-      "revision": null,
+      "revision": "29df8e4dba60e1f4af4b4075c0705c5b313548a8",
       "license": "cc-by-nc-4.0",
       "language": "mixed",
       "eval_only": false,
       "role": "input_toxicity_and_jailbreak_labels",
       "adapter": "toxicchat",
-      "notes": "10,165 examples; toxicity is not a refusal/accuracy target; preserve official train/test."
+      "notes": "10,165 examples; toxicity is not a refusal/accuracy target; preserve official train/test.",
+      "files": [
+        "README.md",
+        "data/0124/toxic-chat_annotation_test.csv"
+      ],
+      "acquisition_status": "complete"
     },
     {
       "id": "openaimod",
@@ -69,17 +74,19 @@
       "url": "https://github.com/openai/moderation-api-release",
       "provider": "github",
       "repo": "openai/moderation-api-release",
-      "revision": null,
+      "revision": "f4ab51b5edd3bfbcb349a56324274235b674e0e4",
       "files": [
         "data/samples-1680.jsonl.gz",
-        "LICENSE"
+        "LICENSE",
+        "README.md"
       ],
       "license": "mit",
       "language": "mixed",
       "eval_only": true,
       "role": "moderation_classifier_test",
       "adapter": "openaimod",
-      "notes": "1,680 text examples; missing category labels are unknown, not negative. Not a generation prompt suite."
+      "notes": "1,680 text examples; missing category labels are unknown, not negative. Not a generation prompt suite.",
+      "acquisition_status": "complete"
     },
     {
       "id": "aegis1",
@@ -89,13 +96,18 @@
       "url": "https://huggingface.co/datasets/nvidia/Aegis-AI-Content-Safety-Dataset-1.0",
       "provider": "hf",
       "repo": "nvidia/Aegis-AI-Content-Safety-Dataset-1.0",
-      "revision": null,
+      "revision": "bd96d862068e47630197de64eb91f8d1481ff3e0",
       "license": "cc-by-4.0",
       "language": "mixed",
       "eval_only": false,
       "role": "dialogue_moderation_and_prompt_subset",
       "adapter": "aegis1",
-      "notes": "Only user_message rows can be used as standalone prompts. Keep all annotator labels and scope."
+      "notes": "Only user_message rows can be used as standalone prompts. Keep all annotator labels and scope.",
+      "files": [
+        "README.md",
+        "Content Moderation Extracted Annotations 02.08.24_test_release_0418_v1.parquet"
+      ],
+      "acquisition_status": "complete"
     },
     {
       "id": "aegis2",
@@ -106,13 +118,18 @@
       "url": "https://huggingface.co/datasets/nvidia/Aegis-AI-Content-Safety-Dataset-2.0",
       "provider": "hf",
       "repo": "nvidia/Aegis-AI-Content-Safety-Dataset-2.0",
-      "revision": null,
+      "revision": "d86bb8bedff51d25ac834ab7838f1cc61acb7a2c",
       "license": "cc-by-4.0",
       "language": "mixed",
       "eval_only": false,
       "role": "separate_prompt_and_response_moderation",
       "adapter": "aegis2",
-      "notes": "33,416 including refusal augmentation; train 30,007, validation 1,445, test 1,964. Skip REDACTED records; do not reconstruct excluded content."
+      "notes": "33,416 including refusal augmentation; train 30,007, validation 1,445, test 1,964. Skip REDACTED records; do not reconstruct excluded content.",
+      "files": [
+        "README.md",
+        "test.json"
+      ],
+      "acquisition_status": "complete"
     },
     {
       "id": "wildguard",
@@ -128,14 +145,20 @@
         "wildguardtrain",
         "wildguardtest"
       ],
-      "revision": null,
+      "revision": "d29c47f41c8b51348b5c8e8c81c039b3132b66d1",
       "license": "odc-by",
       "gated": true,
       "language": "en",
       "eval_only": false,
       "role": "prompt_harm_response_harm_response_refusal",
       "adapter": "wildguard",
-      "notes": "86,759 train / 1,725 test; preserve unknown/disputed labels. Upstream gate requires user acceptance; do not auto-accept."
+      "notes": "86,759 train / 1,725 test; preserve unknown/disputed labels. Upstream gate requires user acceptance; do not auto-accept.",
+      "files": [
+        "README.md",
+        "test/wildguard_test.parquet"
+      ],
+      "acquisition_status": "complete",
+      "redistribute": false
     },
     {
       "id": "saferlhf",
@@ -147,13 +170,20 @@
       "provider": "hf",
       "repo": "PKU-Alignment/PKU-SafeRLHF",
       "config": "default",
-      "revision": null,
+      "revision": "9421ffafec3fa40a1f1a7d567b4d525079477ecb",
       "license": "cc-by-nc-4.0",
       "language": "en",
       "eval_only": false,
       "role": "response_safety_and_helpfulness_preferences",
       "adapter": "saferlhf",
-      "notes": "Keep safer_response_id distinct from better_response_id; do not invert either into an unverified SFT target."
+      "notes": "Keep safer_response_id distinct from better_response_id; do not invert either into an unverified SFT target.",
+      "files": [
+        "README.md",
+        "data/Alpaca-7B/test.jsonl",
+        "data/Alpaca2-7B/test.jsonl",
+        "data/Alpaca3-8B/test.jsonl"
+      ],
+      "acquisition_status": "complete"
     },
     {
       "id": "beavertails",
@@ -171,6 +201,205 @@
       "role": "QA_pair_moderation_and_prompt_pool",
       "adapter": "beavertails",
       "notes": "Use 30k_train / 30k_test initially; 330k is a related overlapping alternative. is_safe labels QA pairs, not standalone prompts."
+    },
+    {
+      "id": "orbench",
+      "aliases": [
+        "OR-Bench"
+      ],
+      "url": "https://huggingface.co/datasets/bench-llm/or-bench",
+      "provider": "hf",
+      "repo": "bench-llm/or-bench",
+      "license": "cc-by-4.0",
+      "language": "en",
+      "eval_only": true,
+      "role": "overrefusal_large_and_hard_controls",
+      "adapter": "orbench",
+      "notes": "80k and hard subset overlap; evaluation-only despite upstream train naming. Actual pinned file counts must be used.",
+      "revision": "e36d8b80e81837c8a8f264bbb2a49f1b32c7e272",
+      "files": [
+        "README.md",
+        "or-bench-80k.csv",
+        "or-bench-hard-1k.csv",
+        "or-bench-toxic.csv"
+      ],
+      "acquisition_status": "complete"
+    },
+    {
+      "id": "sorrybench",
+      "aliases": [
+        "SORRY-Bench"
+      ],
+      "url": "https://huggingface.co/datasets/sorry-bench/sorry-bench-202406",
+      "provider": "hf",
+      "repo": "sorry-bench/sorry-bench-202406",
+      "license": "other",
+      "language": "mixed",
+      "eval_only": true,
+      "role": "finegrained_refusal_and_multilingual",
+      "adapter": null,
+      "notes": "Gated, custom license prohibits redistribution. Current credential lacks access. Keep references only.",
+      "revision": "b34822276edde97592eda99c0b56d306f8830469",
+      "files": [
+        "README.md",
+        "LICENSE",
+        "question.jsonl",
+        "question_translate-zh-cn.jsonl"
+      ],
+      "acquisition_status": "partial_or_blocked",
+      "gated": true,
+      "redistribute": false
+    },
+    {
+      "id": "harmbench",
+      "aliases": [
+        "HarmBench"
+      ],
+      "url": "https://github.com/centerforaisafety/HarmBench",
+      "provider": "github",
+      "repo": "centerforaisafety/HarmBench",
+      "license": "mit",
+      "language": "en",
+      "eval_only": true,
+      "role": "behavior_completion",
+      "adapter": "harmbench",
+      "notes": "320 text test cases; contextual inputs require ContextString. Copyright cases need a separate overlap protocol. 80 validation cases downloaded but not mixed into test.",
+      "revision": "8e1604d1171fe8a48d8febecd22f600e462bdcdd",
+      "files": [
+        "data/behavior_datasets/harmbench_behaviors_text_test.csv",
+        "data/behavior_datasets/harmbench_behaviors_text_val.csv",
+        "LICENSE",
+        "README.md"
+      ],
+      "acquisition_status": "complete"
+    },
+    {
+      "id": "truthfulqa",
+      "aliases": [
+        "TruthfulQA"
+      ],
+      "url": "https://huggingface.co/datasets/truthfulqa/truthful_qa",
+      "provider": "hf",
+      "repo": "truthfulqa/truthful_qa",
+      "license": "apache-2.0",
+      "language": "en",
+      "eval_only": true,
+      "role": "truthfulness_and_false_beliefs",
+      "adapter": "truthfulqa",
+      "notes": "817 generation validation questions reserved as ngila test; MC version is the same questions, not another 817 independent examples.",
+      "revision": "741b8276f2d1982aa3d5b832d3ee81ed3b896490",
+      "files": [
+        "README.md",
+        "generation/validation-00000-of-00001.parquet",
+        "multiple_choice/validation-00000-of-00001.parquet"
+      ],
+      "acquisition_status": "complete"
+    },
+    {
+      "id": "gsm8k",
+      "aliases": [
+        "GSM8K"
+      ],
+      "url": "https://huggingface.co/datasets/openai/gsm8k",
+      "provider": "hf",
+      "repo": "openai/gsm8k",
+      "license": "mit",
+      "language": "en",
+      "eval_only": true,
+      "role": "math_capability_regression",
+      "adapter": "gsm8k",
+      "notes": "Only official main test; solution and final answer are evaluator-only references.",
+      "revision": "740312add88f781978c0658806c59bc2815b9866",
+      "files": [
+        "README.md",
+        "main/test-00000-of-00001.parquet"
+      ],
+      "acquisition_status": "complete"
+    },
+    {
+      "id": "safetybench",
+      "aliases": [
+        "SafetyBench"
+      ],
+      "url": "https://huggingface.co/datasets/thu-coai/SafetyBench",
+      "provider": "hf",
+      "repo": "thu-coai/SafetyBench",
+      "license": "mit",
+      "language": "mixed",
+      "eval_only": true,
+      "role": "bilingual_safety_knowledge",
+      "adapter": "safetybench",
+      "notes": "11,435 parallel questions in each language; labels withheld. Needs official submission for accuracy. Not 22,870 independent topics.",
+      "revision": "70538631943dc1517ae9bb0733251809f4445d0e",
+      "files": [
+        "README.md",
+        "test_en.json",
+        "test_zh.json"
+      ],
+      "acquisition_status": "complete"
+    },
+    {
+      "id": "donotanswer",
+      "aliases": [
+        "Do-Not-Answer"
+      ],
+      "url": "https://huggingface.co/datasets/LibrAI/do-not-answer",
+      "provider": "hf",
+      "repo": "LibrAI/do-not-answer",
+      "license": "cc-by-nc-sa-4.0",
+      "language": "en",
+      "eval_only": true,
+      "role": "refusal_and_unanswerable_taxonomy",
+      "adapter": "donotanswer",
+      "notes": "939 prompts retained test-only despite HF train label. Card body specifies CC BY-NC-SA for data; Apache metadata applies to source code. Not all prompts are harmful.",
+      "revision": "74e74f2e4507ef256fe536f78a776f4a1ff67955",
+      "files": [
+        "README.md",
+        "data/train-00000-of-00001-6ba0076b818accff.parquet"
+      ],
+      "acquisition_status": "complete"
+    },
+    {
+      "id": "simpleqa_verified",
+      "aliases": [
+        "SimpleQA Verified"
+      ],
+      "url": "https://huggingface.co/datasets/google/simpleqa-verified",
+      "provider": "hf",
+      "repo": "google/simpleqa-verified",
+      "license": "mit",
+      "language": "en",
+      "eval_only": true,
+      "role": "short_factuality_and_abstention",
+      "adapter": "simpleqa_verified",
+      "notes": "1,000 human-reverified factual questions, supporting URLs. Closed-book evaluation; overlaps original SimpleQA, do not sum both.",
+      "revision": "0dc97e0d28d8233463e005cdc4475cc2a13ba2dc",
+      "files": [
+        "README.md",
+        "simpleqa_verified.csv"
+      ],
+      "acquisition_status": "complete"
+    },
+    {
+      "id": "mmlu",
+      "aliases": [
+        "MMLU"
+      ],
+      "url": "https://huggingface.co/datasets/cais/mmlu",
+      "provider": "hf",
+      "repo": "cais/mmlu",
+      "license": "mit",
+      "language": "en",
+      "eval_only": true,
+      "role": "broad_capability_and_decision_calibration",
+      "adapter": "mmlu",
+      "notes": "14,042 official test questions; 57 subjects. MC accuracy and probabilities of correctness are separate from refusal.",
+      "revision": "c30699e8356da336a370243923dbaf21066bb9fe",
+      "files": [
+        "README.md",
+        "all/test-00000-of-00001.parquet"
+      ],
+      "acquisition_status": "complete"
     }
   ]
 }

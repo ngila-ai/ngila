@@ -1,0 +1,178 @@
+{
+  "date": "2026-10-12",
+  "receipts": [
+    {
+      "repo": "LibrAI/do-not-answer",
+      "revision": "74e74f2e4507ef256fe536f78a776f4a1ff67955",
+      "files": {
+        "README.md": "b0e3ec62f87b1e52c1cd47c9cb5d82120939caa0a5e962e32db7045e2365f544",
+        "data/train-00000-of-00001-6ba0076b818accff.parquet": "cc03d6e34df834c4272ccb67eacb21f8016c1ac59c9dda77b74f93cc4154c04b"
+      },
+      "errors": {},
+      "status": "complete",
+      "gate_accepted": false
+    },
+    {
+      "repo": "PKU-Alignment/PKU-SafeRLHF",
+      "revision": "9421ffafec3fa40a1f1a7d567b4d525079477ecb",
+      "files": {
+        "README.md": "77ce394a7406b94e7ebe04b63e25850733286369db2d038936a6114502923579",
+        "data/Alpaca-7B/test.jsonl": "fcfd18c5cd24f304a07a773f7f11c38b89ae9f8dee76e0324d740a0f34a6dd34",
+        "data/Alpaca2-7B/test.jsonl": "391849230d41e9d0760ed7f236c7eabd6fb9332c00b9a1b301202fa8fa9d651a",
+        "data/Alpaca3-8B/test.jsonl": "7f7ee8812fbeb52e1568a2b91d1d90bf6d0064b88ba8362198a7234d30007781"
+      },
+      "errors": {},
+      "status": "complete",
+      "gate_accepted": false
+    },
+    {
+      "repo": "allenai/wildguardmix",
+      "revision": "d29c47f41c8b51348b5c8e8c81c039b3132b66d1",
+      "files": {
+        "README.md": "4cdee2c6fa839a2802237826a09f594522a31b2c33afe691f46be5ee98d66512",
+        "test/wildguard_test.parquet": "6ccc2909c1ae6d41424fac69f1fc32535b1de39cb8f80407d81e8bc64a0bebca"
+      },
+      "errors": {},
+      "status": "complete",
+      "gate_accepted": false
+    },
+    {
+      "repo": "bench-llm/or-bench",
+      "revision": "e36d8b80e81837c8a8f264bbb2a49f1b32c7e272",
+      "files": {
+        "README.md": "fe467de5f4e5810a06c1f40d146a0e0ff98148e3d4dfe5afcdcb0118912831ec",
+        "or-bench-80k.csv": "22e956020cdfdd43c328f02441f003c933ee4e7083d02d9d24e414e4b42ae2e6",
+        "or-bench-hard-1k.csv": "a6e2f1166416efe5901f3bb05c47dc92ab3aca3acfe143693d38b8057d841e6d",
+        "or-bench-toxic.csv": "3be45901faae3b4b2b51bf7f8a2784c1650a1cc8c631dbc8b171d5312d4e0057"
+      },
+      "errors": {},
+      "status": "complete",
+      "gate_accepted": false
+    },
+    {
+      "repo": "cais/mmlu",
+      "revision": "c30699e8356da336a370243923dbaf21066bb9fe",
+      "files": {
+        "README.md": "665eef35ecd8a89037c1e4f1e1a0d7fd4c154edc04c81cea5634ace2d3e96953",
+        "all/test-00000-of-00001.parquet": "74a41822ce7d3def56e1682f958469c04642a5336a5ce912fa375fdb90fb25d7"
+      },
+      "errors": {},
+      "status": "complete"
+    },
+    {
+      "repo": "centerforaisafety/HarmBench",
+      "revision": "8e1604d1171fe8a48d8febecd22f600e462bdcdd",
+      "files": {
+        "data/behavior_datasets/harmbench_behaviors_text_test.csv": "75d257b3e7428c52eb7b0154318f455af3e01b09a3794b5e2f3d36054f3c0e29",
+        "data/behavior_datasets/harmbench_behaviors_text_val.csv": "7bfaaa5e2b9b95002c89e2d33c019f58e9e8496e2fc65d368f1eeb8179e69534",
+        "LICENSE": "fe29c68dd1216e81e98a6069165e1c720757b23bbcaa6c0cb8f9a957bdaaca80",
+        "README.md": "baae4a0b64b61812e61a162eafb2ed344edbc151f57dd99c4af063e3d0efec5d"
+      },
+      "errors": {},
+      "status": "complete"
+    },
+    {
+      "repo": "google/simpleqa-verified",
+      "revision": "0dc97e0d28d8233463e005cdc4475cc2a13ba2dc",
+      "files": {
+        "README.md": "5855a8b4581cb616f3cea8cadb305b5c2a5dd5943f60b4a919f994d092263c46",
+        "simpleqa_verified.csv": "b5db21155444763543fe31b67e7cf28ce2bb225742a5b889421c5f182e2f92f5"
+      },
+      "errors": {},
+      "status": "complete"
+    },
+    {
+      "repo": "lmsys/toxic-chat",
+      "revision": "29df8e4dba60e1f4af4b4075c0705c5b313548a8",
+      "files": {
+        "README.md": "70c63cac8fff2a4934c85b3d3b52d2e169b8af9fe893dd9de1ea5e4abdb51441",
+        "data/0124/toxic-chat_annotation_test.csv": "3c2e49889626f7738dca0a29bface0ba0a0595b2ffdd17f0e02f19df7c3c4c9b"
+      },
+      "errors": {},
+      "status": "complete",
+      "gate_accepted": false
+    },
+    {
+      "repo": "nvidia/Aegis-AI-Content-Safety-Dataset-1.0",
+      "revision": "bd96d862068e47630197de64eb91f8d1481ff3e0",
+      "files": {
+        "README.md": "5cea7efa47c4029ea9b04e266a4cabf53d8a771335ecac60961a8b256cba3592",
+        "Content Moderation Extracted Annotations 02.08.24_test_release_0418_v1.parquet": "90cebe34ee64c7a0f533fe5534bc03f862f89981969c00376a45c9d9f4ca2159"
+      },
+      "errors": {},
+      "status": "complete",
+      "gate_accepted": false
+    },
+    {
+      "repo": "nvidia/Aegis-AI-Content-Safety-Dataset-2.0",
+      "revision": "d86bb8bedff51d25ac834ab7838f1cc61acb7a2c",
+      "files": {
+        "README.md": "da2598e587850bacc77c0658f56d0ea430f55d1cf70b197eb06070871802d3ba",
+        "test.json": "b0a6d602260524866053cb34105194f074f2c2906e3691b68d43b9e6e9318f35"
+      },
+      "errors": {},
+      "status": "complete",
+      "gate_accepted": false
+    },
+    {
+      "repo": "openai/gsm8k",
+      "revision": "740312add88f781978c0658806c59bc2815b9866",
+      "files": {
+        "README.md": "a17e882503578c9e324560630e31017617714ee025c87cf4fea6fd916895f3c1",
+        "main/test-00000-of-00001.parquet": "ee7b8da9e381df27b9e3f7758a159ab2bdaa4dbaa910546cbbc47e0cb44e4f59"
+      },
+      "errors": {},
+      "status": "complete",
+      "gate_accepted": false
+    },
+    {
+      "repo": "openai/moderation-api-release",
+      "revision": "f4ab51b5edd3bfbcb349a56324274235b674e0e4",
+      "files": {
+        "data/samples-1680.jsonl.gz": "ef3f7de86ee394fe337b0a566ba4b9c7db058f3caa8d6a4a0006138b663ab9a8",
+        "LICENSE": "b5d65a59060e68c4ff940e1eddfa6f94b2d68fdf58ed7f4dd57721c997e35e9d",
+        "README.md": "67120be63eb78d137bcc7027609c730f539e0d2039e93811707d7a653beed8cd"
+      },
+      "errors": {},
+      "status": "complete"
+    },
+    {
+      "repo": "sorry-bench/sorry-bench-202406",
+      "revision": "b34822276edde97592eda99c0b56d306f8830469",
+      "files": {
+        "README.md": "f4de17d4b46ec41b646a381ad04e92ff214ca26abde52b76af9bb12a07653b4d",
+        "LICENSE": "667a3edd172ba0c2cb11ddb02b280b0653baaa0a003729e5d195fb022b9d1f80"
+      },
+      "errors": {
+        "question.jsonl": "GatedRepoError",
+        "question_translate-zh-cn.jsonl": "GatedRepoError"
+      },
+      "status": "partial_or_blocked",
+      "gate_accepted": false
+    },
+    {
+      "repo": "thu-coai/SafetyBench",
+      "revision": "70538631943dc1517ae9bb0733251809f4445d0e",
+      "files": {
+        "README.md": "6835d19b015dd0a04b3a2413d78d69c7609d99e9193ff305e1eba9a5f40d6aed",
+        "test_en.json": "ace04ac20f727423c854005a5ac221fcfa140c2e7f9bd47f3eaad4281fe5001b",
+        "test_zh.json": "1ce18932af7cbf934c9f6ae4ca00ff532a3bf2e77391417f25207047099f16d0"
+      },
+      "errors": {},
+      "status": "complete",
+      "gate_accepted": false
+    },
+    {
+      "repo": "truthfulqa/truthful_qa",
+      "revision": "741b8276f2d1982aa3d5b832d3ee81ed3b896490",
+      "files": {
+        "README.md": "9e06075e7a580802a227e31cc456b37bdf5a174637f22e142b7609d709dd5f95",
+        "generation/validation-00000-of-00001.parquet": "dfb1004b8ab83b22e8e476c76d5ac6074ff35c43946a724e810de3d83c3e21a5",
+        "multiple_choice/validation-00000-of-00001.parquet": "23f08e230ca4ed66babf3a72419af7cbde1f3d734dd396ac4cf6d088bd162afd"
+      },
+      "errors": {},
+      "status": "complete",
+      "gate_accepted": false
+    }
+  ]
+}
